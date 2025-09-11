@@ -1,0 +1,50 @@
+/* Estilo geral do navbar */
+.navbar {
+  background-color: #f8f9fa !important; /* Cor de fundo */
+  border-bottom: 1px solid #dee2e6; /* Borda inferior */
+  padding: 10px 20px;
+}
+
+/* Estilo do logo, para centralizar se necessário */
+.navbar-brand img {
+  height: 40px;
+}
+
+/* Estilo dos links de navegação */
+.nav-link {
+  color: #343a40 !important;
+  font-weight: 500;
+  margin: 0 10px;
+}
+
+.nav-link:hover {
+  color: #007bff !important;
+}
+
+/* Estilo dos botões */
+.btn-outline-success {
+  color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+/* Estilos específicos dos botões do Figma */
+.btn-outline-success {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: #205c48;
+  border: none;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
