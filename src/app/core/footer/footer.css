@@ -1,0 +1,36 @@
+/* Estilo do rodapé */
+.footer {
+  background-color: #ffffff; /* Cor de fundo clara */
+  padding: 3rem 0 !important; /* Espaçamento interno */
+  text-align: center; /* Centraliza o texto */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte personalizada */
+  border-top: 1px solid #2a2f23; /* Linha de borda superior */
+  border-bottom: 1px solid #2a2f23; /* Linha de borda inferior */
+}
+
+.footer a {
+  color: #2a2f23; /* Cor dos links */
+  margin: 1rem; /* Espaçamento entre os ícones */
+  text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+.footer a:hover {
+  color: #2a2f239f; /* Cor dos links ao passar o mouse */
+}
+
+.footer p {
+  margin: 0; /* Remove a margem padrão */
+  font-size: 0.9rem; /* Tamanho da fonte */
+  color: #2a2f23; /* Cor do texto */
+}
+
+/* Estilo dos ícones dentro do footer */
+.footer i {
+  color: #2a2f23; /* Cor dos ícones */
+  margin: 0 0.5rem; /* Espaçamento entre os ícones */
+  font-size: 1.5rem; /* Tamanho dos ícones */
+}
+
+.footer i:hover {
+  color: #2a2f239f; /* Cor ao passar o mouse */
+}
