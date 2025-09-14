@@ -6,11 +6,7 @@ import { Login } from '../../pages/login/login';
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.html',
-<<<<<<< HEAD
-  styleUrls: ['./header.css'],
-=======
   styleUrls: ['./header.css']
->>>>>>> main
 })
 export class Header {
   protected readonly title = signal('FrontendAgromonitoramento');
