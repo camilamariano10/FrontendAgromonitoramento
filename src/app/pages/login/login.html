@@ -1,0 +1,49 @@
+<div class="div-modal">
+  <div class="modal-header">
+    <img src="assets/logo.png" alt="Logomarca" class="logo" />
+    <h2>AgroMonitoramento</h2>
+    <h4>Inteligência Artificial para sua plantação</h4>
+  </div>
+
+  <mat-dialog-content>
+    <div class="botoes-topo">
+      <button
+        class="btn-topo"
+        [class.active]="opcaoSelecionada === 'entrar'"
+        (click)="selecionarOpcao('entrar')"
+      >
+        Entrar
+      </button>
+      <button
+        class="btn-topo"
+        [class.active]="opcaoSelecionada === 'criar'"
+        (click)="selecionarOpcao('criar')"
+      >
+        Criar Conta
+      </button>
+    </div>
+
+    <h3 class="acesse-sua-conta">Acesse sua conta</h3>
+
+    <!-- Campo e-mail -->
+    <label class="campo-label">E-mail</label>
+    <mat-form-field appearance="outline" class="campo-login">
+      <mat-icon matPrefix>person</mat-icon>
+      <input matInput type="email" placeholder="seu@email.com" />
+    </mat-form-field>
+
+    <!-- Campo senha -->
+    <label class="campo-label">Senha</label>
+    <mat-form-field appearance="outline" class="campo-login">
+      <mat-icon matPrefix>lock</mat-icon>
+      <input matInput type="password" placeholder="••••••••" />
+      <button mat-icon-button matSuffix>
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button class="botao-entrar">Entrar</button>
+
+    <a class="esqueci-senha" href="#">Esqueci minha senha</a>
+  </mat-dialog-content>
+</div>
