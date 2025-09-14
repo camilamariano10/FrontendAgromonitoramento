@@ -1,0 +1,85 @@
+/* Estilo geral da barra de navegação */
+.navbar { /* É a classe padrão do Bootstrap para navbars */
+  background-color: #ffffff !important; /* Fundo claro */
+  padding: 0rem 2rem; /* Espaçamento interno */
+  border-bottom: 1px solid #c4c4c407; /* Borda inferior */
+}
+
+/* Estilo do logo, se precisar de ajustes de tamanho */
+.navbar-brand img { /* Seleciona a imagem dentro do link da marca */
+  width: 3rem; /* Mantém a proporção da imagem */
+  height: 3rem;
+  object-fit: contain; /* Garante que a imagem se ajuste sem distorção */
+}
+
+/* Estilo do texto do logo */
+.logo-text {
+  font-family: Arial, Helvetica, sans-serif; /* Fonte personalizada */
+  font-size: 1.5rem; /* Tamanho da fonte do texto do logo */
+  font-weight: bold; /* Negrito */
+  color: #212121; /* Cor do texto */
+  margin-left: 0.5rem; /* Espaçamento entre a imagem e o texto */
+  vertical-align: middle; /* Alinha verticalmente com a imagem */
+}
+
+/* Estilo dos links de navegação */
+.nav-link { /* Classe padrão do Bootstrap para links de navegação */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte personalizada */;
+  color: #212121 !important; /* Cor dos links */
+  font-weight: 550; /* Peso da fonte */
+  margin: 0 1rem;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.nav-link:hover { /* Efeito hover */
+  color: #21212186 !important;
+}
+
+/* Estilos para o botão de CADASTRO */
+.btn-outline-success { /* Cor de fundo transparente com borda */
+  background-color: #f9fafb;
+  color: #212121;
+  border: 1px solid #d1d5db; /* Borda cinza clara */
+  padding: 0.2rem 1rem;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 2px 5px 5px #00000025; /* Sombra leve */
+}
+
+/* Efeito hover para o botão de CADASTRO */
+.btn-outline-success:hover {
+  background-color: #d9d4c780; /* Fundo cinza claro ao passar o mouse */
+  border-color: #d1d5db; /* Borda cinza clara */
+  color: #212121;
+}
+
+/* Efeito ativo para o botão de CADASTRO */
+.btn-outline-success:active {
+  background-color: #d9d4c7bb; /* Fundo cinza ao clicar */
+  border-color: #d8d8d8; /* Borda mais escura ao clicar */
+  color: #212121;
+}
+
+/* Estilos para o botão de LOGIN */
+.btn-primary { /* Cor de fundo primária */
+  background-color: #104137; /* Cor de fundo */
+  border: none;
+  color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 2px 5px 5px #00000025; /* Sombra leve */
+
+}
+
+/* Efeito hover para o botão de LOGIN */
+.btn-primary:hover {
+  background-color: #5f9489; /* Fundo mais claro ao passar o mouse */
+  color: white;
+}
+/* Efeito ativo para o botão de LOGIN */
+.btn-primary:active {
+  background-color: #3e6f6a; /* Fundo mais escuro ao clicar */
+  color: white;
+}
