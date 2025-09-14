@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Modal */
+::ng-deep .mat-dialog-container {
+  width: 90vw;         /* ocupa no máximo 90% da largura da viewport */
+  max-width: 448px;    /* não ultrapassa 448px */
+  height: 90vh;        /* ocupa no máximo 90% da altura da viewport */
+  max-height: 694px;   /* não ultrapassa 694px */
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Cabeçalho verde */
+.div-modal .modal-header {
+  background: radial-gradient(circle, #0b783f 0%, #104137 100%);
+  width: 100%;
+  height: 204px; /* altura fixa */
+  color: white;
+  border-radius: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  /* Flexbox para centralizar o conteúdo */
+  display: flex;
+  flex-direction: column; /* empilha logo, h2 e h4 */
+  align-items: center; /* centraliza horizontalmente */
+  justify-content: center; /* centraliza verticalmente */
+}
+
+/* Logo */
+.div-modal .modal-header .logo {
+  width: 100px; /* ajustei para caber melhor no cabeçalho */
+  height: 100px;
+  margin: 0 0 2px 0; /* espaço entre logo e h2 */
+}
+
+/* Títulos */
+.div-modal .modal-header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.div-modal .modal-header h4 {
+  margin: 10px 0 0 0; /* espaço entre h2 e h4 */
+  font-weight: normal;
+  font-size: 14px;
+  color: #dcfce7;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Botões Entrar e Criar Conta */
+/* Container cinza claro */
+.botoes-topo {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 20px 10px; /*  espaçamento entre o header verde */
+  background-color: #e5e7eb; /* retângulo cinza claro */
+  border-radius: 10px;
+  padding: 4px; /* espaçamento interno para os botões */
+}
+
+/* Botões Entrar e Criar Conta */
+.btn-topo {
+  flex: 1; /* ocupam o mesmo espaço */
+  padding: 10px 0;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/* Botão ativo */
+.btn-topo.active {
+  background-color: #ffffff; /* branco quando selecionado */
+  color: #0b783f;
+}
+
+/* Botão inativo */
+.btn-topo:not(.active) {
+  background-color: transparent; /* transparente para mostrar o retângulo cinza */
+  color: #6b7280;
+}
+
+.btn-topo {
+  outline: none; /* remove o contorno do foco */
+  border: none; /* garante que não haja borda padrão */
+}
+
+/* Opcional: manter acessibilidade, mas estilizar o foco */
+.btn-topo:focus {
+  box-shadow: 0 0 0 2px rgba(11, 120, 63, 0.5); /* borda verde sutil quando focado */
+}
+
+/* Título Acesse sua conta */
+.acesse-sua-conta {
+  text-align: left;
+  margin: 30px 20px;
+  color: #104137;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700; /* bold */
+  font-size: 20px;
+}
+
+/* Inputs */
+.campo-login {
+  width: 100%;
+  padding: 0 20px; /* evita usar margin lateral que quebra o layout */
+  box-sizing: border-box; /* considera padding dentro do width */
+}
+
+
+/* Wrapper geral do input */
+::ng-deep .mat-mdc-text-field-wrapper.mdc-text-field--outlined {
+  background-color: #f9fafb;
+  border-radius: 10px !important;
+  min-height: 40px;
+  padding: 0 12px;
+
+  /* força a borda no wrapper */
+  border: 1px solid #ccc;
+}
+
+/* Remove as bordas internas que causam "quebra" */
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border: none !important;
+}
+
+/* Contorno (outline) completo */
+::ng-deep .mdc-notched-outline {
+  border-radius: 10px !important;
+}
+
+/* Bordas esquerda e direita */
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__trailing {
+  border-radius: 10px !important;
+}
+
+/* Ajusta label */
+::ng-deep .mat-form-field-label {
+  color: #0b783f;
+  font-weight: 500;
+}
+
+/* Ícones */
+::ng-deep .mat-icon {
+  color: #2a2f23;
+}
+
+.campo-label {
+  display: block;
+  margin: -5px 0 0px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #104137;
+}
+
+/* Botão Entrar grande */
+.botao-entrar {
+  background-color: #0b783f;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 12px 0;
+  margin: 10px 20px 0px; /* ajustado: margem superior menor e mesma margem lateral dos inputs */
+  width: calc(100% - 40px); /* mesma largura dos inputs */
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  /* sombra */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.botao-entrar:hover {
+  background-color: #095c30;
+}
+
+/* Esqueci a senha */
+.esqueci-senha {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #104137;
+  cursor: pointer;
+}
+
+.esqueci-senha:hover {
+  text-decoration: underline;
+}
