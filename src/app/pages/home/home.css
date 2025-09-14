@@ -1,0 +1,61 @@
+.hero-section { /* Seção principal com imagem de fundo */
+  min-height: 90vh; /* Altura mínima para ocupar a maior parte da tela */
+  padding: 2rem; /* Espaçamento interno */
+  color: #212121; /* Cor do texto */
+  background-color: #b7c2a846;
+}
+
+.hero-section::before { /* Pseudo-elemento para a imagem de fundo */
+  content: ''; /* Necessário para o pseudo-elemento */
+  position: absolute; /* Posiciona a imagem de fundo */
+  top: 0; /* Alinha ao topo */
+  left: 0; /* Alinha à esquerda */
+  width: 100%; /* Largura total */
+  height: 96.5%; /* Altura total */
+  background-image: url('../../../../public/assets/soybean_field.jpeg'); /* Imagem de fundo */
+  background-size: cover; /* Cobre toda a área */
+  background-position: center; /* Centraliza a imagem */
+  filter: blur(2px) opacity(0.8); /* Efeito de desfoque e opacidade */
+  z-index: -1; /* Coloca a imagem atrás do conteúdo */
+}
+
+.body { /* Corpo da página */
+  padding: 2rem; /* Espaçamento interno */
+  background-color: #D9D4C7; /* Cor de fundo clara */
+}
+
+.content {
+  color: #212121; /* Cor do texto */
+}
+
+.feature-box { /* Caixa de destaque para funcionalidades */
+  border: 1px solid #dddddd62; /* Borda cinza clara */
+  border-radius: 8px;
+  padding: 2rem 4rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: #ffffff;
+}
+
+.icon-type1 i { /* Estilo do icone type 1 */
+  color: #ffffff; /* Cor dos icones */
+  display: inline-flex; /* Permite alinhar o ícone verticalmente */
+  align-items: center; /* Centraliza verticalmente o ícone */
+  justify-content: center; /* Centraliza horizontalmente o ícone */
+  width: 60px; /* Largura do círculo */
+  height: 60px; /* Altura do círculo (deve ser igual à largura) */
+  background-color: #0b783f; /* Cor de fundo do círculo */
+  border-radius: 50%; /* Transforma o quadrado em um círculo */
+  transition: all 0.3s ease; /* Efeito de transição suave */
+}
+
+.icon-type2 i {
+  color: #ffffff; /* Cor dos icones */
+  display: inline-flex; /* Permite alinhar o ícone verticalmente */
+  align-items: center; /* Centraliza verticalmente o ícone */
+  justify-content: center; /* Centraliza horizontalmente o ícone */
+  background-color: #0b783f;
+  border-radius: 8px; /* Bordas arredondadas */
+  transition: all 0.3s ease; /* Efeito de transição suave */
+  padding: 0.5rem; /* Espaçamento interno */
+}
+
