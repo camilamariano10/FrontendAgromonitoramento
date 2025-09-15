@@ -6,6 +6,7 @@ import { App } from './app';
 import { Header } from './core/header/header';
 import { Footer } from './core/footer/footer';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Button } from './shared/button/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    Button
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

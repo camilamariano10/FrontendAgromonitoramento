@@ -24,16 +24,42 @@
   background-color: #D9D4C7; /* Cor de fundo clara */
 }
 
-.content {
+.content { /* Conteúdo principal */
   color: #212121; /* Cor do texto */
+}
+
+.h1-title { /* Título principal */
+  color: #212121; /* Cor do título */
+  font-size: 3rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 1rem; /* Espaçamento inferior */
+}
+
+.h1-type2 { /* Estilo especial para parte do título */
+  color: #0b783f; /* Cor verde */
+  font-weight: bold; /* Negrito */
+}
+
+.subtitle { /* Subtítulo */
+  color: #ffffff; /* Cor do subtítulo */
+  font-size: 1.5rem; /* Tamanho da fonte */
+  margin-bottom: 2rem; /* Espaçamento inferior */
+}
+
+.h2-title { /* Título principal */
+  color: #2A2F23; /* Cor do título */
+  font-size: 2rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 3%; /* Espaçamento inferior */
+  margin-top: 3rem; /* Espaçamento superior */
 }
 
 .feature-box { /* Caixa de destaque para funcionalidades */
   border: 1px solid #dddddd62; /* Borda cinza clara */
-  border-radius: 8px;
-  padding: 2rem 4rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  background-color: #ffffff;
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 2rem 4rem; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+  background-color: #ffffff; /* Fundo branco */
 }
 
 .icon-type1 i { /* Estilo do icone type 1 */
@@ -48,7 +74,7 @@
   transition: all 0.3s ease; /* Efeito de transição suave */
 }
 
-.icon-type2 i {
+.icon-type2 i { /* Estilo do icone type 2 */
   color: #ffffff; /* Cor dos icones */
   display: inline-flex; /* Permite alinhar o ícone verticalmente */
   align-items: center; /* Centraliza verticalmente o ícone */
