@@ -19,6 +19,22 @@
   z-index: -1; /* Coloca a imagem atrás do conteúdo */
 }
 
+.btn-primary { /* Botão primário */
+  background-color: #0B783F; /* Cor de fundo */
+  border: none; /* Remove a borda padrão */
+  color: white; /* Cor do texto */
+  padding: 1rem 3rem; /* Espaçamento interno */
+  border-radius: 12px; /* Bordas arredondadas */
+  font-weight: bold; /* Negrito */
+  box-shadow: 2px 5px 5px #0000004b; /* Sombra leve */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte personalizada */
+  font-size: 1.2rem; /* Tamanho da fonte */
+}
+.btn-primary:hover {
+  background-color: #298858; /* Fundo mais claro ao passar o mouse */
+  color: white; /* Cor do texto */
+}
+
 .body { /* Corpo da página */
   padding: 2rem; /* Espaçamento interno */
   background-color: #D9D4C7; /* Cor de fundo clara */

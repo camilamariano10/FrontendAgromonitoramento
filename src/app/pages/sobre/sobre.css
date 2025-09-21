@@ -1,0 +1,55 @@
+/* Seção Principal */
+.body-sobre { /* Estilização do corpo da página sobre */
+  background-color: #d9d4c730; /* Cor de fundo com transparência */
+  padding: 5rem; /* Espaçamento interno */
+}
+.h2-title { /* Estilização do título principal */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 2rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  color: #2A2F23; /* Cor do texto */
+  padding: 2rem 0rem 0rem 5rem; /* Espaçamento interno */
+}
+
+.text-content p { /* Estilização do parágrafo */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 1.2rem; /* Tamanho da fonte */
+  line-height: 1.6; /* Altura da linha */
+  color: #212121; /* Cor do texto */
+  padding: 2rem 0rem 0rem 5rem; /* Espaçamento interno */
+  text-align: justify; /* Justificação do texto */
+}
+
+.sobre-image { /* Estilização da imagem */
+  border-radius: 2rem; /* Bordas arredondadas */
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.45); /* Sombra */
+  border: 0.5px solid #B7C2A8; /* Borda */
+  max-width: 80%; /* Largura máxima */
+  height: auto; /* Altura automática */
+
+}
+
+/* Seção de Missão, Visão, Valores */
+.value-box { /* Estilização das caixas de valores */
+  background-color: #ffffff; /* Cor de fundo branca */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 3rem 3.5rem; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra */
+  margin-bottom: 1rem; /* Espaçamento inferior */
+}
+
+.value-title { /* Estilização do título das caixas de valores */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 1.6rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  text-transform: uppercase; /* Texto em maiúsculas */
+  color: #2A2F23; /* Cor do texto */
+}
+
+.value-box p { /* Estilização do parágrafo dentro das caixas de valores */
+  font-size: 1rem; /* Tamanho da fonte */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 1.2rem; /* Tamanho da fonte */
+  text-align: center; /* Centralização do texto */
+  color: #212121; /* Cor do texto */
+}
