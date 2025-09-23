@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'sobre',
     loadChildren: () => import('./pages/sobre/sobre-module').then(m => m.SobreModule) //Rota da página sobre
+  },
+  {
+    path: 'contato',
+    loadChildren: () => import('./pages/contato/contato-module').then(m => m.ContatoModule) //Rota da página contato
   }
 ];
 

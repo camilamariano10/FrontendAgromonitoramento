@@ -1,0 +1,72 @@
+.body-contato { /* Estilização do corpo da página contato */
+  background-color: #d9d4c730; /* Cor de fundo com transparência */
+  padding: 5rem; /* Espaçamento interno */
+}
+
+.h2-title { /* Estilização do título principal */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 2rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  color: #2A2F23; /* Cor do texto */
+  padding: 2rem 0rem 0rem 5rem; /* Espaçamento interno */
+}
+
+.text-content p { /* Estilização do parágrafo */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 1.2rem; /* Tamanho da fonte */
+  line-height: 1.6; /* Altura da linha */
+  color: #212121; /* Cor do texto */
+  padding: 2rem 0rem 0rem 5rem; /* Espaçamento interno */
+  text-align: justify; /* Justificação do texto */
+}
+
+.h3-email { /* Estilização do título terciário */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 1.2rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  font-style: italic;
+  text-decoration: underline;
+  color: #2A2F23; /* Cor do texto */
+}
+
+.feature-box { /* Caixa de destaque */
+  background-color: #ffffff; /* Cor de fundo branca */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 3rem; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra */
+  margin-left: 2.5rem;
+}
+
+.h4-title { /* Estilização do título secundário */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 2rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  color: #2A2F23; /* Cor do texto */
+  margin-bottom: 2rem; /* Espaçamento inferior */
+  margin-top: 0rem;
+}
+
+.feature-box p { /* Estilização do parágrafo dentro da caixa de destaque */
+  font-size: 1rem; /* Tamanho da fonte */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte Arial */
+  font-size: 1.2rem; /* Tamanho da fonte */
+  text-align: center; /* Centralização do texto */
+  color: #212121; /* Cor do texto */
+}
+
+
+.icon-type1 i { /* Estilo do icone type 1 */
+  color: #104137; /* Cor dos icones */
+  display: inline-flex; /* Permite alinhar o ícone verticalmente */
+  align-items: center; /* Centraliza verticalmente o ícone */
+  justify-content: center; /* Centraliza horizontalmente o ícone */
+  margin: 0;
+}
+
+.icon-type2 i { /* Estilo do icone type 2 */
+  color: #104137; /* Cor dos icones */
+  display: inline-flex; /* Permite alinhar o ícone verticalmente */
+  align-items: center; /* Centraliza verticalmente o ícone */
+  justify-content: center; /* Centraliza horizontalmente o ícone */
+  margin: 0;
+}
