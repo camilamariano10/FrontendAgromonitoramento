@@ -1,0 +1,103 @@
+.hero-section { /* Seção principal com imagem de fundo */
+  min-height: 90vh; /* Altura mínima para ocupar a maior parte da tela */
+  padding: 2rem; /* Espaçamento interno */
+  color: #212121; /* Cor do texto */
+  background-color: #b7c2a846;
+}
+
+.hero-section::before { /* Pseudo-elemento para a imagem de fundo */
+  content: ''; /* Necessário para o pseudo-elemento */
+  position: absolute; /* Posiciona a imagem de fundo */
+  top: 0; /* Alinha ao topo */
+  left: 0; /* Alinha à esquerda */
+  width: 100%; /* Largura total */
+  height: 96.5%; /* Altura total */
+  background-image: url('../../../../public/assets/soybean_field.jpeg'); /* Imagem de fundo */
+  background-size: cover; /* Cobre toda a área */
+  background-position: center; /* Centraliza a imagem */
+  filter: blur(2px) opacity(0.8); /* Efeito de desfoque e opacidade */
+  z-index: -1; /* Coloca a imagem atrás do conteúdo */
+}
+
+.btn-primary { /* Botão primário */
+  background-color: #0B783F; /* Cor de fundo */
+  border: none; /* Remove a borda padrão */
+  color: white; /* Cor do texto */
+  padding: 1rem 3rem; /* Espaçamento interno */
+  border-radius: 12px; /* Bordas arredondadas */
+  font-weight: bold; /* Negrito */
+  box-shadow: 2px 5px 5px #0000004b; /* Sombra leve */
+  font-family: Arial, Helvetica, sans-serif; /* Fonte personalizada */
+  font-size: 1.2rem; /* Tamanho da fonte */
+}
+.btn-primary:hover {
+  background-color: #298858; /* Fundo mais claro ao passar o mouse */
+  color: white; /* Cor do texto */
+}
+
+.body { /* Corpo da página */
+  padding: 2rem; /* Espaçamento interno */
+  background-color: #D9D4C7; /* Cor de fundo clara */
+}
+
+.content { /* Conteúdo principal */
+  color: #212121; /* Cor do texto */
+}
+
+.h1-title { /* Título principal */
+  color: #212121; /* Cor do título */
+  font-size: 3rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 1rem; /* Espaçamento inferior */
+}
+
+.h1-type2 { /* Estilo especial para parte do título */
+  color: #0b783f; /* Cor verde */
+  font-weight: bold; /* Negrito */
+}
+
+.subtitle { /* Subtítulo */
+  color: #ffffff; /* Cor do subtítulo */
+  font-size: 1.5rem; /* Tamanho da fonte */
+  margin-bottom: 2rem; /* Espaçamento inferior */
+}
+
+.h2-title { /* Título principal */
+  color: #2A2F23; /* Cor do título */
+  font-size: 2rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  margin-bottom: 3%; /* Espaçamento inferior */
+  margin-top: 3rem; /* Espaçamento superior */
+}
+
+.feature-box { /* Caixa de destaque para funcionalidades */
+  border: 1px solid #dddddd62; /* Borda cinza clara */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 2rem 4rem; /* Espaçamento interno */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra suave */
+  background-color: #ffffff; /* Fundo branco */
+}
+
+.icon-type1 i { /* Estilo do icone type 1 */
+  color: #ffffff; /* Cor dos icones */
+  display: inline-flex; /* Permite alinhar o ícone verticalmente */
+  align-items: center; /* Centraliza verticalmente o ícone */
+  justify-content: center; /* Centraliza horizontalmente o ícone */
+  width: 60px; /* Largura do círculo */
+  height: 60px; /* Altura do círculo (deve ser igual à largura) */
+  background-color: #0b783f; /* Cor de fundo do círculo */
+  border-radius: 50%; /* Transforma o quadrado em um círculo */
+  transition: all 0.3s ease; /* Efeito de transição suave */
+}
+
+.icon-type2 i { /* Estilo do icone type 2 */
+  color: #ffffff; /* Cor dos icones */
+  display: inline-flex; /* Permite alinhar o ícone verticalmente */
+  align-items: center; /* Centraliza verticalmente o ícone */
+  justify-content: center; /* Centraliza horizontalmente o ícone */
+  background-color: #0b783f;
+  border-radius: 8px; /* Bordas arredondadas */
+  transition: all 0.3s ease; /* Efeito de transição suave */
+  padding: 0.5rem; /* Espaçamento interno */
+}
+
