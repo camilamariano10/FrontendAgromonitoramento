@@ -25,24 +25,32 @@
 
     <h3 class="acesse-sua-conta">Acesse sua conta</h3>
 
-    <!-- Campo e-mail -->
-    <label class="campo-label">E-mail</label>
-    <mat-form-field appearance="outline" class="campo-login">
-      <mat-icon matPrefix>person</mat-icon>
-      <input matInput type="email" placeholder="seu@email.com" />
-    </mat-form-field>
+    <form (ngSubmit)="handleLogin()">
+      <!-- Campo e-mail -->
+      <label class="campo-label">E-mail</label>
+      <mat-form-field appearance="outline" class="campo-login">
+        <mat-icon matPrefix>person</mat-icon>
+        <input matInput type="email" placeholder="seu@email.com" [(ngModel)]="email" name="email" />
+      </mat-form-field>
 
-    <!-- Campo senha -->
-    <label class="campo-label">Senha</label>
-    <mat-form-field appearance="outline" class="campo-login">
-      <mat-icon matPrefix>lock</mat-icon>
-      <input matInput type="password" placeholder="••••••••" />
-      <button mat-icon-button matSuffix>
-        <mat-icon>visibility</mat-icon>
-      </button>
-    </mat-form-field>
+      <!-- Campo senha -->
+      <label class="campo-label">Senha</label>
+      <mat-form-field appearance="outline" class="campo-login">
+        <mat-icon matPrefix>lock</mat-icon>
+        <input
+          matInput
+          type="password"
+          placeholder="••••••••"
+          [(ngModel)]="password"
+          name="password"
+        />
+        <button type="button" mat-icon-button matSuffix>
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-form-field>
 
-    <button class="botao-entrar">Entrar</button>
+      <button type="submit" class="botao-entrar">Entrar</button>
+    </form>
 
     <a class="esqueci-senha" href="#">Esqueci minha senha</a>
   </mat-dialog-content>
