@@ -14,13 +14,13 @@
       >
         Entrar
       </button>
-      <button
+      <a
         class="btn-topo"
         [class.active]="opcaoSelecionada === 'criar'"
-        (click)="selecionarOpcao('criar')"
+        (click)="goToPlanos()"
       >
         Criar Conta
-      </button>
+    </a>
     </div>
 
     <h3 class="acesse-sua-conta">Acesse sua conta</h3>

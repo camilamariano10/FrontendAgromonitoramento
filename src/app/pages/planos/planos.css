@@ -1,0 +1,113 @@
+.body-planos { /* Estilização do corpo da página contato */
+  background-color: #d9d4c730; /* Cor de fundo com transparência */
+  padding: 5rem; /* Espaçamento interno */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.h3-title { /* Estilização do título h2 */
+  color: #2A2F23;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.active-plan-button { /* Estilização do botão ativo */
+  background-color: rgb(11, 120, 63, 0.15);
+  color: #104137;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  border: solid 0.1rem #D1D5DB;
+}
+
+.btn-outline-secondary { /* Estilização do botão secundário */
+  color: #104137;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+
+.btn-outline-secondary:hover { /* Estilização do botão secundário ao passar o mouse */
+  background-color: rgba(201, 218, 209, 0.15);
+  color: #104137;
+  text-decoration: none;
+}
+
+.plan-box { /* Estilização da caixa do plano */
+  background-color: #0b784005;
+  border: 0.1rem solid #0B783F;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
+  width: 25rem;
+}
+
+.plan-button-box { /* Estilização da caixa do botão do plano */
+  background-color: #ffffff;
+  border: 1.2px solid #dee2e6;
+  border-radius: 1rem;
+  padding: .5rem;
+  width: 25rem;
+}
+
+.plan-type-title { /* Estilização do título do tipo de plano */
+  color: #104137;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  text-decoration: underline;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.subtitle { /* Estilização do subtítulo */
+  color: #2A2F23;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  margin-top: 1rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.text1 { /* Estilização do texto dentro do subtítulo */
+  color: #2A2F23;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  margin-top: 1rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.list { /* Estilização da lista */
+  color: #2A2F23;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+ .plan-description { /* Estilização da descrição do plano */
+  color: #104137;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+ }
+
+ .btn-success { /* Estilização do botão de sucesso */
+  background-color: #0B783F;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+ }
+  .btn-success:hover { /* Estilização do botão de sucesso ao passar o mouse */
+    background-color: rgb(11, 120, 63, 0.5);
+    color: #ffffff;
+    text-decoration: none;
+  }

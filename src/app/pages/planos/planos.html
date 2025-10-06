@@ -1,0 +1,65 @@
+<body class="body-planos">
+  <section class="container my-1">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+        <h3 class="h3-title">Escolha seu plano ideal</h3>
+        <p>
+          Seja produtor individual ou empresa do agronegócio, temos um plano sob medida para suas necessidades.
+        </p>
+
+        <div class="plan-button-box d-flex justify-content-center my-4 mx-auto">
+          <button class="btn btn-outline-secondary me-2" [ngClass]="{'active-plan-button': activePlan === 'pf'}" (click)="selectPlan('pf')">
+            PESSOA FÍSICA
+          </button>
+          <button class="btn btn-outline-secondary me-2" [ngClass]="{'active-plan-button': activePlan === 'pj'}" (click)="selectPlan('pj')">
+            PESSOA JURÍDICA
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    @if (activePlan === 'pf') {
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <h2 class="plan-type-title text-center">PRODUTOR INDIVIDUAL</h2>
+          <div class="plan-box text-center mx-auto">
+            <div class="plan-features">
+              <h6 class="subtitle">PARA QUEM É: <span class="text1">Agricultores individuais que desejam monitorar suas lavouras de forma prática.</span></h6>
+              <h6 class="subtitle">INCLUI:</h6>
+              <ul class="list text-start">
+                <li>Envio de imagens por WhatsApp</li>
+                <li>Relatórios simples por e-mail</li>
+                <li>Acesso ao histórico no painel online</li>
+                <li>Suporte básico por e-mail</li>
+              </ul>
+            </div>
+            <p class="plan-description">SOLUÇÃO ACESSÍVEL E DIRETA PARA PEQUENOS E MÉDIOS PRODUTORES.</p>
+            <a class="btn btn-success" routerLink="/cadastro-pf">ASSINAR</a>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <h2 class="plan-type-title text-center">EMPRESAS</h2>
+          <div class="plan-box text-center mx-auto">
+            <div class="plan-features">
+              <h6 class="subtitle">PARA QUEM É: <span class="text1">Empresas agrícolas, cooperativas ou consultorias que precisam gerenciar múltiplos usuários e áreas.</span></h6>
+              <h6 class="subtitle">INCLUI:</h6>
+              <ul class="list text-start">
+                <li>Todos os recursos do plano Pessoa Física</li>
+                <li>Cadastro e gerenciamento de múltiplos números de telefone autorizados</li>
+                <li>Relatórios completos com exportação em PDF</li>
+                <li>Painel administrativo com gestão de acessos</li>
+              </ul>
+            </div>
+            <p class="plan-description">GESTÃO AVANÇADA PARA ORGANIZAÇÕES QUE PRECISAM DE ESCALA E RELATÓRIOS DETALHADOS.</p>
+            <a class="btn btn-success">ASSINAR</a>
+          </div>
+        </div>
+      </div>
+    }
+  </section>
+</body>

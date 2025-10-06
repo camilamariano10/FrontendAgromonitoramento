@@ -13,7 +13,16 @@ const routes: Routes = [
   {
     path: 'contato',
     loadChildren: () => import('./pages/contato/contato-module').then(m => m.ContatoModule) //Rota da página contato
+  },
+  {
+    path: 'planos',
+    loadChildren: () => import('./pages/planos/planos-module').then(m => m.PlanosModule) //Rota da página planos
+  },
+  {
+    path: 'cadastro-pf',
+    loadChildren: () => import('./pages/cadastro-pf/cadastro-pf-module').then(m => m.CadastroPFModule) //Rota da página cadastro pessoa física
   }
+
 ];
 
 @NgModule({
