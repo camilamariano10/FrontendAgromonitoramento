@@ -4,16 +4,16 @@
       <div class="col-lg-8 col-md-10 col-sm-12">
         <div class="form-box mx-auto"> <!-- Caixa do formulário -->
         <h5 class="title mb-1 text-center">Crie a sua conta</h5>
-        <p class="subtitle mb-5 text-center">Pessoa Física</p>
+        <p class="subtitle mb-5 text-center">Pessoa Jurídica</p>
           <form [formGroup]="form"> <!-- Formulário reativo -->
             <div class="row">
               <div class="mb-3 text-start"> <!-- Campo de nome completo -->
-              <label for="nome" class="form-label">Nome completo*</label>
+              <label for="nome" class="form-label">Nome da empresa*</label>
               <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Digite seu nome completo">
             </div>
-            <div class="mb-3 text-start"> <!-- Campo de CPF -->
-              <label for="cpf" class="form-label">CPF*</label>
-              <input type="text" class="form-control" id="cpf" formControlName="cpf" placeholder="000.000.000-00">
+            <div class="mb-3 text-start"> <!-- Campo de CNPJ -->
+              <label for="cnpj" class="form-label">CNPJ*</label>
+              <input type="text" class="form-control" id="cnpj" formControlName="cnpj" placeholder="00.000.000/0000-00">
             </div>
             </div>
             <div class="row">

@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-cadastro-pf',
+  selector: 'app-cadastro-pj',
   standalone: false,
-  templateUrl: './cadastro-pf.html',
-  styleUrls: ['./cadastro-pf.css']
-
+  templateUrl: './cadastro-pj.html',
+  styleUrls: ['./cadastro-pj.css']
 })
-export class CadastroPF {
+export class CadastroPj {
 
   // Injeção do FormBuilder para criar o formulário reativo
   form: FormGroup;
@@ -21,7 +20,7 @@ export class CadastroPF {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
-      cpf: ['', Validators.required],
+      cnpj: ['', Validators.required],
       telefone: ['', Validators.required],
       whatsapp: ['', Validators.required],
       uf: ['', Validators.required],

@@ -2,20 +2,20 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { CadastroPFRoutingModule } from './cadastro-pf-routing-module';
-import { CadastroPF } from './cadastro-pf';
+import { CadastroPjRoutingModule } from './cadastro-pj-routing-module';
+import { CadastroPj } from './cadastro-pj';
 import { NgxMaskDirective } from "ngx-mask";
 
 
 @NgModule({
   declarations: [
-    CadastroPF
+    CadastroPj
   ],
   imports: [
     CommonModule,
-    CadastroPFRoutingModule,
+    CadastroPjRoutingModule,
     ReactiveFormsModule,
     NgxMaskDirective
 ]
 })
-export class CadastroPFModule { }
+export class CadastroPjModule { }

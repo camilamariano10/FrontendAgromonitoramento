@@ -10,12 +10,13 @@ import { App } from './app';
 import { Header } from './core/header/header';
 import { Footer } from './core/footer/footer';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CadastroPF } from './pages/cadastro-pf/cadastro-pf';
+import { FormsModule } from "@angular/forms";
+import { provideNgxMask } from "ngx-mask";
 
 @NgModule({
-  declarations: [App, Header, Footer, CadastroPF],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
-  providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection()],
+  declarations: [App, Header, Footer],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
+  providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection(), provideNgxMask()],
   bootstrap: [App],
 })
 export class AppModule {}
