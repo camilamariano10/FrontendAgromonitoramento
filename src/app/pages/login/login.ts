@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -39,36 +40,28 @@ export class Login {
     this.opcaoSelecionada = opcao;
   }
 
-  async handleLogin() {
-    try {
-      this.loading = true;
-      const response = await fetch('http://localhost:8081/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: this.email, password: this.password }),
-        credentials: 'include',
-      });
+  async handleLogin() : Promise <void> {
 
-      const data = await response.json();
+    let success = false;
 
-      if (!response.ok) {
-        throw new Error(data.erros[0].mensagem);
-      }
-
-      return data;
-    } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-      }
-    } finally {
-      this.loading = false;
-    }
+    // 1. Simule uma verificação básica de dados (opcional)
+  if (this.email && this.password) {
+      success = true; // Força o sucesso para testar a interface
+  } else {
+      alert("Preencha o e-mail e a senha para simular o login.");
   }
+
+  // 2. Com a flag de sucesso, feche o modal
+  if (success) {
+    // Isso fecha o modal e notifica o HeaderComponent para mudar a navbar
+    this.dialogRef.close('loginSuccess');
+  }
+
+}
   // New function to close modal and navigate
   goToPlanos() {
     this.dialogRef.close();
     this.router.navigate(['/planos']);
+
   }
 }
