@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { Service } from './service'; // <-- importa o service criado
 
@@ -62,20 +63,27 @@ export class Login {
         credentials: 'include',
       });
 
-      const data = await response.json();
+    let success = false;
 
-      if (!response.ok) {
-        throw new Error(data.erros[0].mensagem);
-      }
+    // 1. Simule uma verificação básica de dados (opcional)
+  if (this.email && this.password) {
+      success = true; // Força o sucesso para testar a interface
+  } else {
+      alert("Preencha o e-mail e a senha para simular o login.");
+  }
 
-      return data;
-    } catch (error) {
-      if (error instanceof Error) {
-        alert(error.message);
-      }
-    } finally {
-      this.loading = false;
-    }
+  // 2. Com a flag de sucesso, feche o modal
+  if (success) {
+    // Isso fecha o modal e notifica o HeaderComponent para mudar a navbar
+    this.dialogRef.close('loginSuccess');
+  }
+
+}
+  // New function to close modal and navigate
+  goToPlanos() {
+    this.dialogRef.close();
+    this.router.navigate(['/planos']);
+
   }
     */
 }

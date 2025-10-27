@@ -22,10 +22,22 @@
         </li>
       </ul>
 
-      <div class="ms-4"> <!-- Espaçamento à esquerda para os botões-->
-        <button class="btn btn-outline-success me-2" type="button">CADASTRO</button> <!-- Botão de cadastro-->
-        <button class="btn btn-primary" type="button" (click)="openDialog()">LOGIN</button> <!-- Botão de login-->
+      <!-- <div class="ms-4"> <!-- Espaçamento à esquerda para os botões->
+        <button class="btn btn-outline-success me-2" routerLink="/planos">CADASTRO</button> <!- Botão de cadastro->
+        <button class="btn btn-primary" type="button" (click)="openDialog()">LOGIN</button> <!- Botão de login->
+      </div> -->
+
+      <div class="ms-4 d-flex align-items-center">
+        @if (isLoggedIn | async) {
+          <button class="btn btn-link me-2" routerLink="/dashboard">DASHBOARD</button>
+          <button class="btn btn-danger" (click)="logout()">SAIR</button>
+        } @else {
+          <button class="btn btn-outline-success me-2" routerLink="/planos">CADASTRO</button>
+          <button class="btn btn-primary" type="button" (click)="openDialog()">LOGIN</button>
+        }
       </div>
+
+
     </div>
   </div>
 </nav>
