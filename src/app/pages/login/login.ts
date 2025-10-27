@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { Service } from './service'; // <-- importa o service criado
 
 @Component({
   selector: 'app-login',
@@ -27,11 +28,28 @@ export class Login {
   password: string = '';
   loading: boolean = false;
 
+  constructor(private authService: Service) {} // <-- injeta o service no construtor
+  
   // Função para alternar entre Entrar e Criar Conta
   selecionarOpcao(opcao: 'entrar' | 'criar') {
     this.opcaoSelecionada = opcao;
   }
 
+  
+    async handleLogin() {
+    this.loading = true;
+    try {
+      const data = await this.authService.login(this.email, this.password);
+      console.log('Login realizado:', data);
+      // aqui você pode redirecionar ou salvar o token
+    } catch (error) {
+      // o alerta já é exibido no service
+    } finally {
+      this.loading = false;
+    }
+  }
+
+  /*
   async handleLogin() {
     try {
       this.loading = true;
@@ -59,4 +77,5 @@ export class Login {
       this.loading = false;
     }
   }
+    */
 }
