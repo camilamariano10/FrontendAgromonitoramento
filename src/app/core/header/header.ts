@@ -20,6 +20,7 @@ export class Header implements OnInit {
 
   isLoggedIn!: Observable<boolean>; // Propriedade para armazenar o Observable
 
+
   ngOnInit() {
     // Atribui o Observable do serviço à propriedade local
     this.isLoggedIn = this.authService.isLoggedIn;
@@ -34,9 +35,10 @@ export class Header implements OnInit {
 
     // Se o modal retornar 'loginSuccess', chame o login
     dialogRef.afterClosed().subscribe(result => {
-        if (result === 'loginSuccess') {
-            this.authService.login();
-            this.router.navigate(['/']); // Adicione a navegação após o login
+        if (result && result.status === 'loginSuccess') {
+            console.log('Login bem-sucedido. Iniciando o processo de login...');
+            this.authService.login(result.email, result.password); // Chama o método de login com email e senha
+            this.router.navigate(['/dashboard-pj']); // Adicione a navegação após o login
         }
     });
   }

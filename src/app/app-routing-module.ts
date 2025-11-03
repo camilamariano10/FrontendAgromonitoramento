@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: 'cadastro-pj',
     loadChildren: () => import('./pages/cadastro-pj/cadastro-pj-module').then(m => m.CadastroPjModule) //Rota da página cadastro pessoa jurídica
+  },
+  {
+    path: 'dashboard-pj',
+    loadChildren: () => import('./pages/dashboard-pj/dashboard-pj-module').then(m => m.DashboardPjModule) //Rota da página dashboard pessoa jurídica
   }
 
 ];

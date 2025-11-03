@@ -5,7 +5,7 @@ import { CadastroPj } from './cadastro-pj';
 const routes: Routes = [
   {
     path: '', // Rota padrão para o módulo CadastroPj
-    component: CadastroPj // Define o componente CadastroPj para esta rota
+    component: CadastroPj, // Define o componente CadastroPj para esta rota
   }
 ];
 

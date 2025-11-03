@@ -5,7 +5,7 @@
         <div class="form-box mx-auto"> <!-- Caixa do formulário -->
         <h5 class="title mb-1 text-center">Crie a sua conta</h5>
         <p class="subtitle mb-5 text-center">Pessoa Física</p>
-          <form [formGroup]="form"> <!-- Formulário reativo -->
+          <form [formGroup]="form" (ngSubmit)="onSubmit()"> <!-- Formulário reativo -->
             <div class="row">
               <div class="mb-3 text-start"> <!-- Campo de nome completo -->
               <label for="nome" class="form-label">Nome completo*</label>

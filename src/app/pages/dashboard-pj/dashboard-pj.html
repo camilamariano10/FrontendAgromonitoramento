@@ -1,1 +1,102 @@
-<p>dashboard-pj works!</p>
+<section class="dashboard-page py-5">
+  <div class="container-fluid">
+
+    <div class="row mb-4">
+      <div class="col-12 dashboard-header">
+        <h1 class="main-title">NOME DA FAZENDA</h1>
+        <p class="subtitle">Bem-vindo de volta ao seu painel de controle</p>
+        <p class="last-update">Última atualização: hoje às 14:30</p>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-8 dashboard-left">
+
+        <div class="row mb-4 gx-4">
+
+          <div class="col-lg-3 col-md-6 mb-3">
+            <div class="info-card info-card-total">
+              <h5 class="card-title">Total de Análises</h5>
+              <h2 class="card-value">127</h2>
+              <p class="card-detail text-success">+12 este mês</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-3">
+            <div class="info-card info-card-last">
+              <h5 class="card-title">Última Análise</h5>
+              <p class="card-value-small">12/01/2024 - Talhão A</p>
+              <span class="status-tag" style="background-color: #ffedcc; color: #ff9800;">Moderada</span>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-3">
+            <div class="info-card info-card-plan">
+              <h5 class="card-title">Plano Atual</h5>
+              <p class="card-value-small">Pro</p>
+              <p class="card-detail text-muted">Válido até 15/02/2024</p>
+              <span class="status-tag" style="background-color: #d8f1e6; color: #205c48;">Ativo</span>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-3">
+            <div class="info-card info-card-remaining">
+              <h5 class="card-title">Análises Restantes</h5>
+              <h2 class="card-value">2</h2>
+              <p class="card-detail text-muted">de 5 números</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <div class="chart-container">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h4 class="chart-title">Distribuição de Doenças Detectadas</h4>
+                <a href="#" class="view-history-link">Ver histórico completo</a>
+              </div>
+
+              <div class="row align-items-center">
+                <div class="col-md-4 text-center">
+                    <div class="doughnut-chart-placeholder">
+                        <h2 class="chart-value">127</h2>
+                        <p class="text-muted">Total</p>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <ul class="disease-list list-unstyled">
+                        <li><span class="dot" style="background-color: #79c09c;"></span> SAUDÁVEL <span class="float-end">45 (35.4%)</span></li>
+                        <li><span class="dot" style="background-color: #205c48;"></span> FERRUGEM ASIÁTICA <span class="float-end">32 (25.2%)</span></li>
+                        <li><span class="dot" style="background-color: #ff9800;"></span> MANCHA ALVO <span class="float-end">28 (22.0%)</span></li>
+                        <li><span class="dot" style="background-color: #3f51b5;"></span> OÍDIO <span class="float-end">15 (11.8%)</span></li>
+                        <li><span class="dot" style="background-color: #9e9e9e;"></span> OUTRAS <span class="float-end">7 (5.5%)</span></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 dashboard-right">
+
+        <div class="action-card mb-4">
+          <h4 class="action-title">Ações Rápidas</h4>
+          <a href="#" class="btn btn-action"><i class="fas fa-mobile-alt"></i> Números autorizados</a>
+          <a href="#" class="btn btn-action"><i class="fas fa-history"></i> Histórico</a>
+          <a href="#" class="btn btn-action"><i class="fas fa-star-half-alt"></i> Gerenciar Plano</a>
+        </div>
+
+        <div class="tip-card">
+          <h4 class="tip-title">Dica do Dia <i class="fas fa-lightbulb"></i></h4>
+          <p class="tip-text">
+            Para melhores resultados, fotografe as folhas com boa iluminação natural e foque nas áreas com sintomas visíveis.
+          </p>
+          <a href="#" class="tip-link">Saiba mais</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

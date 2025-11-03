@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Service } from './service';
 
 @Component({
   selector: 'app-cadastro-pj',
@@ -17,7 +18,7 @@ export class CadastroPj {
   showConfirmPassword = false;
 
   // O construtor para injetar serviços e inicializar o formulário
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private service: Service) {
     this.form = this.fb.group({
       nome: ['', Validators.required],
       cnpj: ['', Validators.required],
@@ -32,9 +33,20 @@ export class CadastroPj {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      console.log('Formulário enviado com sucesso!', this.form.value);
-      // Aqui você adicionaria a lógica para enviar os dados ao back-end
+    if (this.form.valid) { // Verifica se o formulário é válido
+      this.service.registerBusiness(this.form.value).subscribe({ // Chama o serviço para registrar a empresa
+        next: (response) => {
+          alert('Cadastro realizado com sucesso!'); // Alerta de sucesso
+          console.log('Response from server:', response); // Loga a resposta do servidor
+          this.form.reset(); // Reseta o formulário após o sucesso
+        },
+        error: (error) => {
+          alert('Erro ao realizar cadastro. Tente novamente.'); // Alerta de erro
+          console.error('Error from server:', error); // Loga o erro do servidor
+        }
+      });
+    } else {
+      console.error('Formulário inválido'); // Lida com o caso de formulário inválido
     }
   }
 

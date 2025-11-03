@@ -19,7 +19,7 @@ export class Auth {
   }
 
   // Método para simular o login
-  login() {
+  login(email: string, password: string) {
     // Simule o armazenamento de um token após o sucesso do login
     localStorage.setItem('authToken', 'fake-jwt-token');
     this.loggedIn.next(true); // Altera o estado para logado

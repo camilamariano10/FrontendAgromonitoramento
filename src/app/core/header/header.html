@@ -10,34 +10,38 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav"> <!-- Itens do menu que colapsam em telas pequenas-->
-      <ul class="navbar-nav ms-auto"> <!-- Itens do menu alinhados à direita-->
-        <li class="nav-item"> <!-- Item do menu-->
-          <a class="nav-link" routerLink="/">INÍCIO</a> <!-- Link para a página inicial-->
-        </li>
-        <li class="nav-item"> <!-- Item do menu-->
-          <a class="nav-link" routerLink="/sobre">SOBRE</a> <!-- Link para a página sobre-->
-        </li>
-        <li class="nav-item"> <!-- Item do menu-->
-          <a class="nav-link" routerLink="/contato">CONTATO</a> <!-- Link para a página de contato-->
-        </li>
-      </ul>
+      <div class="ms-auto d-flex align-items-center">
+      @if ((isLoggedIn | async) === false) {
+        <ul class="navbar-nav ms-auto"> <!-- Itens do menu alinhados à direita-->
+          <li class="nav-item"> <!-- Item do menu-->
+            <a class="nav-link" routerLink="/">INÍCIO</a> <!-- Link para a página inicial-->
+          </li>
+          <li class="nav-item"> <!-- Item do menu-->
+            <a class="nav-link" routerLink="/sobre">SOBRE</a> <!-- Link para a página sobre-->
+          </li>
+          <li class="nav-item"> <!-- Item do menu-->
+            <a class="nav-link" routerLink="/contato">CONTATO</a> <!-- Link para a página de contato-->
+          </li>
+        </ul>
+      }
+      @if (isLoggedIn | async) {
+        <button class="nav-link btn btn-link nav-item me-3" routerLink="/dashboard">DASHBOARD</button>
+          <div ngbDropdown class="d-inline-block user-profile-dropdown">
+            <button class="btn btn-outline-success dropdown-toggle user-button" id="dropdownPerfil" ngbDropdownToggle>
+              <i class="fas fa-user-circle me-2"></i> João Silva
+            </button>
 
-      <!-- <div class="ms-4"> <!-- Espaçamento à esquerda para os botões->
-        <button class="btn btn-outline-success me-2" routerLink="/planos">CADASTRO</button> <!- Botão de cadastro->
-        <button class="btn btn-primary" type="button" (click)="openDialog()">LOGIN</button> <!- Botão de login->
-      </div> -->
-
-      <div class="ms-4 d-flex align-items-center">
-        @if (isLoggedIn | async) {
-          <button class="btn btn-link me-2" routerLink="/dashboard">DASHBOARD</button>
-          <button class="btn btn-danger" (click)="logout()">SAIR</button>
-        } @else {
+            <div ngbDropdownMenu aria-labelledby="dropdownPerfil">
+              <button ngbDropdownItem routerLink="/perfil">EDITAR CADASTRO</button>
+              <div class="dropdown-divider"></div>
+              <button ngbDropdownItem (click)="logout()">SAIR</button>
+            </div>
+          </div>
+      } @else {
           <button class="btn btn-outline-success me-2" routerLink="/planos">CADASTRO</button>
           <button class="btn btn-primary" type="button" (click)="openDialog()">LOGIN</button>
         }
       </div>
-
-
     </div>
   </div>
 </nav>
