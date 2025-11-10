@@ -1,0 +1,30 @@
+<header class="farm-header">
+        <div class="farm-header-top">
+          <div class="farm-dropdown-container">
+              <button class="farm-title-button" (click)="onToggle()">
+                  <span class="main-title">{{ nomeFazenda }}</span>
+                  <i class="fas fa-chevron-down farm-icon" [class.rotated]="dropOpen"></i>
+              </button>
+
+              <div class="farm-menu" [style.display]="dropOpen ? 'block' : 'none'">
+                <button class="farm-menu-item" *ngFor="let fazenda of fazendas; let i = index"
+                (click)="onSelect(fazenda)">
+                  <span>{{fazenda}}</span>
+                  <button class="icon-button"><i class="fas fa-edit"></i></button>
+                </button>
+
+                <div class="menu-divider"></div>
+
+                <button class="farm-menu-item add-farm-btn" (click)="onAdd()">
+                  <span>ADICIONAR</span>
+                  <button class="icon-button add"><i class="fa-solid fa-plus"></i></button>
+                </button>
+              </div>
+          </div>
+        </div>
+
+        <div class="farm-header-texts">
+          <p class="subtitle">Bem-vindo de volta ao seu painel de controle</p>
+          <p class="last-update">Última atualização: {{ ultimaAtualizacao }}</p>
+        </div>
+      </header>

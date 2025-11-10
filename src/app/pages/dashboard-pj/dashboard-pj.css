@@ -1,209 +1,240 @@
-/* Estilo para o fundo verde-oliva (do Figma) */
+/* ========================================================= */
+/* 1. ESTRUTURA GERAL E CABEÇALHO */
+/* ========================================================= */
+
 .dashboard-page {
-  min-height: 100vh;
-  background-color: #e0e6d6;
+  padding: 2rem;
+  background-color: #e0e6d6; /* Cor de fundo */
+  font-family: Arial, sans-serif;
+  color: #2A2F23;
 }
 
-/* Estilo do cabeçalho */
-.dashboard-header {
-  color: #2a2a2a;
-}
-
-.main-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  color: #555;
-}
-
-.last-update {
-  font-size: 0.9rem;
-  color: #777;
-}
-
-/* Estilos gerais para todos os cards */
-.info-card, .action-card, .tip-card {
-  background-color: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Sombra suave */
-  height: 100%;
+/* Alinhamento principal do corpo do Dashboard (Substitui o row) */
+.main-layout {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  gap: 20px; /* Espaço entre as duas colunas principais */
 }
 
-/* Estilo para os cards de informação */
-.info-card {
-  text-align: center;
+/* ========================================================= */
+/* 2. LAYOUT RESPONSIVO (USO DE GRID E FLEXBOX) */
+/* ========================================================= */
+
+.dashboard-left-panel {
+    flex-basis: 66.66%; /* Equivalente a col-lg-8 (8/12) */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dashboard-right-panel {
+    flex-basis: 33.33%; /* Equivalente a col-lg-4 (4/12) */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Faz os 4 Cards de Resumo ficarem em grid (2x2 ou 4x1) */
+.info-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais para desktop */
+    gap: 20px;
+}
+
+/* Media Query para responsividade em Tablets/Celulares */
+@media (max-width: 1024px) {
+    .main-layout {
+        flex-direction: column; /* Empilha as colunas */
+    }
+    .info-cards-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para tablets */
+    }
+}
+@media (max-width: 600px) {
+    .info-cards-grid {
+        grid-template-columns: 1fr; /* 1 coluna para celulares */
+    }
+}
+
+
+/* ========================================================= */
+/* 3. ESTILOS DOS CARDS (APARÊNCIA) */
+/* ========================================================= */
+
+/* Cards de Informação */
+.info-card, .chart-container, .action-card, .tip-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    height: 100%; /* Para que os cards na mesma linha tenham a mesma altura (dentro do grid) */
+}
+
+/* Tipografia dos Cards */
+.info-card .card-title {
+    font-size: 1rem;
+    font-weight: 550;
+    color: #104137;
+}
+.info-card .card-value {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.info-card .card-value-total {
+    margin: 1.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #343a40;
 }
 
 .card-icon {
-  margin: 0 auto 1rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.5rem;
+    background-color: #0B783F; /* Cor dos ícones nos valores */
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: #212121;
 }
 
-.total-analyses { background-color: #28a745; }
-.last-analysis { background-color: #17a2b8; }
-.current-plan { background-color: #ffc107; }
-.remaining-analyses { background-color: #fd7e14; }
-
-.card-title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #6c757d;
-  margin-bottom: 0.5rem;
-}
-
-.card-value {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #343a40;
-  margin: 0;
-}
-
-/* Estilo para a Distribuicão de Doenças e a seção de Ações Rápidas/Dica */
-.chart-container {
-  background-color: white;
+/* ========================================================= */
+/* Estilo base da tag de status */
+/* ========================================================= */
+.status-tag {
+  display: inline-block;
+  padding: 6px 12px;
   border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+/* Cores para cada nível */
+.status-baixo {
+  background-color: #e8f5e9; /* verde claro */
+  color: #2e7d32;
+}
+
+.status-moderado {
+  background-color: #fff3e0; /* laranja claro */
+  color: #f57c00;
+}
+
+.status-alto {
+  background-color: #ffebee; /* vermelho claro */
+  color: #c62828;
+}
+
+.status-ativo {
+  background-color: #e8f5e9; /* azul claro */
+  color: #2e7d32;
+}
+
+.status-inativo {
+  background-color: #f5f5f5; /* cinza claro */
+  color: #616161;
+  font-style: italic;
+}
+
+/* ========================================================= */
+/* Estilo para a Distribuição de Doenças (Gráfico/Lista) */
+/* ========================================================= */
+
+.chart-container {
+  background: #fff;
+  border-radius: 14px;
   padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .chart-title {
-  font-size: 1.5rem;
+  color: #1e3a2a;
   font-weight: 700;
-  color: #333;
 }
 
-.chart-subtitle {
-  color: #666;
-  margin-bottom: 1.5rem;
-}
-
-/* Estilo para o card de Ações Rápidas */
-.action-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-
-.btn-action {
-  width: 100%;
-  text-align: left;
-  padding: 0.75rem 1rem;
-  margin-bottom: 0.5rem;
-  background-color: #f8f9fa;
-  border: 1px solid #dee2e6;
-  color: #343a40;
+.view-history-link {
+  color: #205c48;
   font-weight: 600;
-  transition: background-color 0.2s;
+  text-decoration: none;
 }
 
-.btn-action:hover {
-  background-color: #e9ecef;
+.view-history-link:hover {
+  text-decoration: underline;
 }
 
-.btn-action i {
-  margin-right: 0.75rem;
-  color: #0B783F;
+.chart-container canvas {
+  width: 100% !important; /* Força a largura para ocupar o contêiner */
+  max-width: 400px; /* Limita a largura máxima para legibilidade */
+  height: 300px !important; /* Força uma altura fixa */
+  margin: 1rem auto 0; /* Centraliza e adiciona margem superior */
 }
 
-/* Estilo para o card de Dicas */
+
+/* ========================================================= */
+/* Estilo para Ações Rápidas */
+/* ========================================================= */
+
+.action-list {
+    list-style: none;
+    padding: 0;
+}
+
+.action-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+    color: #343a40;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.action-item:hover {
+    background-color: #f5f5f5;
+}
+
+.action-item i {
+    color: #212121; /* Cor dos ícones de ação */
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    background-color: #0B783F; /* Cor dos ícones nos valores */
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+.action-info {
+    font-size: 0.85rem;
+    font-weight: 100;
+    color: #8C856D;
+    margin-left: 3rem;
+}
+
+.action-title {
+    font-size: 1rem;
+    font-weight: 550;
+    color: #104137;
+}
+
+/* ========================================================= */
+/* Card Dica do Dia */
+/* ========================================================= */
+
+.tip-card {
+    background: #0B783F;
+    background: linear-gradient(90deg,rgba(11, 120, 63, 1) 0%, rgba(16, 65, 55, 1) 100%);
+    color: white;
+}
+
 .tip-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #0B783F;
-}
-
-/* Complementos para o Header */
-.dashboard-header {
-    padding-left: 1.5rem;
-}
-
-/* Complemento do Layout dos Cards de Resumo */
-.info-card-plan .card-value-small {
     font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
-.status-tag {
-    display: inline-block;
-    padding: 0.1rem 0.5rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-top: 5px;
-}
-
-/* Estilos para a Distribuição de Doenças (Gráfico/Lista) */
-.chart-container {
-    height: 100%;
-}
-.doughnut-chart-placeholder {
-    /* Simulação de um gráfico no centro */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 0;
-}
-.doughnut-chart-placeholder .chart-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2a2a2a;
-}
-.disease-list li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1rem;
-    color: #343a40;
-    padding: 0.5rem 0;
-    border-bottom: 1px dashed #eee;
-}
-.disease-list .dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 8px;
-}
-
-/* Estilo para a Dica do Dia */
-.tip-card {
-    background-color: #205c48;
-    color: white;
-    /* Remover box-shadow duplicado se já estiver em .info-card */
-}
-.tip-text {
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-.tip-link {
-    color: #79c09c; /* Cor de link mais clara para contraste */
-    font-weight: 600;
-    text-decoration: none;
-    display: block;
-    margin-top: 1rem;
-}
-
-/* Ícones de Ações Rápidas */
-.action-card .btn-action {
-    background-color: transparent; /* Remove o fundo para ficar mais limpo */
-    border: none;
-    padding: 0.75rem 0;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-}

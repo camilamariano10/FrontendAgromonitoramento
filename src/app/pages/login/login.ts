@@ -34,7 +34,7 @@ export class Login {
   constructor(
     public dialogRef: MatDialogRef<Login>,
     private router: Router, // Inject the Router
-    private authService: Auth, private auth: Service
+    private auth: Auth,
   ) {}
 
   // Função para alternar entre Entrar e Criar Conta
@@ -43,10 +43,11 @@ export class Login {
   }
 
 
-  async handleLogin() {
+  handleLogin(event: Event) {
+    event.preventDefault(); // Evita que a página seja recarregada
     this.loading = true;
     try {
-      const data = await this.authService.login(this.email, this.password);
+      const data = this.auth.login(this.email, this.password); // Usa o método simulado de login
       console.log('Login realizado:', data);
       // aqui você pode redirecionar ou salvar o token
       this.dialogRef.close({
@@ -63,45 +64,8 @@ export class Login {
 
   goToPlanos() {
     this.dialogRef.close();
-    this.router.navigate(['/planos']); // Navega para a página do dashboard
+    this.router.navigate(['/planos']); // Navega para a página do planos
 
   }
 }
-  /*
-  async handleLogin() {
-    try {
-      this.loading = true;
-      const response = await fetch('http://localhost:8081/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: this.email, password: this.password }),
-        credentials: 'include',
-      });
-
-    let success = false;
-
-    // 1. Simule uma verificação básica de dados (opcional)
-  if (this.email && this.password) {
-      success = true; // Força o sucesso para testar a interface
-  } else {
-      alert("Preencha o e-mail e a senha para simular o login.");
-  }
-
-  // 2. Com a flag de sucesso, feche o modal
-  if (success) {
-    this.authService.login(); // Marca o usuário como logado
-    // Isso fecha o modal e notifica o HeaderComponent para mudar a navbar
-    this.dialogRef.close('loginSuccess');
-  }
-
-}
-  // New function to close modal and navigate
-  goToPlanos() {
-    this.dialogRef.close();
-    this.router.navigate(['/planos']); // Navega para a página do dashboard
-
-  }
-    */
-
+ 

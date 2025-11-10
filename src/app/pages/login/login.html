@@ -25,7 +25,7 @@
 
     <h3 class="acesse-sua-conta">Acesse sua conta</h3>
 
-    <form (ngSubmit)="handleLogin()">
+    <form (ngSubmit)="handleLogin($event)">
       <!-- Campo e-mail -->
       <label class="campo-label">E-mail</label>
       <mat-form-field appearance="outline" class="campo-login">

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 
 
+
 @NgModule({
   declarations: [
     // Nenhum componente declarado, pois Button é standalone

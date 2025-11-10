@@ -3,15 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardPjRoutingModule } from './dashboard-pj-routing-module';
 import { DashboardPj } from './dashboard-pj';
+import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
+
+
+
 
 
 @NgModule({
   declarations: [
-    DashboardPj
+    
   ],
   imports: [
     CommonModule,
-    DashboardPjRoutingModule
+    DashboardPjRoutingModule,
+    FarmHeaderComponent
   ]
 })
 export class DashboardPjModule { }

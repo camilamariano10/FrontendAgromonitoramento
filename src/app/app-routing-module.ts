@@ -29,6 +29,14 @@ const routes: Routes = [
   {
     path: 'dashboard-pj',
     loadChildren: () => import('./pages/dashboard-pj/dashboard-pj-module').then(m => m.DashboardPjModule) //Rota da página dashboard pessoa jurídica
+  },
+  {
+    path: 'gerenciar-telefones',
+    loadChildren: () => import('./pages/gerenciar-telefones/gerenciar-telefones-module').then(m => m.GerenciarTelefonesModule) //Rota da página gerenciar telefones
+  },
+  {
+    path: 'dashboard-individual',
+    loadChildren: () => import('./pages/dashboard-individual/dashboard-individual-module').then(m => m.DashboardIndividualModule) //Rota da página dashboard pessoa física
   }
 
 ];
