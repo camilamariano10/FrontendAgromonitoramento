@@ -49,7 +49,18 @@ export class Login {
     try {
       const data = this.auth.login(this.email, this.password); // Usa o método simulado de login
       console.log('Login realizado:', data);
-      // aqui você pode redirecionar ou salvar o token
+
+      const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+      if (userData?.tipo === 'business') {
+      this.router.navigate(['/dashboard-pj']);
+    } else if (userData?.tipo === 'individual') {
+      this.router.navigate(['/dashboard-individual']);
+    } else {
+      console.warn('Tipo de usuário não reconhecido.');
+    }
+
+      // Fecha o modal após redirecionar
       this.dialogRef.close({
         status: 'loginSuccess',
         email: this.email,
@@ -68,4 +79,4 @@ export class Login {
 
   }
 }
- 
+
