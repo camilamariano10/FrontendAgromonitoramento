@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class Auth {
   // BehaviorSubject é um tipo de Observable que armazena o valor mais recente e o compartilha.
@@ -22,6 +22,7 @@ export class Auth {
 
   // 👇🏽 Método para simular o login
   login(email: string, password: string) {
+
     // Simula a lógica de sucesso do login, sem esperar resposta da API
     const tipo = email.includes('empresa') ? 'business' : 'individual';
     const userData = { email, tipo };
@@ -32,14 +33,10 @@ export class Auth {
 
     console.log('Usuário logado com sucesso! Tipo:', tipo);
 
-    // ✅ Redirecionamento com base no tipo de usuário
-    if (tipo === 'business') {
-      this.router.navigate(['/dashboard-pj']);
-    } else {
-      this.router.navigate(['/dashboard-individual']);
-    }
     return { token: 'mock-token', user: email }; // Retorna dados simulados do usuário
-  }
+
+
+   }
 
   // Método para simular o logout
   logout() {

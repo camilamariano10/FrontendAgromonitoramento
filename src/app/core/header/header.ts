@@ -26,6 +26,19 @@ export class Header implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn;
   }
 
+  goToDashboard() {
+  const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+
+  if (userData.tipo === 'business') {
+    this.router.navigate(['/dashboard-pj']);
+  } else if (userData.tipo === 'individual') {
+    this.router.navigate(['/dashboard-individual']);
+  } else {
+    console.warn('Tipo de usuário não encontrado. Redirecionando para home.');
+    this.router.navigate(['/']);
+  }
+}
+
   openDialog(): void {
     const dialogRef = this.dialog.open(Login, {
       width: '448px',
@@ -34,14 +47,29 @@ export class Header implements OnInit {
     });
 
     // Se o modal retornar 'loginSuccess', chame o login
-    dialogRef.afterClosed().subscribe(result => {
-        if (result && result.status === 'loginSuccess') {
-            console.log('Login bem-sucedido. Iniciando o processo de login...');
-            this.authService.login(result.email, result.password); // Chama o método de login com email e senha
-            this.router.navigate(['/dashboard-pj']); // Adicione a navegação após o login
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result && result.status === 'loginSuccess') {
+        console.log('✅ Login bem-sucedido. Iniciando o processo de login...');
+
+        // Chama o método de login para atualizar o estado do AuthService
+        this.authService.login(result.email, result.password);
+
+        // Recupera o tipo de usuário salvo no localStorage
+        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+        //console.log('🔑 Usuário logado:', userData);
+
+        // Redireciona de acordo com o tipo do usuário
+        if (userData.tipo === 'business') {
+          this.router.navigate(['/dashboard-pj']);
+        } else if (userData.tipo === 'individual') {
+          this.router.navigate(['/dashboard-individual']);
+        } else {
+          console.warn('⚠️ Tipo de usuário não reconhecido:', userData);
         }
-    });
+      }
+  });
   }
+
 
   logout() {
     this.authService.logout();

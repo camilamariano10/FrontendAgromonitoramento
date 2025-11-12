@@ -58,7 +58,7 @@ Chart.register(ArcElement, Tooltip, Legend); // Registrar componentes do Chart.j
 @Component({
   selector: 'app-dashboard-pj',
   standalone: true,
-  imports: [CommonModule, FarmHeaderComponent, AppRoutingModule],
+  imports: [CommonModule, FarmHeaderComponent],
   templateUrl: './dashboard-pj.html',
   styleUrl: './dashboard-pj.css',
 })

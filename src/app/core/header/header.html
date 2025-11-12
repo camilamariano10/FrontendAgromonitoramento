@@ -25,7 +25,7 @@
         </ul>
       }
       @if (isLoggedIn | async) {
-        <button class="nav-link btn btn-link nav-item me-3" routerLink="/dashboard">DASHBOARD</button>
+        <button class="nav-link btn btn-link nav-item me-3" (click)="goToDashboard()">DASHBOARD</button>
           <div ngbDropdown class="d-inline-block user-profile-dropdown">
             <button class="btn btn-outline-success dropdown-toggle user-button" id="dropdownPerfil" ngbDropdownToggle>
               <i class="fas fa-user-circle me-2"></i> João Silva

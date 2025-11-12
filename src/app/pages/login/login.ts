@@ -9,11 +9,14 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { Service } from './service'; // <-- importa o service criado
 import { Auth } from '../../core/auth';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [
+    RouterModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
@@ -46,26 +49,18 @@ export class Login {
   handleLogin(event: Event) {
     event.preventDefault(); // Evita que a página seja recarregada
     this.loading = true;
+
     try {
-      const data = this.auth.login(this.email, this.password); // Usa o método simulado de login
-      console.log('Login realizado:', data);
-
-      const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-
-      if (userData?.tipo === 'business') {
-      this.router.navigate(['/dashboard-pj']);
-    } else if (userData?.tipo === 'individual') {
-      this.router.navigate(['/dashboard-individual']);
-    } else {
-      console.warn('Tipo de usuário não reconhecido.');
-    }
+      this.auth.login(this.email, this.password); // Usa o método simulado de login
 
       // Fecha o modal após redirecionar
-      this.dialogRef.close({
+      setTimeout(() => {
+        this.dialogRef.close({
         status: 'loginSuccess',
         email: this.email,
         password: this.password
-      });
+      });}, 200);
+
     } catch (error) {
       // o alerta já é exibido no service
     } finally {
