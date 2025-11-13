@@ -1,12 +1,11 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { Service } from './service';
-import { HostListener } from '@angular/core';
-import { Chart, ArcElement, Tooltip, Legend, registerables } from 'chart.js';
-import { core } from '@angular/compiler';
+import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
+import { registerables } from 'chart.js';
 import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
 import { CommonModule } from '@angular/common';
-import { AppRoutingModule } from "../../app-routing-module";
+
 
 Chart.register(...registerables);
 
@@ -53,7 +52,7 @@ interface Distribuicao {
     doencas: ItemDistribuicao[];
 }
 
-Chart.register(ArcElement, Tooltip, Legend); // Registrar componentes do Chart.js
+//Chart.register(ArcElement, Tooltip, Legend); // Registrar componentes do Chart.js
 
 @Component({
   selector: 'app-dashboard-pj',
@@ -69,7 +68,7 @@ export class DashboardPj implements OnInit, AfterViewInit {
   dashboardData: any;
   loading: boolean = true;
 
-  constructor(private Service: Service) {} // 👈 Injete o Serviço
+  constructor(private service: Service) {} // 👈 Injete o Serviço
 
   // Método chamado pelo template para atualizar o estado do dropdown
  dropOpen = false
@@ -120,17 +119,36 @@ export class DashboardPj implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit() { // 👈 Implementação do OnInit
-    this.fetchDashboardData(); // 👈 Chama a função de busca ao iniciar
+  ngOnInit(): void {
+    this.loadDashboardData(); // 👈 Chama a função de busca ao iniciar
     }
 
   ngAfterViewInit() {
-    this.renderDiseaseChart();
+    }
+
+  private loadDashboardData() {
+    this.loading = true;
+    this.service.getData().subscribe({
+      next: (data) => {
+        this.dashboardData = data;
+        this.loading = false;
+        console.log('Dados do dashboard recebidos:', this.dashboardData);
+
+        // Renderiza o gráfico após dados chegarem (canvas será exibido pelo *ngIf)
+        setTimeout(() => this.renderDiseaseChart(), 50); // Pequeno delay para DOM atualizar
+      },
+      error: (error) => {
+        console.error('Erro ao buscar dados do dashboard:', error);
+        this.loading = false;
+      }
+    });
   }
+
+
   fetchDashboardData() {
     this.loading = true;
 
-    this.Service.getData().subscribe({
+    this.service.getData().subscribe({
       next: (data) => {
         this.dashboardData = data;
         this.loading = false;
@@ -157,7 +175,12 @@ export class DashboardPj implements OnInit, AfterViewInit {
 
 
   renderDiseaseChart(): void {
-    if (!this.dashboardData || !this.diseaseChart || !this.dashboardData.distribuicao || !this.dashboardData.distribuicao.doencas) { // Verifica se os dados e a view estão prontos
+    console.log('Tentando renderizar gráfico... Canvas disponível?', !!this.diseaseChart);
+    if (!this.dashboardData ||
+      !this.diseaseChart ||
+      !this.dashboardData.distribuicao ||
+      !this.dashboardData.distribuicao.doencas) { // Verifica se os dados e a view estão prontos
+      console.warn('Dados ou canvas não disponíveis para renderizar o gráfico.');
       return;
     }
 
@@ -170,6 +193,12 @@ export class DashboardPj implements OnInit, AfterViewInit {
     }
 
     const doencas = this.dashboardData.distribuicao.doencas;
+
+    if (doencas.length === 0) {
+      console.warn('Nenhuma doença para renderizar no gráfico.');
+      return;
+    }
+
     const labels = doencas.map((d: any) => d.nome);
     const valores = doencas.map((d: any) => d.valor);
     const cores = doencas.map((d: any) => d.cor);
@@ -193,12 +222,11 @@ export class DashboardPj implements OnInit, AfterViewInit {
           borderWidth: 1,
           hoverOffset: 12,
           borderRadius: 6, // deixa as pontas arredondadas
-          ...( { cutout: '65%' } ) // define o "buraco" do meio
         }]
       },
       options: {
         responsive: true,
-        //cutout: '70%', // define o "buraco" do meio (moved to options to match Chart.js types)
+        cutout: '70%', // define o "buraco" do meio (moved to options to match Chart.js types)
         plugins: {
           legend: {
             position: 'bottom',

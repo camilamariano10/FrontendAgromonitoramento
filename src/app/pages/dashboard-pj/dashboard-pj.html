@@ -44,12 +44,12 @@
               <h4 class="chart-title">Distribuição de Doenças Detectadas</h4>
               <a href="#" class="view-history-link">Ver histórico completo</a>
             </div>
-            <canvas #diseaseChart></canvas>
+            <canvas #diseaseChart *ngIf="dashboardData?.distribuicao?.doencas?.length"></canvas>
             <div *ngIf="loading" class="loading-msg">
               Carregando gráfico...
             </div>
 
-            <div *ngIf="!loading && (!dashboardData?.distribuicao || dashboardData?.distribuicao.length === 0)">
+            <div *ngIf="!loading && (!dashboardData?.distribuicao?.doencas || dashboardData?.distribuicao?.doencas.length === 0)">
               Nenhum dado disponível.
             </div>
 

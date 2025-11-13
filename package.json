@@ -32,6 +32,7 @@
     "@angular/router": "^20.3.0",
     "@ng-bootstrap/ng-bootstrap": "^19.0.1",
     "@popperjs/core": "^2.11.8",
+    "@types/chart.js": "^2.9.41",
     "bootstrap": "^5.3.6",
     "chart.js": "^4.5.1",
     "ngx-mask": "^20.0.3",
