@@ -1,0 +1,411 @@
+/* --- AJUSTE PRINCIPAL ---
+  Trocamos ':root' e 'body' por '.body-historico',
+  exatamente como seu 'cadastro-pj' usa '.body-cadastro'
+*/
+.body-historico {
+  /* Estilos que antes eram do :root (variáveis) */
+  --primary-green: #104137;
+  --primary-green-dark: #0f5e4e;
+  --status-green-bg: #e8f5e9;
+  --status-green-text: #2e7d32;
+  --status-moderate-bg: #fff8e1;
+  --status-moderate-text: #ff8f00;
+  --status-low-bg: #fffde7;
+  --status-low-text: #fbc02d;
+  --status-healthy-bg: var(--status-green-bg);
+  --status-healthy-text: var(--status-green-text);
+  --icon-red-bg: #ffebee;
+  --icon-red-text: #d32f2f;
+  --icon-green-bg: #e8f5e9;
+  --icon-green-text: #388e3c;
+  --icon-orange-bg: #fff3e0;
+  --icon-orange-text: #ef6c00;
+  --icon-blue-bg: #e3f2fd;
+  --icon-blue-text: #1976d2;
+  --dark-text: #212121;
+  --light-text: #757575;
+  --border-color: #e0e0e0;
+  --background-color: #b7c2a8;
+  --white: #ffffff;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Estilos que antes eram do body */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+
+/* --- LAYOUT DO DASHBOARD --- */
+/* O resto do seu arquivo CSS continua daqui para baixo, sem nenhuma outra alteração */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  padding: 0 2rem;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--border-color);
+  height: 64px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-green-dark);
+}
+.logo img {
+  display: none;
+} /* O logo na imagem parece ser texto */
+
+/* ... (Todo o resto do seu CSS continua aqui) ... */
+
+.main-nav {
+  margin-left: 2rem;
+}
+.nav-link {
+  text-decoration: none;
+  color: var(--light-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+.nav-link.active {
+  color: var(--primary-green-dark);
+  border-bottom: 3px solid var(--primary-green-dark);
+}
+
+.user-profile {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+  color: var(--light-text);
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  border: 2px solid var(--primary-green);
+}
+.user-name {
+  font-weight: 600;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- BANNER DE BOAS-VINDAS --- */
+.welcome-banner {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+}
+.welcome-banner h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.5rem;
+}
+.welcome-banner p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--light-text);
+}
+.welcome-banner span {
+  font-size: 0.875rem;
+  color: var(--light-text);
+}
+
+/* --- HISTÓRICO DE ANÁLISES --- */
+.analysis-history {
+  background-color: var(--white);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+}
+
+/* .history-header NÃO é mais flex, é um bloco normal */
+.history-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Estilo para o H2 (nada mudou) */
+.history-title h2 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.25rem;
+}
+
+/* Esta é a NOVA LINHA 2, que é flex */
+.history-controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem; /* Espaçamento entre o H2 e esta linha */
+}
+
+/* O subtítulo que agora está na linha 2 */
+.history-subtitle {
+  margin: 0;
+  color: var(--light-text);
+  font-size: 0.9rem;
+}
+
+/* O container dos controles da direita */
+.controls-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--light-text);
+}
+
+/* Certifique-se de que a regra .history-pagination e .history-controls (se ainda existir)
+   estejam separadas da regra .history-header */
+.history-pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+/* --- ESTILO DO DROPDOWN 'MOSTRAR 5' --- */
+.controls-left select#show-entries {
+  /* Remove a aparência padrão do navegador */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  /* Cor de fundo bege, como na imagem */
+  background-color: #EAE8E1;
+  border: 1px solid #DCD9CD; /* Borda sutil */
+  border-radius: 6px; /* Cantos arredondados */
+  
+  /* === PADDING AJUSTADO AQUI === */
+  padding: 0.35rem 2rem 0.35rem 0.75rem; /* cima, direita, baixo, esquerda */
+
+  /* Fonte */
+  font-weight: 600;
+  color: var(--dark-text);
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  /* Adiciona a seta personalizada (chevron) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23212121' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  
+  /* === POSIÇÃO DA SETA AJUSTADA === */
+  background-position: right 0.6rem center; 
+  background-size: 0.7em auto; 
+}
+
+/* Remove a borda azul ao clicar (opcional, mas limpo) */
+.controls-left select#show-entries:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px var(--status-green-bg);
+}
+
+/* --- BOTÕES --- */
+.btn {
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+.btn-primary {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+.btn-primary:hover {
+  background-color: var(--primary-green-dark);
+}
+.btn-outline,
+.btn-icon {
+  background-color: var(--white);
+  border: 1px solid var(--border-color);
+  color: var(--dark-text);
+}
+.btn-outline:hover,
+.btn-icon:hover {
+  background-color: var(--background-color);
+}
+.btn-icon {
+  color: var(--light-text);
+  font-weight: 500;
+}
+
+/* --- LISTA DE ANÁLISE --- */
+.analysis-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.analysis-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.analysis-item:last-child {
+  border-bottom: none;
+}
+
+/* Ícone */
+.item-icon {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.initials-fa {
+  background-color: var(--icon-red-bg);
+  color: var(--icon-red-text);
+}
+.initials-ok {
+  background-color: var(--icon-green-bg);
+  color: var(--icon-green-text);
+}
+.initials-ma {
+  background-color: var(--icon-orange-bg);
+  color: var(--icon-orange-text);
+}
+.initials-oi {
+  background-color: var(--icon-blue-bg);
+  color: var(--icon-blue-text);
+}
+
+/* Informações */
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.file-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--dark-text);
+}
+.meta-data {
+  font-size: 0.875rem;
+  color: var(--light-text);
+  margin: 0.25rem 0;
+}
+.diagnosis-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+.diagnosis {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Tags de Severidade */
+.severity-tag {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+.severity-tag.severity-moderate {
+  background-color: var(--status-moderate-bg);
+  color: var(--status-moderate-text);
+}
+.severity-tag.severity-low {
+  background-color: var(--status-low-bg);
+  color: var(--status-low-text);
+}
+.severity-tag.severity-healthy {
+  background-color: var(--status-healthy-bg);
+  color: var(--status-healthy-text);
+}
+
+/* Status */
+.item-status {
+  width: 120px;
+  text-align: center;
+}
+.status-badge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 16px; /* Pill shape */
+}
+.status-badge.status-completed {
+  background-color: var(--status-green-bg);
+  color: var(--status-green-text);
+}
+
+/* Ações */
+.item-actions {
+  display: flex;
+  gap: 0.75rem;
+  width: 280px;
+  justify-content: flex-end;
+}
+
+/* --- PAGINAÇÃO --- */
+.history-pagination {
+  border-top: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--light-text);
+}
+.pagination-controls {
+  display: flex;
+  gap: 0.25rem;
+}
+.page-arrow,
+.page-number {
+  border: 1px solid var(--border-color);
+  background: var(--white);
+  color: var(--light-text);
+  font-weight: 600;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+}
+.page-arrow:first-child {
+  border-radius: 6px 0 0 6px;
+}
+.page-arrow:last-child {
+  border-radius: 0 6px 6px 0;
+}
+.page-number.active {
+  background-color: var(--status-green-bg);
+  color: var(--primary-green-dark);
+  border-color: var(--primary-green);
+}
+.page-arrow:disabled {
+  background-color: var(--background-color);
+  color: #ccc;
+  cursor: not-allowed;
+}

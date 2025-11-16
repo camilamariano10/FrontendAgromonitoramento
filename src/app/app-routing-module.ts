@@ -37,6 +37,10 @@ const routes: Routes = [
   {
     path: 'dashboard-individual',
     loadChildren: () => import('./pages/dashboard-individual/dashboard-individual-module').then(m => m.DashboardIndividualModule) //Rota da página dashboard pessoa física
+  },
+  {
+    path: 'historico-relatorio',
+    loadChildren: () => import('./pages/historico-relatorio/historico-relatorio-module').then(m => m.HistoricoRelatorioModule) //Rota da página histórico relatório
   }
 
 ];
