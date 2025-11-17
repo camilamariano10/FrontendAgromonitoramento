@@ -61,9 +61,9 @@
           <article class="action-card">
             <h4 class="action-title">Ações Rápidas</h4>
             <ul class="action-list">
-              <li class="action-item" routerLink="gerenciar-telefones"><i class="fas fa-mobile-alt"></i> Números autorizados <br>
+              <li class="action-item" (click)="goToGerenciarTelefones()"><i class="fas fa-mobile-alt"></i> Números autorizados <br>
               <span class="action-info">Gerenciar números de telefones</span></li>
-              <li class="action-item" routerLink="/historico-analises"><i class="fas fa-history"></i> Histórico <br>
+              <li class="action-item" (click)="goToHistorico()"><i class="fas fa-history"></i> Histórico <br>
               <span class="action-info">Ver análises anteriores</span></li>
               <li class="action-item" routerLink="/gerenciar-plano"><i class="fas fa-star-half-alt"></i> Gerenciar Plano <br>
               <span class="action-info">Alterar ou renovar assinatura</span></li>

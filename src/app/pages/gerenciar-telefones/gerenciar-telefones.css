@@ -1,0 +1,360 @@
+/* ========================================================= */
+/* 1. ESTRUTURA GERAL E CABEÇALHO */
+/* ========================================================= */
+
+.page-gerenciar-telefones {
+  padding: 5rem;
+  background-color: #e0e6d6; /* Mesma cor de fundo do dashboard */
+  font-family: Arial, sans-serif;
+  color: #2A2F23;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;;
+}
+
+/* ========================================================= */
+/* TOP BAR: HEADER + BOTÃO */
+/* ========================================================= */
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+
+/* Garante que o botão fique alinhado com o header */
+.btn-adicionar {
+  background-color: #0B783F;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: 0.2s;
+  margin-top: 0.5rem; /* Alinha visualmente com o header */
+  box-shadow: 0 4px 8px rgba(0, 50, 50, 0.2);
+}
+
+.btn-adicionar:hover {
+  background-color: #0a6a34;
+}
+
+
+/* ========================================================= */
+/* 2. CONTAINER PRINCIPAL */
+/* ========================================================= */
+
+.telefones-container {
+  margin: 0;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Cabeçalho */
+.telefones-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Título */
+.titulo h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #212121; /* Cor de título similar */
+  font-weight: 700;
+}
+
+.titulo p {
+  margin: 0.3rem 0 0;
+  color: #6B7280;
+  font-size: 0.9rem;
+}
+
+/* Linha divisória */
+.linha-divisoria {
+  height: 1.5px;
+  background: #e0e6d6;
+  width: calc(100% + 4rem); /* Compensa o padding de 2rem em cada lado */
+  margin: 0 -2rem 0.5rem; /* Move para as bordas */
+}
+
+/* ========================================================= */
+/* 3. FILTROS E BARRA DE BUSCA */
+/* ========================================================= */
+
+.filtros-barra {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Wrapper para ícone + input */
+.campo-busca-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.campo-busca-container i.fa-solid {
+  position: absolute;
+  left: 12px; /* posição horizontal */
+  top: 50%; /* centra verticalmente */
+  transform: translateY(-50%);
+  color: #6B7280; /* cor cinza suave */
+  font-size: 1rem;
+  pointer-events: none; /* evita que o ícone bloqueie o clique */
+}
+
+.campo-busca {
+  width: 100%;
+  padding: 0.6rem 1rem 0.6rem 2.5rem; /* Espaço à esquerda para o ícone */
+  border: 1px solid #e0e6d6;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo-busca:focus {
+  outline: none;
+  border-color: #A6A08D;
+  box-shadow: 0 0 0 2px rgb(166, 160, 141, 0.2);
+}
+
+.filtro-status {
+  padding: 0.6rem 1rem;
+  border: 1px solid #e0e6d6;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #6B7280;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M0 3h10l-5 5z' fill='%23888'/%3E%3C/svg%3E"); /* Ícone de seta personalizado cinza */
+  background-repeat: no-repeat;
+  background-position: right 0.2rem center;
+  background-size: 0.65rem;
+}
+
+/* Hover no select fechado */
+.filtro-status:hover {
+  border-color: #A6A08D;
+  box-shadow: 0 0 0 2px rgba(166, 160, 141, 0.2); /* Sombra verde no hover */
+
+}
+
+/* Hover no select aberto */
+.filtro-status:focus {
+  outline: none;
+  border-color: #A6A08D;
+  box-shadow: 0 0 0 2px rgb(166, 160, 141, 0.2);
+}
+
+/* Estilo das opções (para hover verde nas opções) */
+.filtro-status option {
+  background: white;
+  color: #2A2F23;
+
+}
+
+/* Hover nas opções (funciona em browsers que suportam, como Chrome) */
+.filtro-status option:hover {
+  background-color: #0B783F; /* Verde no hover das opções */
+  color: white;
+}
+
+
+/* ___________________________________________________________ */
+/* LISTA HEADER (CONTADOR + ORDENAR) */
+/* ___________________________________________________________ */
+.lista-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #6B7280;
+
+}
+
+.ordenar-por {
+  padding: 0.4rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #f8faf8;
+  font-size: 0.85rem;
+}
+
+/* ========================================================= */
+/* 4. LISTA DE FUNCIONÁRIOS (CARDS) */
+/* ========================================================= */
+
+.lista-funcionarios {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card-funcionario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8faf8; /* Fundo similar aos info-cards */
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid #e1e6e1;
+  transition: background-color 0.2s;
+}
+
+.card-funcionario:hover {
+  background-color: #f5f5f5; /* Hover similar ao action-item */
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.icon {
+  font-size: 2rem;
+  color: #25d366; /* Verde WhatsApp */
+  background-color: #0B783F; /* Fundo de ícones do dashboard */
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+
+.dados h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1e3a2a; /* Cor de texto principal */
+  font-weight: 700;
+}
+
+.dados p {
+  margin: 0.3rem 0 0;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.cargo {
+  color: #666;
+  font-size: 0.85rem;
+  display: block;
+}
+
+.status-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-badge.ativo {
+  background-color: #d8f6e3;
+  color: #205c48; /* Verde do dashboard */
+}
+
+.status-badge.inativo {
+  background-color: #fce0e0;
+  color: #b52d2d;
+}
+
+/* ========================================================= */
+/* 5. AÇÕES (BOTÕES) */
+/* ========================================================= */
+
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.btn-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #aaa;
+  transition: 0.2s;
+}
+
+.btn-toggle.ativo {
+  color: #0B783F; /* Verde do dashboard */
+}
+
+.btn-acao {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #666;
+  padding: 0.4rem;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.btn-acao:hover {
+  background-color: #eee;
+}
+
+.btn-acao.excluir {
+  color: #b52d2d;
+}
+
+.btn-acao.excluir:hover {
+  background-color: #fce0e0;
+}
+
+/* ========================================================= */
+/* 6. MENSAGEM VAZIO */
+/* ========================================================= */
+
+.vazio {
+  text-align: center;
+  color: #777;
+  padding: 2rem;
+  font-style: italic;
+  background-color: #f8faf8;
+  border-radius: 12px;
+  border: 1px solid #e1e6e1;
+}
+
+/* ========================================================= */
+/* 7. RESPONSIVIDADE (SIMILAR AO DASHBOARD) */
+/* ========================================================= */
+
+@media (max-width: 600px) {
+  .telefones-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .filtros-barra {
+    flex-direction: column;
+  }
+
+  .card-funcionario {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .acoes {
+    justify-content: flex-end;
+    width: 100%;
+  }
+}

@@ -1,37 +1,100 @@
-<section class="p-6">
-  <h2 class="text-2xl font-semibold mb-4">Gerenciar Telefones</h2>
+<section class="page-gerenciar-telefones">
+  <article class="top-bar">
+      <app-farm-header
+        [nomeFazenda]="nomeFazenda"
+        [ultimaAtualizacao]="ultimaAtualizacao">
+      </app-farm-header>
 
-  <div *ngIf="carregando">Carregando...</div>
-
-  <div *ngIf="!carregando && funcionarios.length === 0">
-    Nenhum telefone encontrado.
-  </div>
-
-  <div *ngIf="!carregando && funcionarios.length > 0">
-    <table class="w-full border border-gray-300 rounded-lg">
-      <thead>
-        <tr class="bg-gray-100">
-          <th class="p-2 text-left">Nome</th>
-          <th class="p-2 text-left">Telefone</th>
-          <th class="p-2">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let func of funcionarios">
-          <td class="p-2">{{ func.nome }}</td>
-          <td class="p-2">{{ func.telefone }}</td>
-          <td class="p-2 text-center">
-            <button class="text-blue-600" (click)="editarTelefone(func)">Editar</button>
-            <button class="text-red-600 ml-2" (click)="removerTelefone(func.id)">Excluir</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div *ngIf="userType === 'business'" class="mt-4">
-    <button class="bg-green-600 text-white px-4 py-2 rounded" (click)="adicionarTelefone()">
-      + Adicionar Funcionário
+    <button class="btn-adicionar" (click)="adicionarContato()">
+      <i class="fa-solid fa-plus"></i> ADICIONAR CONTATO
     </button>
-  </div>
+  </article>
+
+  <main class="telefones-container">
+    <!-- Cabeçalho -->
+    <div class="telefones-header">
+      <div class="titulo">
+        <h2>Telefones Autorizados</h2>
+        <p>Gerencie os números de WhatsApp autorizados a enviar análises</p>
+      </div>
+
+      <!-- Barra de Filtros -->
+    <div class="filtros-barra">
+      <div class="campo-busca-container">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input
+          type="text"
+          class="campo-busca"
+          placeholder="Buscar por nome ou telefone..."
+          [(ngModel)]="busca"
+          (input)="aplicarFiltros()" />
+      </div>
+
+      <div class="filtro-status" (click)="dropdownOpen = !dropdownOpen">
+        {{ filtroStatusLabel }}
+        <i class="fa-solid fa-chevron-down"></i>
+      </div>
+
+      <ul class="filtro-status-opcoes" *ngIf="dropdownOpen">
+        <li (click)="setFiltroStatus('todos')" class="opcao">Todos os status</li>
+        <li (click)="setFiltroStatus('Ativo')" class="opcao">Ativo</li>
+        <li (click)="setFiltroStatus('Inativo')" class="opcao">Inativo</li>
+      </ul>
+
+    </div>
+
+    </div>
+
+    <!-- Linha divisória -->
+    <div class="linha-divisoria"></div>
+
+    <!-- Contador e Ordenação -->
+    <div class="lista-header">
+      <p class="contador">{{ funcionariosFiltrados.length }} telefone(s) encontrado(s)</p>
+      <select class="ordenar-por">
+        <p>Ordenar por:</p>
+        <option>Nome</option>
+        <option>Último uso</option>
+      </select>
+    </div>
+
+    <!-- Lista de Contatos -->
+    <div class="lista-funcionarios">
+      <p *ngIf="funcionariosFiltrados.length === 0" class="vazio">
+        Nenhum telefone encontrado.
+      </p>
+
+      <article class="card-funcionario" *ngFor="let f of funcionariosFiltrados">
+        <div class="info">
+          <i class="fa-brands fa-whatsapp icon"></i>
+          <div class="dados">
+            <h4>{{ f.nome }}</h4>
+            <p>{{ f.telefone }}<br>
+              <span class="cargo">{{ f.cargo }}</span>
+              <span class="status-badge" [ngClass]="f.status === 'Ativo' ? 'ativo' : 'inativo'">
+                {{ f.status }}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="acoes">
+          <!-- Botão Toggle Ativar/Desativar -->
+          <button class="btn-toggle" [class.ativo]="f.status === 'Ativo'" (click)="toggleStatus(f)">
+            <i class="fa-solid" [ngClass]="f.status === 'Ativo' ? 'fa-toggle-on' : 'fa-toggle-off'"></i>
+          </button>
+
+          <!-- Editar -->
+          <button class="btn-acao" (click)="editarContato(f)">
+            <i class="fa-solid fa-pen"></i>
+          </button>
+
+          <!-- Excluir -->
+          <button class="btn-acao excluir" (click)="excluirContato(f)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </article>
+    </div>
+  </main>
 </section>

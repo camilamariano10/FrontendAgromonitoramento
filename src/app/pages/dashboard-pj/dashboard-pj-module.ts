@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { DashboardPjRoutingModule } from './dashboard-pj-routing-module';
 import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
@@ -12,7 +13,8 @@ import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
   imports: [
     CommonModule,
     DashboardPjRoutingModule,
-    FarmHeaderComponent
+    FarmHeaderComponent,
+    RouterModule
   ]
 })
 export class DashboardPjModule { }

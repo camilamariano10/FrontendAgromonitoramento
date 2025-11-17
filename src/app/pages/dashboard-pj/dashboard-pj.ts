@@ -5,6 +5,7 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 import { registerables } from 'chart.js';
 import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 Chart.register(...registerables);
@@ -68,7 +69,15 @@ export class DashboardPj implements OnInit, AfterViewInit {
   dashboardData: any;
   loading: boolean = true;
 
-  constructor(private service: Service) {} // 👈 Injete o Serviço
+  constructor(private service: Service, private router: Router) {} // 👈 Injete o Serviço
+
+  goToGerenciarTelefones() {
+  this.router.navigate(['/gerenciar-telefones']);
+}
+
+goToHistorico() {
+  this.router.navigate(['/historico-relatorio']);
+}
 
   // Método chamado pelo template para atualizar o estado do dropdown
  dropOpen = false
