@@ -131,67 +131,118 @@
   box-shadow: 0 0 0 2px rgb(166, 160, 141, 0.2);
 }
 
-.filtro-status {
-  padding: 0.6rem 1rem;
-  border: 1px solid #e0e6d6;
-  border-radius: 8px;
-  font-size: 0.85rem;
+.contador {
   color: #6B7280;
-  appearance: none;
+  font-size: 0.85rem;
+}
+
+/* ========================================================= */
+/* DROPDOWNS PERSONALIZADOS - STATUS E ORDENAÇÃO */
+/* ========================================================= */
+.dropdown-wrapper {
+  position: relative;    /* 🔥 agora o dropdown fica preso ao botão */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.filtro-status,
+.ordenar-dropdown {
+  position: relative; /* ESSENCIAL para o absolute das opções */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #D9D4C7;
   cursor: pointer;
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M0 3h10l-5 5z' fill='%23888'/%3E%3C/svg%3E"); /* Ícone de seta personalizado cinza */
-  background-repeat: no-repeat;
-  background-position: right 0.2rem center;
-  background-size: 0.65rem;
+  font-size: 0.9rem;
+  min-width: 160px;
+  transition: all 0.2s;
+  user-select: none;
+  color: #212121;
 }
 
-/* Hover no select fechado */
-.filtro-status:hover {
-  border-color: #A6A08D;
-  box-shadow: 0 0 0 2px rgba(166, 160, 141, 0.2); /* Sombra verde no hover */
 
-}
-
-/* Hover no select aberto */
-.filtro-status:focus {
-  outline: none;
+.filtro-status:hover,
+.ordenar-dropdown:hover {
   border-color: #A6A08D;
   box-shadow: 0 0 0 2px rgb(166, 160, 141, 0.2);
 }
 
-/* Estilo das opções (para hover verde nas opções) */
-.filtro-status option {
-  background: white;
-  color: #2A2F23;
-
+.filtro-status i,
+.ordenar-dropdown i {
+  transition: transform 0.2s;
+  font-size: 0.8rem;
+  color: #666;
 }
 
-/* Hover nas opções (funciona em browsers que suportam, como Chrome) */
-.filtro-status option:hover {
-  background-color: #0B783F; /* Verde no hover das opções */
+.dropdown-open i,
+.ordenar-open i {
+  transform: rotate(180deg);
+}
+
+/* LISTAS DE OPÇÕES */
+.filtro-status-opcoes,
+.ordenar-opcoes {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  list-style: none;
+  padding: 0.4rem 0;
+  margin: 0;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.2s ease;
+}
+
+.filtro-status-opcoes.show,
+.ordenar-opcoes.show {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.filtro-status-opcoes li,
+.ordenar-opcoes li {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 0.9rem;
+}
+
+.filtro-status-opcoes li:hover,
+.ordenar-opcoes li:hover {
+  background-color: #D9D4C7;
   color: white;
 }
 
+/* ========================================================= */
+/* ORDENAÇÃO - LAYOUT */
+/* ========================================================= */
 
-/* ___________________________________________________________ */
-/* LISTA HEADER (CONTADOR + ORDENAR) */
-/* ___________________________________________________________ */
 .lista-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
-  color: #6B7280;
-
+  position: relative;
 }
 
-.ordenar-por {
-  padding: 0.4rem;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background: #f8faf8;
+.label-ordenar {
+  color: #6B7280;
+  font-weight: lighter;
+  margin-right: 0.5rem;
   font-size: 0.85rem;
 }
 
@@ -209,7 +260,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #f8faf8; /* Fundo similar aos info-cards */
   border-radius: 12px;
   padding: 1rem;
   border: 1px solid #e1e6e1;
@@ -229,8 +279,8 @@
 
 .icon {
   font-size: 2rem;
-  color: #25d366; /* Verde WhatsApp */
-  background-color: #0B783F; /* Fundo de ícones do dashboard */
+  color: #2FADE1; /* Azul do Telegram */
+  background-color: #2face14d; /* Fundo de ícones do dashboard */
   border-radius: 0.5rem;
   padding: 0.5rem;
 }
@@ -308,7 +358,7 @@
 }
 
 .btn-acao:hover {
-  background-color: #eee;
+  background-color: #d8d8d8;
 }
 
 .btn-acao.excluir {

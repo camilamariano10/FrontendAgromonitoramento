@@ -23,7 +23,13 @@ export class GerenciarTelefones implements OnInit {
   busca: string = '';
   filtroStatus: 'todos' | 'Ativo' | 'Inativo' = 'todos';
   filtroStatusLabel: string = 'Todos os status';
+
+  ordenarPorCampo: 'nome' | 'ultimoUso' | 'cargo' = 'nome';
+  ordenarLabel: string = 'Nome';
+
   dropdownOpen: boolean = false;
+  ordenarDropdownOpen: boolean = false;
+
 
   constructor(private service: Service) {}
 
@@ -54,11 +60,27 @@ export class GerenciarTelefones implements OnInit {
 
       return nomeMatch && statusMatch;
     });
+    this.aplicarOrdenacao(); // mantém a ordenação após filtro
   }
 
+   // Aplica a ordenação
+  aplicarOrdenacao() {
+    this.funcionariosFiltrados.sort((a, b) => {
+      if (this.ordenarPorCampo === 'nome') {
+        return a.nome.localeCompare(b.nome);
+      } else if (this.ordenarPorCampo === 'ultimoUso') {
+        return new Date(b.ultimoUso || '').getTime() - new Date(a.ultimoUso || '').getTime();
+      } else if (this.ordenarPorCampo === 'cargo') {
+        return a.cargo.localeCompare(b.cargo);
+      }
+      return 0;
+    });
+  }
 
-  toggleDropdown() {
+  toggleStatusDropdown(event: MouseEvent) {
+    event.stopPropagation();
     this.dropdownOpen = !this.dropdownOpen;
+    this.ordenarDropdownOpen = false;
   }
 
   setFiltroStatus(status: 'todos' | 'Ativo' | 'Inativo') {
@@ -69,10 +91,30 @@ export class GerenciarTelefones implements OnInit {
     this.aplicarFiltros();
   }
 
+  // Alterna o dropdown de ordenação
+  toggleOrdenarDropdown() {
+    this.ordenarDropdownOpen = !this.ordenarDropdownOpen;
+    this.dropdownOpen = false;
+  }
+
+  // Define a ordenação
+  ordenarPor(campo: 'nome' | 'ultimoUso' | 'cargo') {
+    this.ordenarPorCampo = campo;
+    this.ordenarLabel = campo === 'nome' ? 'Nome' :
+                      campo === 'ultimoUso' ? 'Último uso' : 'Cargo';
+    this.ordenarDropdownOpen = false;
+    this.aplicarOrdenacao();
+  }
+
+
+
   @HostListener('document:click', ['$event'])
-  closeDropdown(event: MouseEvent) {
-    const inside = (event.target as HTMLElement).closest('.dropdown-status');
-    if (!inside) this.dropdownOpen = false;
+  closeAllDropdowns(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.ordenar-dropdown') && !target.closest('.filtro-status')) {
+      this.dropdownOpen = false;
+      this.ordenarDropdownOpen = false;
+    }
   }
 
   toggleStatus(func: any) {

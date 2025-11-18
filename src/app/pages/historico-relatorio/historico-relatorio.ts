@@ -1,6 +1,7 @@
 // O import foi atualizado para incluir OnInit
 import { Component, OnInit } from '@angular/core';
 
+
 // --- Modelos de Dados (Definidos aqui para simplicidade) ---
 
 export type SeverityLevel = 'healthy' | 'low' | 'moderate' | 'high';
@@ -143,6 +144,8 @@ const MOCK_ANALYSES: AnalysisItem[] = [
 })
 export class HistoricoRelatorio implements OnInit {
   // Implementa OnInit
+  nomeFazenda = 'Fazenda Santa Rosa';
+  ultimaAtualizacao = 'hoje às 14:30';
 
   // Propriedades que o HTML irá usar
   public totalResults: number = 0;

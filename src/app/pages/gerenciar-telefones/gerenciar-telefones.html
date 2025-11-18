@@ -30,17 +30,20 @@
           (input)="aplicarFiltros()" />
       </div>
 
-      <div class="filtro-status" (click)="dropdownOpen = !dropdownOpen">
-        {{ filtroStatusLabel }}
-        <i class="fa-solid fa-chevron-down"></i>
+      <div class="dropdown-wrapper">
+        <div class="filtro-status"
+        [class.dropdown-open]="dropdownOpen"
+        (click)="toggleStatusDropdown($event)">
+          {{ filtroStatusLabel }}
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+        <ul class="filtro-status-opcoes" [class.show]="dropdownOpen">
+          <li (click)="setFiltroStatus('todos')" class="opcao">Todos os status</li>
+          <li (click)="setFiltroStatus('Ativo')" class="opcao">Ativo</li>
+          <li (click)="setFiltroStatus('Inativo')" class="opcao">Inativo</li>
+        </ul>
       </div>
-
-      <ul class="filtro-status-opcoes" *ngIf="dropdownOpen">
-        <li (click)="setFiltroStatus('todos')" class="opcao">Todos os status</li>
-        <li (click)="setFiltroStatus('Ativo')" class="opcao">Ativo</li>
-        <li (click)="setFiltroStatus('Inativo')" class="opcao">Inativo</li>
-      </ul>
-
     </div>
 
     </div>
@@ -50,12 +53,25 @@
 
     <!-- Contador e Ordenação -->
     <div class="lista-header">
-      <p class="contador">{{ funcionariosFiltrados.length }} telefone(s) encontrado(s)</p>
-      <select class="ordenar-por">
-        <p>Ordenar por:</p>
-        <option>Nome</option>
-        <option>Último uso</option>
-      </select>
+      <p class="contador">
+        {{ funcionariosFiltrados.length }} telefone(s) encontrado(s)
+      </p>
+      <!-- Dropdown para Ordenar -->
+      <div class="dropdown-wrapper">
+        <span class="label-ordenar">Ordenar por:</span>
+        
+        <div class="ordenar-dropdown"
+        [class.ordenar-open]="ordenarDropdownOpen"
+        (click)="toggleOrdenarDropdown()">
+          <span class="valor-selecionado">{{ ordenarLabel }}</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <ul class="ordenar-opcoes" [class.show]="ordenarDropdownOpen">
+          <li (click)="ordenarPor('nome')" class="opcao">Nome</li>
+          <li (click)="ordenarPor('ultimoUso')" class="opcao">Último uso</li>
+          <li (click)="ordenarPor('cargo')" class="opcao">Cargo</li>
+        </ul>
+      </div>
     </div>
 
     <!-- Lista de Contatos -->
@@ -66,7 +82,7 @@
 
       <article class="card-funcionario" *ngFor="let f of funcionariosFiltrados">
         <div class="info">
-          <i class="fa-brands fa-whatsapp icon"></i>
+          <i class="fa-brands fa-telegram icon"></i>
           <div class="dados">
             <h4>{{ f.nome }}</h4>
             <p>{{ f.telefone }}<br>

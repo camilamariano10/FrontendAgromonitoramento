@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HistoricoRelatorioRoutingModule } from './historico-relatorio-routing-module';
 import { HistoricoRelatorio } from './historico-relatorio';
+import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { HistoricoRelatorio } from './historico-relatorio';
   ],
   imports: [
     CommonModule,
-    HistoricoRelatorioRoutingModule
+    HistoricoRelatorioRoutingModule,
+    FarmHeaderComponent
   ]
 })
 export class HistoricoRelatorioModule { }
