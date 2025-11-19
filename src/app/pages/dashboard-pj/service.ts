@@ -4,7 +4,7 @@ import { Observable, of, delay} from 'rxjs';
 
 //👉🏽 ativar e ajustar quando conectar ao backend 👉🏽 const API_url = 'http://localhost:8081/user/farms/list'; //É a url do back-end
 const DADOS_DE_SIMULACAO = {
-  nomeFazenda: 'Fazenda de Teste PJ',
+  nomeFazenda: 'Fazenda Santa Maria',
   ultimaAtualizacao: '10:45',
   totalAnalises: 42,
   analisesRestantes: { restantes: 8, total: 10 },

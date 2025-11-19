@@ -13,10 +13,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from "@angular/forms";
 import { provideNgxMask } from "ngx-mask";
 import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [App, Header, Footer],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule, HttpClientModule, MatDialogModule],
   providers: [provideBrowserGlobalErrorListeners(), provideZonelessChangeDetection(), provideNgxMask()],
   bootstrap: [App],
 })

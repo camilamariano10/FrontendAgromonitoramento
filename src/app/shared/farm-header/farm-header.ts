@@ -1,5 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { AdicionarFazenda} from '../adicionar-fazenda/adicionar-fazenda';
 
 // Defina uma interface simples para os dados que o componente recebe (melhor prática)
 interface FarmData {
@@ -27,7 +29,7 @@ export class FarmHeaderComponent implements OnInit {
 
   dropOpen: boolean = false;
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     // Inicialização, se necessário
@@ -59,6 +61,17 @@ export class FarmHeaderComponent implements OnInit {
 
   // ✅ Emite evento ao adicionar fazenda
   onAdd() {
-    this.adicionarFazendaEvent.emit();
-  }
+    const dialogRef = this.dialog.open(AdicionarFazenda, {
+
+      panelClass: 'custom-modal' // Para estilo personalizado
+  });
+    dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          // Adicione a nova fazenda à lista (ou envie para o pai se preferir)
+          this.fazendas.push(result.nomeFazenda);
+          this.selecionarFazenda.emit(result.nomeFazenda); // Seleciona a nova como atual
+        }
+        this.dropOpen = false;
+      });
+    }
 }
