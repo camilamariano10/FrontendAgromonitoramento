@@ -1,66 +1,88 @@
 <section class="modal-adicionar-fazenda-container">
   <div class="modal-adicionar-fazenda">
-  <h2 class="modal-title">ADICIONAR FAZENDA</h2>
-  <button class="close-button" (click)="cancelar()">
-    <i class="fa-regular fa-circle-xmark"></i>
-  </button>
+    <h2 class="modal-title">{{ isEditMode ? 'EDITAR FAZENDA' : 'ADICIONAR FAZENDA' }}</h2>
+    <button class="close-button" (click)="cancelar()">
+      <i class="fa-regular fa-circle-xmark"></i>
+    </button>
 
-  <form [formGroup]="form" (ngSubmit)="salvarFazenda()"> <!-- Formulário -->
-    <div class="row">
-      <div class="mb-3 text-start"> <!-- Campo de nome -->
-      <label for="nome" class="form-label">Nome da fazenda*</label>
-      <input formControlName="nomeFazenda" placeholder="Digite o nome completo">
-    </div>
-    <div class="mb-3 text-start"> <!-- Campo de endereço -->
-      <label for="endereco" class="form-label">Endereço*</label>
-      <input formControlName="endereco" placeholder="Digite o endereço aqui">
-    </div>
-    </div>
-    <div class="row">
-      <div class="col mb-3 text-start"> <!-- Campo de Cidade -->
-        <label for="cidade" class="form-label">Cidade*</label>
-        <input formControlName="cidade" placeholder="cidade" mask="Digite o nome da sua cidade">
-      </div>
-      <div class="col mb-3 text-start"> <!-- Campo de UF -->
-        <label for="uf" class="form-label">UF*</label>
-        <input formControlName="uf" placeholder="uf" mask="Digite o nome do seu estado">
-      </div>
-            <div class="col mb-3 text-start"> <!-- Campo de CEP -->
-        <label for="cep" class="form-label">CEP*</label>
-        <input formControlName="cep" placeholder="cep" mask="00000-000">
-      </div>
-    </div>
-    <div class="row">
-      <div class="mb-3 text-start"> <!-- Campo do responsável -->
-      <label for="nomeResponsavel" class="form-label">Nome do responsável*</label>
-      <input formControlName="nomeResponsavel" placeholder="Digite o nome da pessoa responsável">
-    </div>
-    <div class="mb-3 text-start"> <!-- Campo de cargo -->
-      <label for="cargo" class="form-label">Endereço*</label>
-      <input formControlName="cargo" placeholder="Digite o cargo do funcionário responsável">
-    </div>
-    <div class="mb-3 text-start"> <!-- Campo de telefone -->
-      <label for="telefone" class="form-label">Número de telefone do responsável*</label>
-      <input formControlName="telefone" placeholder="(00) 00000-0000">
-    </div>
-    </div>
+    <form [formGroup]="form" (ngSubmit)="salvarFazenda()">
 
-    <div class="row">
-      <div class="mb-3 text-start"> <!-- Área da fazenda -->
-        <label for="area" class="form-label">Área cultivada (m²)*</label>
-        <input formControlName="area" placeholder="00 ha">
+      <div class="mb-3 text-start">
+        <label for="nomeFazenda" class="form-label">Nome da Fazenda</label>
+        <input type="text" class="form-control-custom" formControlName="nomeFazenda" placeholder="Escreva o nome completo aqui">
       </div>
-      <div class="mb-3 text-start"> <!-- Safra atual -->
-        <label for="safra" class="form-label">Safra atual</label>
-        <input formControlName="safra" placeholder="2025/ 2026">
-      </div>
-    </div>
 
-    <div class="text-center">
-      <button type="submit" class="salvar-button" [disabled]="!form.invalid || loading">
-        {{ loading ? 'Salvando...' : 'Salvar' }} Salvar
-      </button> <!-- Botão salvar -->
-    </div>
-  </form>
+      <div class="mb-3 text-start">
+        <label for="endereco" class="form-label">Endereço</label>
+        <input type="text" class="form-control-custom" formControlName="endereco" placeholder="Escreva o endereço aqui">
+      </div>
+
+      <div class="form-row-grouped">
+        <div class="group-item cidade">
+          <label for="cidade" class="form-label">Cidade</label>
+          <input type="text" class="form-control-custom" formControlName="cidade" placeholder="Cuiabá">
+        </div>
+        <div class="group-item uf">
+          <label for="uf" class="form-label">UF</label>
+          <input type="text" class="form-control-custom" formControlName="uf" placeholder="MT">
+        </div>
+        <div class="group-item cep">
+          <label for="cep" class="form-label">CEP</label>
+          <input type="text"
+            class="form-control-custom"
+            formControlName="cep"
+            placeholder="00000-000"
+            mask="00000-000">
+        </div>
+      </div>
+
+      <div class="mb-3 text-start">
+        <label for="nomeResponsavel" class="form-label">Nome do responsável</label>
+        <input type="text" class="form-control-custom" formControlName="nomeResponsavel" placeholder="Escreva o nome completo aqui">
+      </div>
+
+      <div class="mb-3 text-start">
+        <label for="cargoResponsavel" class="form-label">Cargo do responsável</label>
+        <input type="text" class="form-control-custom" formControlName="cargoResponsavel" placeholder="Escreva o cargo do funcionário aqui">
+      </div>
+
+      <div class="mb-3 text-start">
+        <label for="telefoneResponsavel" class="form-label">Número de telefone do responsável</label>
+        <input type="text"
+          class="form-control-custom"
+          formControlName="telefoneResponsavel"
+          placeholder="(00) 00000-0000"
+          mask="(00) 00000-0000">
+      </div>
+
+      <div class="mb-3 text-start">
+        <label for="areaCultivada" class="form-label">Área cultivada</label>
+        <input type="text"
+          class="form-control-custom"
+          formControlName="areaCultivada"
+          placeholder="00 ha"
+          mask="separator.2"
+          thousandSeparator="."
+          decimalMarker=","
+          suffix=" ha">
+      </div>
+
+      <div class="mb-3 text-start">
+        <label for="safraAtual" class="form-label">Safra atual</label>
+        <input type="text" class="form-control-custom" formControlName="safraAtual" placeholder="2024/ 2025">
+      </div>
+
+      <div class="buttons-container mt-4">
+        <button type="submit" class="salvar-button" [disabled]="form.invalid || loading">
+          {{ loading ? 'Salvando...' : 'Salvar' }}
+        </button>
+        @if (isEditMode) {
+          <button type="button" class="excluir-button" (click)="excluirFazenda()" [disabled]="loading">
+            <i class="fas fa-trash-alt me-2"></i> Excluir
+          </button>
+        }
+      </div>
+
+    </form>
   </div>
 </section>

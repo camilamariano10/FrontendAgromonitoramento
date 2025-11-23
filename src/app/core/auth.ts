@@ -32,11 +32,20 @@ export class Auth {
     this.loggedIn.next(true); // Altera o estado para logado
 
     console.log('Usuário logado com sucesso! Tipo:', tipo);
+    console.log('auth.login: Salvando userData:', userData); // Log para debugar
 
     return { token: 'mock-token', user: email }; // Retorna dados simulados do usuário
 
 
    }
+
+   getUserType(): string | null {
+    const userData = localStorage.getItem('userData');
+    if (userData) {
+      return JSON.parse(userData).tipo; // Retorna 'business' ou 'individual'
+    }
+    return null;
+  }
 
   // Método para simular o logout
   logout() {

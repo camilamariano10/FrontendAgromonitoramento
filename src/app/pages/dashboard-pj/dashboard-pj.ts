@@ -5,7 +5,9 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 import { registerables } from 'chart.js';
 import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
+import { Auth } from '../../core/auth';
 
 
 Chart.register(...registerables);
@@ -16,7 +18,6 @@ interface DashboardData {
   ultimaAtualizacao: string;
   totalAnalises: number;
   ultimaAnalise: UltimaAnalise;
-  analisesRestantes: AnalisesRestantes;
   planoAtual: PlanoAtual;
   distribuicao: Distribuicao;
 }
@@ -28,11 +29,6 @@ interface UltimaAnalise {
   corTexto: string;
   status: string;
   resultado: string;
-}
-
-interface AnalisesRestantes {
-  restantes: number;
-  total: number;
 }
 
 interface PlanoAtual {
@@ -58,7 +54,7 @@ interface Distribuicao {
 @Component({
   selector: 'app-dashboard-pj',
   standalone: true,
-  imports: [CommonModule, FarmHeaderComponent],
+  imports: [CommonModule, FarmHeaderComponent, RouterLink],
   templateUrl: './dashboard-pj.html',
   styleUrl: './dashboard-pj.css',
 })
@@ -66,40 +62,31 @@ export class DashboardPj implements OnInit, AfterViewInit {
   @ViewChild('diseaseChart') diseaseChart!: ElementRef<HTMLCanvasElement>; // Referência ao canvas do gráfico
   chart!: Chart; // Referência ao gráfico
   // Variável que irá armazenar os dados e será usada no HTML
-  dashboardData: any;
+  dashboardData!: any;
   loading: boolean = true;
 
-  constructor(private service: Service, private router: Router) {} // 👈 Injete o Serviço
+  constructor(private service: Service, private router: Router, private cdr: ChangeDetectorRef) {} // 👈 Injete o Serviço
 
   goToGerenciarTelefones() {
-  this.router.navigate(['/gerenciar-telefones']);
-}
-
-goToHistorico() {
-  this.router.navigate(['/historico-relatorio']);
-}
-
-  // Método chamado pelo template para atualizar o estado do dropdown
- dropOpen = false
-
-  fazendas: string[] = ['FAZENDA 1']; // inicial com uma fazenda
-  contadorFazenda = 2; // para nomear automaticamente
-
-  adicionarFazenda() {
-    const novaFazenda = `FAZENDA ${this.contadorFazenda}`;
-    this.fazendas.push(novaFazenda);
-    this.contadorFazenda++;
+    this.router.navigate(['/gerenciar-telefones']);
   }
 
-  selecionarFazenda(fazenda: string) {
+  goToHistorico() {
+    this.router.navigate(['/historico-relatorio']);
+  }
+
+    // Método chamado pelo template para atualizar o estado do dropdown
+  dropOpen = false
+
+    // ✅ Único método necessário: Atualizar os dados quando o header mudar a fazenda
+  aoMudarFazenda(fazenda: any) { // Recebe o objeto completo da fazenda
     if (this.dashboardData) {
-      // atualiza de forma imutável para respeitar melhores práticas de estado
-      this.dashboardData = { ...this.dashboardData, nomeFazenda: fazenda };
-    } else {
-      // cria um objeto padrão caso ainda não exista dashboardData
-      this.dashboardData = { ...DADOS_DE_SIMULACAO, nomeFazenda: fazenda } as DashboardData;
+      // Atualiza o nome no dashboard e, idealmente, recarregaria os dados do gráfico para essa nova fazenda
+      this.dashboardData = { ...this.dashboardData, nomeFazenda: fazenda.nomeFazenda };
+
+      // Aqui você chamaria this.fetchDashboardData(fazenda.id) no futuro
+      console.log('Carregando dados para:', fazenda.nomeFazenda);
     }
-    this.dropOpen = false; // fecha o menu ao selecionar
   }
 
   // Função para retornar a classe CSS baseada no status da última análise
@@ -132,22 +119,25 @@ goToHistorico() {
     this.loadDashboardData(); // 👈 Chama a função de busca ao iniciar
     }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
+    if (this.dashboardData?.distribuicao?.doencas?.length > 0) {
+      this.renderDiseaseChart(); // Render após view init
+    }
     }
 
   private loadDashboardData() {
     this.loading = true;
     this.service.getData().subscribe({
-      next: (data) => {
+      next: (data: DashboardData) => {
         this.dashboardData = data;
         this.loading = false;
-        console.log('Dados do dashboard recebidos:', this.dashboardData);
+        console.log('Dados recebidos:', this.dashboardData);
 
-        // Renderiza o gráfico após dados chegarem (canvas será exibido pelo *ngIf)
-        setTimeout(() => this.renderDiseaseChart(), 50); // Pequeno delay para DOM atualizar
+        this.cdr.detectChanges(); // Força update da view
+        this.renderDiseaseChart(); // Tenta render após dados
       },
-      error: (error) => {
-        console.error('Erro ao buscar dados do dashboard:', error);
+      error: (err) => {
+        console.error('Erro ao carregar dashboard:', err);
         this.loading = false;
       }
     });
@@ -161,13 +151,14 @@ goToHistorico() {
       next: (data) => {
         this.dashboardData = data;
         this.loading = false;
+        this.cdr.detectChanges(); // Força a detecção de mudanças
         console.log('Dados do dashboard recebidos:', this.dashboardData);
 
         // ✅ Verifica se existe a propriedade `distribuicao` antes de renderizar
-        if (this.dashboardData && this.dashboardData.distribuicao) {
-          this.renderDiseaseChart();
+        if (this.dashboardData?.distribuicao && this.diseaseChart) {
+          setTimeout(() => this.renderDiseaseChart(), 0); // Pequeno delay para garantir que o DOM esteja atualizado
         } else {
-          console.warn('⚠️ Dados de distribuição não encontrados:', this.dashboardData);
+          console.warn('⚠️ Dados de distribuição não encontrados:');
         }
       },
       error: (error) => {
@@ -185,90 +176,53 @@ goToHistorico() {
 
   renderDiseaseChart(): void {
     console.log('Tentando renderizar gráfico... Canvas disponível?', !!this.diseaseChart);
-    if (!this.dashboardData ||
-      !this.diseaseChart ||
-      !this.dashboardData.distribuicao ||
-      !this.dashboardData.distribuicao.doencas) { // Verifica se os dados e a view estão prontos
-      console.warn('Dados ou canvas não disponíveis para renderizar o gráfico.');
+
+    if (!this.dashboardData || !this.diseaseChart || !this.dashboardData.distribuicao || !this.dashboardData.distribuicao.doencas || this.dashboardData.distribuicao.doencas.length === 0) {
+      console.warn('Dados ou canvas não disponíveis.');
       return;
     }
-
-    console.log('📊 Tentando renderizar o gráfico...');
 
     const ctx = this.diseaseChart.nativeElement;
     if (!ctx) {
-      console.error('Canvas do gráfico não encontrado');
+      console.error('Canvas não encontrado.');
       return;
     }
 
-    const doencas = this.dashboardData.distribuicao.doencas;
+    const doencas: ItemDistribuicao[] = this.dashboardData.distribuicao.doencas;
+    const labels = doencas.map((d: ItemDistribuicao) => d.nome);
+    const valores = doencas.map((d: ItemDistribuicao) => d.valor);
+    const cores = doencas.map((d: ItemDistribuicao) => d.cor);
 
-    if (doencas.length === 0) {
-      console.warn('Nenhuma doença para renderizar no gráfico.');
-      return;
-    }
-
-    const labels = doencas.map((d: any) => d.nome);
-    const valores = doencas.map((d: any) => d.valor);
-    const cores = doencas.map((d: any) => d.cor);
-
-    console.log('🎨 Labels:', labels);
-    console.log('📈 Valores:', valores);
-
-    // ✅ destrói o gráfico anterior antes de recriar (evita sobreposição)
-    if (this.chart) {
-      this.chart.destroy();
-    }
-
+    if (this.chart) this.chart.destroy();
 
     this.chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: labels,
-        datasets: [{
-          data: valores,
-          backgroundColor: cores,
-          borderWidth: 1,
-          hoverOffset: 12,
-          borderRadius: 6, // deixa as pontas arredondadas
-        }]
+        labels,
+        datasets: [{ data: valores, backgroundColor: cores, borderWidth: 1, hoverOffset: 12, borderRadius: 6 }],
       },
       options: {
         responsive: true,
-        cutout: '70%', // define o "buraco" do meio (moved to options to match Chart.js types)
+        cutout: '70%',
         plugins: {
-          legend: {
-            position: 'bottom',
-            labels: {
-              generateLabels: (chart: any) => {
-              const datasets = chart.data.datasets;
-              return chart.data.labels.map((label: any, i: number) => ({
-                text: label,
-                fillStyle: datasets[0].backgroundColor[i]
-              }));
-            }
-            }
-          },
+          legend: { position: 'bottom' },
           tooltip: {
             callbacks: {
               label: (context: any) => {
                 const label = context.label || '';
-              const value = context.parsed;
-              const percent = this.dashboardData.distribuicao.doencas.find(
-                (d: any) => d.nome === label
-              )?.percentual || '';
-              return `${label}: ${value} (${percent})`;
-              }
-            }
+                const value = context.parsed;
+                const percent = doencas.find((d) => d.nome === label)?.percentual || '';
+                return `${label}: ${value} (${percent})`;
+              },
+            },
           },
-        } as any // para evitar erros de tipagem do Chart.js
-      }
+        },
+      },
     });
   }
 
 
 }
-
 
 // 👉🏽 Estrutura de dados simulados (MOCK DATA)
 const DADOS_DE_SIMULACAO = {};

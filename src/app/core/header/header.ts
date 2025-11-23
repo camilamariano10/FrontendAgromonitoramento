@@ -28,16 +28,17 @@ export class Header implements OnInit {
 
   goToDashboard() {
   const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+  console.log('goToDashboard - UserData:', userData);
 
   if (userData.tipo === 'business') {
     this.router.navigate(['/dashboard-pj']);
-  } else if (userData.tipo === 'individual') {
-    this.router.navigate(['/dashboard-individual']);
-  } else {
-    console.warn('Tipo de usuário não encontrado. Redirecionando para home.');
-    this.router.navigate(['/']);
+    } else if (userData.tipo === 'individual') {
+      this.router.navigate(['/dashboard-individual']);
+    } else {
+      console.warn('Tipo de usuário não encontrado. Redirecionando para home.');
+      this.router.navigate(['/']);
+    }
   }
-}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(Login, {
@@ -48,26 +49,30 @@ export class Header implements OnInit {
 
     // Se o modal retornar 'loginSuccess', chame o login
     dialogRef.afterClosed().subscribe((result: any) => {
+      console.log('Modal fechado com result:', result); // Log para debugar
+
       if (result && result.status === 'loginSuccess') {
-        console.log('✅ Login bem-sucedido. Iniciando o processo de login...');
+        setTimeout(() => {
+          const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+          // redirect code here
+        }, 500);
+        console.log('✅ Login bem-sucedido. Redirecionando...');
 
-        // Chama o método de login para atualizar o estado do AuthService
-        this.authService.login(result.email, result.password);
-
-        // Recupera o tipo de usuário salvo no localStorage
         const userData = JSON.parse(localStorage.getItem('userData') || '{}');
-        //console.log('🔑 Usuário logado:', userData);
+        console.log('🔑 UserData:', userData);
 
-        // Redireciona de acordo com o tipo do usuário
         if (userData.tipo === 'business') {
           this.router.navigate(['/dashboard-pj']);
         } else if (userData.tipo === 'individual') {
           this.router.navigate(['/dashboard-individual']);
         } else {
-          console.warn('⚠️ Tipo de usuário não reconhecido:', userData);
+          console.warn('⚠️ Tipo de usuário não reconhecido:', userData.tipo);
+          this.router.navigate(['/']); // Fallback
         }
+      } else {
+        console.warn('Modal fechado sem loginSuccess');
       }
-  });
+    });
   }
 
 

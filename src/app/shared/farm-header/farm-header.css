@@ -1,7 +1,7 @@
 /* ------------------ HEADER (Título + Subtítulo) ------------------ */
 
 .farm-header {
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   align-items: flex-start;
   width: fit-content;
@@ -10,10 +10,14 @@
   border-radius: 16px;
   padding: 1.5rem 2rem;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
   gap: 0.5rem;
   margin-bottom: 25px;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bolder;
+  position: relative;
+  overflow: visible !important; /* Garante que o dropdown não seja cortado */
+
 
 }
 
@@ -50,6 +54,23 @@
 }
 
 /* Botão principal (Nome da Fazenda) */
+.main-title {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #212121;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  position: relative; /* Garante z-index se necessário */
+  z-index: 1001; /* Fica acima do menu se eles se tocarem */
+  background: transparent; /* Garante que não cubra nada */
+}
+
+/* Botão principal (Nome da Fazenda) */
 .farm-title-button {
   background: none;
   border: none;
@@ -61,6 +82,13 @@
   align-items: center;
   gap: 8px;
   padding: 0;
+  position: relative; /* Garante z-index se necessário */
+  z-index: 1001; /* Fica acima do menu se eles se tocarem */
+  background: transparent; /* Garante que não cubra nada */
+}
+
+.farm-title-button span {
+    color: #212121; /* Garante a cor do texto */
 }
 
 .farm-title-button:hover {
@@ -80,22 +108,25 @@
 /* Menu suspenso */
 .farm-menu {
   position: absolute;
-  top: 120%;
+  top: 100%;
   left: 0;
-  z-index: 10;
+  z-index: 1000;
   background-color: white;
-  border: 1px solid #ccc;
+  border: 1px solid #e0e0e0;
   border-radius: 10px;
-  padding:0;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  min-width: 220px;
+  padding: 0.5rem 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  min-width: 280px;
   display: none;
+  margin-top: 0.5rem;
+  white-space: nowrap; /* Impede que o texto quebre linha e deforme o menu */
 
 }
 
 .farm-menu[style*="block"] {
   opacity: 1;
   transform: translateY(0);
+  display: block !important;
 }
 
 /* Itens de fazenda */
@@ -128,7 +159,7 @@
 }
 
 .icon-button:hover {
-  background-color: #e8f0ea;
+  background-color: #d1e2d6;
 }
 
 /* Linha divisória */

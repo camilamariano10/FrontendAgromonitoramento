@@ -6,85 +6,73 @@
         [nomeFazenda]="nomeFazenda"
         [ultimaAtualizacao]="ultimaAtualizacao">
       </app-farm-header>
-      <!--
-      <section class="welcome-banner">
-        <h1>NOME DA FAZENDA</h1>
-        <p>Bem-vindo de volta ao seu painel de controle</p>
-        <span>Última atualização: hoje às 14:30</span>
-      </section>
-    -->
 
       <section class="analysis-history">
         <div class="history-header">
 
-  <div class="history-title">
-    <h2>Histórico de Análises</h2>
-  </div>
+      <div class="history-title">
+        <h2>Histórico de Análises</h2>
+      </div>
 
-  <div class="history-controls-row">
+      <div class="history-controls-row">
 
-    <p class="history-subtitle">Visualize e gerencie todas as suas análises realizadas</p>
+        <p class="history-subtitle">Visualize e gerencie todas as suas análises realizadas</p>
 
-    <div class="controls-left">
-      <span
-        ><b>{{ totalResults }}</b> análise(s) encontrada(s)</span
-      >
-      <label for="show-entries">Mostrar:</label>
-      <select id="show-entries" name="entries">
-        <option value="5" selected>5</option>
-        <option value="10">10</option>
-        <option value="20">20</option>
-      </select>
-      <span>por página</span>
+        <div class="controls-left">
+          <span
+            ><b>{{ totalResults }}</b> análise(s) encontrada(s)</span
+          >
+          <label for="show-entries">Mostrar:</label>
+          <select id="show-entries" name="entries">
+            <option value="5" selected>5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+          <span>por página</span>
 
-      <button class="btn btn-outline" style="margin-left: 1.5rem;">
-        <i class="fa-solid fa-filter"></i> Filtros
-      </button>
-    </div>
-
-  </div> </div>
-
-        <!-- LISTA DE ANÁLISES (AGORA DINÂMICA) -->
-        <div class="analysis-list">
-          <!--
-            Usamos *ngFor para fazer o loop nos dados do TypeScript.
-            Note o uso de [ngClass] para definir as classes de ícone e severidade dinamicamente.
-          -->
-          <div *ngFor="let item of displayedAnalyses" class="analysis-item">
-            <div class="item-icon" [ngClass]="item.iconClass">{{ item.initials }}</div>
-            <div class="item-info">
-              <span class="file-name">{{ item.fileName }}</span>
-              <span class="meta-data"
-                >{{ item.date }} | {{ item.plot }} | Confiança: {{ item.confidence }}%</span
-              >
-              <div class="diagnosis-row">
-                <span class="diagnosis">{{ item.diagnosis }}</span>
-                <span class="severity-tag" [ngClass]="'severity-' + item.severityLevel">
-                  {{ item.severity }}
-                </span>
-              </div>
-            </div>
-            <div class="item-status">
-              <span class="status-badge status-completed">{{ item.status }}</span>
-            </div>
-            <div class="item-actions">
-              <button class="btn btn-icon">📄Relatório</button>
-              <button class="btn btn-primary">Ver Detalhes</button>
-            </div>
-          </div>
+          <button class="btn btn-outline" style="margin-left: 1.5rem;">
+            <i class="fa-solid fa-filter"></i> Filtros
+          </button>
         </div>
 
-        <nav class="history-pagination">
-          <span class="pagination-summary">Mostrando 1 a 5 de {{ totalResults }} resultados</span>
-          <div class="pagination-controls">
-            <button class="page-arrow" disabled>&lt;</button>
-            <button class="page-number active">1</button>
-            <button class="page-number">2</button>
-            <button class="page-arrow">&gt;</button>
+      </div> </div>
+
+      <!-- LISTA DE ANÁLISES (AGORA DINÂMICA) -->
+      <div class="analysis-list">
+        <div *ngFor="let item of displayedAnalyses" class="analysis-item">
+          <div class="item-icon" [ngClass]="item.iconClass">{{ item.initials }}</div>
+          <div class="item-info">
+            <span class="file-name">{{ item.fileName }}</span>
+            <span class="meta-data"
+              >{{ item.date }} | {{ item.plot }} | Confiança: {{ item.confidence }}%</span
+            >
+            <div class="diagnosis-row">
+              <span class="diagnosis">{{ item.diagnosis }}</span>
+              <span class="severity-tag" [ngClass]="'severity-' + item.severityLevel">
+                {{ item.severity }}
+              </span>
+            </div>
           </div>
-        </nav>
+          <div class="item-status">
+            <span class="status-badge status-completed">{{ item.status }}</span>
+          </div>
+          <div class="item-actions">
+            <button class="btn btn-icon">📄Relatório</button>
+            <button class="btn btn-primary">Ver Detalhes</button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="history-pagination">
+        <span class="pagination-summary">Mostrando 1 a 5 de {{ totalResults }} resultados</span>
+        <div class="pagination-controls">
+          <button class="page-arrow" disabled>&lt;</button>
+          <button class="page-number active">1</button>
+          <button class="page-number">2</button>
+          <button class="page-arrow">&gt;</button>
+        </div>
+      </nav>
       </section>
     </main>
   </div>
 </body>
-<!-- Fechamos a tag body -->

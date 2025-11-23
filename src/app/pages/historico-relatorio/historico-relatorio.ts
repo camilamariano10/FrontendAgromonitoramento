@@ -1,28 +1,8 @@
 // O import foi atualizado para incluir OnInit
 import { Component, OnInit } from '@angular/core';
-
-
-// --- Modelos de Dados (Definidos aqui para simplicidade) ---
-
-export type SeverityLevel = 'healthy' | 'low' | 'moderate' | 'high';
-export type AnalysisStatus = 'Concluída' | 'Em Andamento' | 'Falhou';
-
-/**
- * Interface que define a estrutura de um item de análise
- */
-export interface AnalysisItem {
-  id: string;
-  fileName: string;
-  initials: string; // As letras no ícone (ex: 'FA', 'OK')
-  iconClass: string; // Classe CSS para a cor do ícone (ex: 'initials-fa')
-  date: string;
-  plot: string; // "Talhão"
-  confidence: number;
-  diagnosis: string;
-  severity: string; // O texto da tag (ex: 'Moderada')
-  severityLevel: SeverityLevel; // O tipo para o estilo CSS (ex: 'moderate')
-  status: AnalysisStatus;
-}
+import { Auth } from '../../core/auth'; // Importe o Auth
+import { Service } from '../../shared/service';
+import { AnalysisItem, SeverityLevel, AnalysisStatus } from '../../shared/models'; // Mantém o import – agora sem conflito
 
 // --- Dados Mockados (Simulando 8 resultados, como na imagem) ---
 
@@ -49,92 +29,12 @@ const MOCK_ANALYSES: AnalysisItem[] = [
     plot: 'Talhão B',
     confidence: 98,
     diagnosis: 'Saudável',
-    severity: 'Saudável',
-    severityLevel: 'healthy',
-    status: 'Concluída',
-  },
-  {
-    id: '3',
-    fileName: 'folha_soja_003.jpg',
-    initials: 'MA',
-    iconClass: 'initials-ma',
-    date: '2024-01-13 às 16:45',
-    plot: 'Talhão C',
-    confidence: 89,
-    diagnosis: 'Mancha Alvo',
-    severity: 'Leve',
+    severity: 'Baixa',
     severityLevel: 'low',
     status: 'Concluída',
   },
-  {
-    id: '4',
-    fileName: 'folha_soja_004.jpg',
-    initials: 'OI',
-    iconClass: 'initials-oi',
-    date: '2024-01-12 às 11:20',
-    plot: 'Talhão A',
-    confidence: 92,
-    diagnosis: 'Oídio',
-    severity: 'Moderada',
-    severityLevel: 'moderate',
-    status: 'Concluída',
-  },
-  {
-    id: '5',
-    fileName: 'folha_soja_005.jpg',
-    initials: 'OK',
-    iconClass: 'initials-ok',
-    date: '2024-01-11 às 06:30',
-    plot: 'Talhão D',
-    confidence: 96,
-    diagnosis: 'Saudável',
-    severity: 'Saudável',
-    severityLevel: 'healthy',
-    status: 'Concluída',
-  },
-  // --- Itens duplicados para simular 8 resultados ---
-  {
-    id: '6',
-    fileName: 'folha_soja_006.jpg',
-    initials: 'MA',
-    iconClass: 'initials-ma',
-    date: '2024-01-10 às 15:00',
-    plot: 'Talhão E',
-    confidence: 88,
-    diagnosis: 'Mancha Alvo',
-    severity: 'Leve',
-    severityLevel: 'low',
-    status: 'Concluída',
-  },
-  {
-    id: '7',
-    fileName: 'folha_soja_007.jpg',
-    initials: 'FA',
-    iconClass: 'initials-fa',
-    date: '2024-01-09 às 11:10',
-    plot: 'Talhão A',
-    confidence: 91,
-    diagnosis: 'Ferrugem Asiática',
-    severity: 'Moderada',
-    severityLevel: 'moderate',
-    status: 'Concluída',
-  },
-  {
-    id: '8',
-    fileName: 'folha_soja_008.jpg',
-    initials: 'OI',
-    iconClass: 'initials-oi',
-    date: '2024-01-08 às 09:30',
-    plot: 'Talhão F',
-    confidence: 93,
-    diagnosis: 'Oídio',
-    severity: 'Moderada',
-    severityLevel: 'moderate',
-    status: 'Concluída',
-  },
+  // ... (adicione o resto dos mocks aqui, igual ao seu código original)
 ];
-
-// --- Componente Angular ---
 
 @Component({
   selector: 'app-historico-relatorio',
@@ -143,7 +43,6 @@ const MOCK_ANALYSES: AnalysisItem[] = [
   styleUrls: ['./historico-relatorio.css'],
 })
 export class HistoricoRelatorio implements OnInit {
-  // Implementa OnInit
   nomeFazenda = 'Fazenda Santa Rosa';
   ultimaAtualizacao = 'hoje às 14:30';
 
@@ -152,21 +51,55 @@ export class HistoricoRelatorio implements OnInit {
   public allAnalyses: AnalysisItem[] = [];
   public displayedAnalyses: AnalysisItem[] = []; // A lista da página atual
 
-  constructor() {
+  userType: 'business' | 'individual' | null = null;
+
+  constructor(private auth: Auth, private service: Service) {
     // Construtor idealmente fica limpo, usado para injeção de dependência
   }
 
   ngOnInit(): void {
-    // Em um app real, os dados viriam de um serviço (ex: this.apiService.getAnalyses())
-    // Aqui, estamos carregando os dados mockados
-    this.allAnalyses = MOCK_ANALYSES;
-    this.totalResults = this.allAnalyses.length; // Será 8
+    // Obtém o tipo de usuário do Auth
+    const rawType = this.auth.getUserType();
 
-    // Simula a paginação "Mostrar 5"
-    // O template HTML deve fazer o loop *ngFor em `displayedAnalyses`
-    this.displayedAnalyses = this.allAnalyses.slice(0, 5); // Pega os primeiros 5
+    // Verifica e atribui apenas se for válido (type guard)
+    if (rawType === 'business' || rawType === 'individual') {
+      this.userType = rawType;
+    } else {
+      console.error('Tipo de usuário inválido ou não encontrado:', rawType);
+      this.userType = null; // Fallback
+    }
+
+    // Ajusta o nomeFazenda baseado no tipo
+    if (this.userType === 'individual') {
+      this.nomeFazenda = 'Minha Propriedade';
+    }
+
+    this.carregarAnalises();
+
+    /*Em um app real, os dados viriam de um serviço (ex: this.apiService.getAnalyses())
+    Aqui, estamos carregando os dados mockados */
+    //this.allAnalyses = MOCK_ANALYSES;
+    //this.totalResults = this.allAnalyses.length; // Será 8 com os dados mockados
+
+    /*Simula a paginação "Mostrar 5"
+    O template HTML deve fazer o loop *ngFor em `displayedAnalyses` */
+    //this.displayedAnalyses = this.allAnalyses.slice(0, 5); // Pega os primeiros 5
   }
 
   // Você pode adicionar métodos aqui para controlar a paginação no futuro,
   // por exemplo: goToPage(page: number) { ... }
+
+  carregarAnalises() {
+    if (!this.userType) {
+      console.error('Tipo de usuário não encontrado');
+      return;
+    }
+
+    this.service.getAnalyses(this.userType).subscribe(data => {
+      this.allAnalyses = data;
+      this.totalResults = this.allAnalyses.length;
+      this.displayedAnalyses = this.allAnalyses.slice(0, 5); // Pega os primeiros 5
+    });
+  }
+
 }

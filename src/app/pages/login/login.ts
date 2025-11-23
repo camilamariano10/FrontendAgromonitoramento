@@ -55,11 +55,13 @@ export class Login {
 
       // Fecha o modal após redirecionar
       setTimeout(() => {
+        console.log('Fechando modal com success'); // Log para debugar
         this.dialogRef.close({
-        status: 'loginSuccess',
-        email: this.email,
-        password: this.password
-      });}, 200);
+          status: 'loginSuccess',
+          email: this.email,
+          password: this.password
+        });
+      }, 200);
 
     } catch (error) {
       // o alerta já é exibido no service

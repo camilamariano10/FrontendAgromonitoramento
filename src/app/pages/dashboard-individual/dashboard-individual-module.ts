@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardIndividualRoutingModule } from './dashboard-individual-routing-module';
 import { DashboardIndividual } from './dashboard-individual';
+import { FarmHeaderComponent } from '../../shared/farm-header/farm-header';
 
 
 @NgModule({
   declarations: [
-    DashboardIndividual
+
   ],
   imports: [
     CommonModule,
-    DashboardIndividualRoutingModule
+    DashboardIndividualRoutingModule,
+    DashboardIndividual,
+    FarmHeaderComponent
   ]
 })
 export class DashboardIndividualModule { }

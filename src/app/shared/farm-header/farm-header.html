@@ -1,25 +1,29 @@
 <header class="farm-header">
         <div class="farm-header-top">
           <div class="farm-dropdown-container">
-              <button class="farm-title-button" (click)="onToggle()">
-                  <span class="main-title">{{ nomeFazenda }}</span>
-                  <i class="fas fa-chevron-down farm-icon" [class.rotated]="dropOpen"></i>
+            <!-- Para business: Mostra button com dropdown e seta -->
+            <button class="farm-title-button" *ngIf="isBusiness" (click)="onToggle()">
+                <span class="main-title">{{ nomeFazenda }}</span>
+                <i class="fas fa-chevron-down farm-icon" [class.rotated]="dropOpen"></i>
+            </button>
+            <!-- Para individual: Mostra só o título simples, sem button/seta -->
+            <span class="main-title" *ngIf="!isBusiness">{{ nomeFazenda }}</span>
+            <!-- Menu só para business -->
+            <div class="farm-menu" *ngIf="isBusiness && dropOpen" [style.display]="dropOpen ? 'block' : 'none'">
+              <button class="farm-menu-item" *ngFor="let fazenda of fazendas; let i = index"
+              (click)="onSelect(fazenda)">
+                <span>{{ fazenda.nomeFazenda }}</span>
+                <button class="icon-button" (click)="$event.stopPropagation(); onEdit(fazenda)">
+                  <i class="fas fa-edit"></i></button>
               </button>
 
-              <div class="farm-menu" [style.display]="dropOpen ? 'block' : 'none'">
-                <button class="farm-menu-item" *ngFor="let fazenda of fazendas; let i = index"
-                (click)="onSelect(fazenda)">
-                  <span>{{fazenda}}</span>
-                  <button class="icon-button"><i class="fas fa-edit"></i></button>
-                </button>
+              <div class="menu-divider"></div>
 
-                <div class="menu-divider"></div>
-
-                <button class="farm-menu-item add-farm-btn" (click)="onAdd()">
-                  <span>ADICIONAR</span>
-                  <button class="icon-button add"><i class="fa-solid fa-plus"></i></button>
-                </button>
-              </div>
+              <button class="farm-menu-item add-farm-btn" (click)="onAdd()">
+                <span>ADICIONAR</span>
+                <button class="icon-button add"><i class="fa-solid fa-plus"></i></button>
+              </button>
+            </div>
           </div>
         </div>
 
