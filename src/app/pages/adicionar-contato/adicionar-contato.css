@@ -1,0 +1,118 @@
+/* --- MODAL OVERLAY (Fundo Escuro) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Escurece o fundo */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centraliza na tela */
+  z-index: 1000; /* Garante que fique por cima de tudo */
+  
+  /* Adicionado suporte para Safari/iOS */
+  -webkit-backdrop-filter: blur(2px); 
+  backdrop-filter: blur(2px); /* Opcional: desfoque leve no fundo */
+}
+
+/* --- CARD DO MODAL --- */
+.modal-content {
+  background-color: #FFFFFF;
+  width: 100%;
+  max-width: 450px; /* Largura máxima igual da imagem */
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Animação suave de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header (Título e X) */
+.modal-header {
+  display: flex;
+  justify-content: center; /* Título centralizado */
+  align-items: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0B4F38; /* Verde escuro do título */
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.btn-close {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #0B4F38;
+  cursor: pointer;
+}
+
+/* Formulário */
+.form-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0B4F38; /* Verde escuro */
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 8px;
+  background-color: #F9FAFB; /* Fundo cinza claro do input */
+  font-size: 0.95rem;
+  color: #374151;
+  box-sizing: border-box; /* Importante para o padding não estourar */
+  outline: none;
+}
+
+.form-group input::placeholder {
+  color: #9CA3AF;
+}
+
+.form-group input:focus {
+  border-color: #107C41;
+  background-color: #fff;
+}
+
+/* Botão Salvar */
+.btn-save {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.9rem;
+  background-color: #107C41; /* Verde do botão */
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+}
+
+.btn-save:hover {
+  background-color: #0c6132;
+}

@@ -1,0 +1,36 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    
+    <div class="modal-header">
+      <h2>ADICIONAR CONTATO</h2>
+      
+      <button type="button" class="btn-close" (click)="fecharModal()" aria-label="Fechar modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form class="modal-form">
+      
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" placeholder="Escreva o nome completo aqui">
+      </div>
+
+      <div class="form-group">
+        <label for="cargo">Cargo</label>
+        <input type="text" id="cargo" placeholder="Escreva o cargo do funcionário">
+      </div>
+
+      <div class="form-group">
+        <label for="telefone">Número de telefone</label>
+        <input type="text" id="telefone" placeholder="(00) 00000-0000">
+      </div>
+
+      <button type="button" class="btn-save" (click)="salvarNovoTelefone()">
+        Salvar
+      </button>
+
+    </form>
+
+  </div>
+</div>

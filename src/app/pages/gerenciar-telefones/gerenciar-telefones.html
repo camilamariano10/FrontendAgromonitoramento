@@ -1,116 +1,127 @@
-<section class="page-gerenciar-telefones">
-  <article class="top-bar">
-      <app-farm-header
-        [nomeFazenda]="nomeFazenda"
-        [ultimaAtualizacao]="ultimaAtualizacao">
-      </app-farm-header>
-
-    <button class="btn-adicionar" (click)="adicionarContato()">
-      <i class="fa-solid fa-plus"></i> ADICIONAR CONTATO
-    </button>
-  </article>
-
-  <main class="telefones-container">
-    <!-- Cabeçalho -->
-    <div class="telefones-header">
-      <div class="titulo">
-        <h2>Telefones Autorizados</h2>
-        <p>Gerencie os números de WhatsApp autorizados a enviar análises</p>
+<body class="body-telefones">
+  <div class="main-container">
+    
+    <header class="farm-header">
+      <div class="farm-info">
+        <h1>FAZENDA SANTA ROSA <i class="fa-solid fa-gear icon-gear"></i></h1>
+        <p>Bem-vindo de volta ao seu painel de controle</p>
+        <span>Última atualização: hoje às 14:30</span>
       </div>
 
-      <!-- Barra de Filtros -->
-    <div class="filtros-barra">
-      <div class="campo-busca-container">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input
-          type="text"
-          class="campo-busca"
-          placeholder="Buscar por nome ou telefone..."
-          [(ngModel)]="busca"
-          (input)="aplicarFiltros()" />
-      </div>
+      <button (click)="adicionarTelefone()" class="btn-add-contact">
+        <i class="fa-solid fa-plus"></i> ADICIONAR CONTATO
+      </button>
+    </header>
 
-      <div class="dropdown-wrapper">
-        <div class="filtro-status"
-        [class.dropdown-open]="dropdownOpen"
-        (click)="toggleStatusDropdown($event)">
-          {{ filtroStatusLabel }}
-          <i class="fa-solid fa-chevron-down"></i>
+    <main class="list-card">
+      <div class="list-header-row">
+        <div class="list-title">
+          <h2>Telefones Autorizados</h2>
+          <p>Gerencie os números do autorizados a enviar análises</p>
         </div>
 
-        <ul class="filtro-status-opcoes" [class.show]="dropdownOpen">
-          <li (click)="setFiltroStatus('todos')" class="opcao">Todos os status</li>
-          <li (click)="setFiltroStatus('Ativo')" class="opcao">Ativo</li>
-          <li (click)="setFiltroStatus('Inativo')" class="opcao">Inativo</li>
-        </ul>
-      </div>
-    </div>
+        <div class="list-actions">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              placeholder="Buscar por nome ou telefone..."
+              aria-label="Buscar contato"
+            />
+          </div>
 
-    </div>
-
-    <!-- Linha divisória -->
-    <div class="linha-divisoria"></div>
-
-    <!-- Contador e Ordenação -->
-    <div class="lista-header">
-      <p class="contador">
-        {{ funcionariosFiltrados.length }} telefone(s) encontrado(s)
-      </p>
-      <!-- Dropdown para Ordenar -->
-      <div class="dropdown-wrapper">
-        <span class="label-ordenar">Ordenar por:</span>
-        
-        <div class="ordenar-dropdown"
-        [class.ordenar-open]="ordenarDropdownOpen"
-        (click)="toggleOrdenarDropdown()">
-          <span class="valor-selecionado">{{ ordenarLabel }}</span>
-          <i class="fa-solid fa-chevron-down"></i>
+          <select class="dropdown-beige" aria-label="Filtrar status">
+            <option>Todos os status</option>
+            <option>Ativo</option>
+            <option>Inativo</option>
+          </select>
         </div>
-        <ul class="ordenar-opcoes" [class.show]="ordenarDropdownOpen">
-          <li (click)="ordenarPor('nome')" class="opcao">Nome</li>
-          <li (click)="ordenarPor('ultimoUso')" class="opcao">Último uso</li>
-          <li (click)="ordenarPor('cargo')" class="opcao">Cargo</li>
-        </ul>
       </div>
-    </div>
 
-    <!-- Lista de Contatos -->
-    <div class="lista-funcionarios">
-      <p *ngIf="funcionariosFiltrados.length === 0" class="vazio">
-        Nenhum telefone encontrado.
-      </p>
+      <hr class="divider" />
 
-      <article class="card-funcionario" *ngFor="let f of funcionariosFiltrados">
-        <div class="info">
-          <i class="fa-brands fa-telegram icon"></i>
-          <div class="dados">
-            <h4>{{ f.nome }}</h4>
-            <p>{{ f.telefone }}<br>
-              <span class="cargo">{{ f.cargo }}</span>
-              <span class="status-badge" [ngClass]="f.status === 'Ativo' ? 'ativo' : 'inativo'">
-                {{ f.status }}
-              </span>
-            </p>
+      <div class="list-meta-row">
+        <span class="count-text">{{ contacts.length }} telefone(s) encontrado(s)</span>
+        <div class="sort-box">
+          <label for="sortOrder">Ordenar por:</label>
+
+          <select id="sortOrder" class="dropdown-beige small">
+            <option>Nome</option>
+            <option>Data</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="contacts-list">
+        <div class="contact-item" *ngFor="let contact of contacts">
+          <div class="contact-left">
+            <div class="telgram-icon">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+
+            <div class="contact-details">
+              <h3>{{ contact.name }}</h3>
+              <span class="phone-number">{{ contact.phone }}</span>
+
+              <div class="role-badge-row">
+                <span class="role-text">{{ contact.role }}</span>
+                <span
+                  class="status-badge"
+                  [ngClass]="contact.status === 'Ativo' ? 'badge-active' : 'badge-inactive'"
+                >
+                  {{ contact.status }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <div class="date-info">
+              <span>Adicionado: {{ contact.addedDate }}</span>
+              <span>Última uso: {{ contact.lastUseDate }}</span>
+            </div>
+
+            <div class="action-buttons-group">
+              <button type="button" class="btn-icon-action" aria-label="Alterar status">
+                <i
+                  class="fa-solid"
+                  [ngClass]="contact.status === 'Ativo' ? 'fa-circle-check' : 'fa-ban'"
+                ></i>
+              </button>
+
+              <button
+                type="button"
+                class="btn-icon-action"
+                aria-label="Editar contato"
+                (click)="abrirModalEditar(contact)"
+              >
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+
+              <button type="button" class="btn-icon-action" aria-label="Excluir contato">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
           </div>
         </div>
+      </div>
+    </main>
 
-        <div class="acoes">
-          <!-- Botão Toggle Ativar/Desativar -->
-          <button class="btn-toggle" [class.ativo]="f.status === 'Ativo'" (click)="toggleStatus(f)">
-            <i class="fa-solid" [ngClass]="f.status === 'Ativo' ? 'fa-toggle-on' : 'fa-toggle-off'"></i>
-          </button>
+    <app-adicionar-contato
+      *ngIf="showAdicionarContato"
+      (close)="fecharModalAdicionar()"
+      (save)="salvarNovoContato($event)"
+    >
+    </app-adicionar-contato>
 
-          <!-- Editar -->
-          <button class="btn-acao" (click)="editarContato(f)">
-            <i class="fa-solid fa-pen"></i>
-          </button>
+    <app-editar-contato
+      *ngIf="editarAberto"
+      [contactData]="contatoSelecionado"
+      (close)="fecharModalEditar()"
+      (save)="salvarEdicao($event)"
+      (delete)="excluirContato($event)"
+    >
+    </app-editar-contato>
 
-          <!-- Excluir -->
-          <button class="btn-acao excluir" (click)="excluirContato(f)">
-            <i class="fa-solid fa-trash"></i>
-          </button>
-        </div>
-      </article>
-    </div>
-  </main>
-</section>
+  </div>
+</body>

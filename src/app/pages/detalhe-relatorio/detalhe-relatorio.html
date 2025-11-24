@@ -1,0 +1,99 @@
+<body class="body-details-page">
+  <div class="details-container" *ngIf="details">
+    <a routerLink="/historico-relatorio" class="back-link">
+      <i class="fa-solid fa-arrow-left-long"></i> Voltar ao Histórico
+    </a>
+
+    <main class="details-main">
+      <div class="details-col-left">
+        <header class="details-header-card">
+          <h1>Detalhes da Análise</h1>
+          <p class="file-info">{{ details.header.fileName }} • {{ details.header.date }}</p>
+          <p class="location-info">
+            {{ details.header.plot }} • {{ details.header.farm }}, {{ details.header.location }}
+          </p>
+        </header>
+
+        <section class="image-info-card">
+          <div class="image-wrapper">
+            <img [src]="details.mainImage.src" alt="Foto da folha de soja" />
+            <button class="btn-amplify">Ampliar</button>
+            <div class="confidence-badge">
+              <i class="fa-solid fa-shield-halved"></i> Confiança:
+              {{ details.mainImage.confidence }}%
+            </div>
+          </div>
+
+          <div class="info-content">
+            <h2>Informações da Imagem</h2>
+
+            <div class="info-grid-merged">
+              <div class="info-item">
+                <span class="info-label">Nome do arquivo:</span>
+                <span class="info-value">{{ details.imageInfo.fileName }}</span>
+              </div>
+              <div class="info-item info-right-align">
+                <span class="info-label">Data de captura:</span>
+                <span class="info-value">{{ details.imageInfo.captureDate }}</span>
+              </div>
+              <div class="info-item info-full-width">
+                <span class="info-label">Localização:</span>
+                <span class="info-value">{{ details.imageInfo.location }}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tabs-card">
+          <nav class="tab-nav">
+            <button class="tab-link active">Visão Geral</button>
+            <button class="tab-link">Sintomas</button>
+            <button class="tab-link">Técnico</button>
+          </nav>
+
+          <div class="tab-content">
+            <h3>Resultado da Análise</h3>
+            <div class="analysis-result" [ngClass]="details.analysisResult.alertClass">
+              <div class="result-icon">
+                <i class="fa-solid" [ngClass]="details.analysisResult.iconClass"></i>
+              </div>
+              <div class="result-text">
+                <strong>{{ details.analysisResult.diagnosis }}</strong>
+                <span>{{ details.analysisResult.confidenceText }}</span>
+              </div>
+              <span
+                class="severity-tag"
+                [ngClass]="'severity-' + details.analysisResult.severityLevel"
+              >
+                {{ details.analysisResult.severity }}
+              </span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="details-col-right">
+        <div class="action-buttons">
+          <button class="btn btn-primary">Baixar Relatório em PDF</button>
+          <button class="btn btn-outline">Enviar Relatório por e-mail</button>
+        </div>
+
+        <section class="recommendations-card">
+          <h2>Recomendações</h2>
+          <ul class="recommendations-list">
+            <li *ngFor="let rec of details.recommendations">
+              <i class="fa-solid fa-chevron-right"></i>
+              <span>{{ rec }}</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="tip-card">
+          <h2><i class="fa-solid fa-lightbulb"></i> Dica do Dia</h2>
+          <p>{{ details.tipOfTheDay }}</p>
+          <a href="#">Saiba mais</a>
+        </section>
+      </aside>
+    </main>
+  </div>
+</body>

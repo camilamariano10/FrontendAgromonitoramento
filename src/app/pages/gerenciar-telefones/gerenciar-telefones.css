@@ -1,410 +1,279 @@
-/* ========================================================= */
-/* 1. ESTRUTURA GERAL E CABEÇALHO */
-/* ========================================================= */
-
-.page-gerenciar-telefones {
-  padding: 5rem;
-  background-color: #e0e6d6; /* Mesma cor de fundo do dashboard */
-  font-family: Arial, sans-serif;
-  color: #2A2F23;
+/* --- CONFIGURAÇÕES GERAIS (Encapsulamento) --- */
+.body-telefones {
+  background-color: #BCC8B3; /* Verde do fundo da página */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #212121;
+  padding: 2rem;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;;
+  box-sizing: border-box;
 }
 
-/* ========================================================= */
-/* TOP BAR: HEADER + BOTÃO */
-/* ========================================================= */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-.top-bar {
+/* --- HEADER SUPERIOR --- */
+.farm-header {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
+.farm-info h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1B1B1B;
+}
+.icon-gear {
+  font-size: 1rem;
+  color: #1B5E20; /* Verde escuro */
+}
+.farm-info p {
+  margin: 0;
+  color: #757575;
+  font-size: 1rem;
+}
+.farm-info span {
+  font-size: 0.85rem;
+  color: #9E9E9E;
+}
 
-/* Garante que o botão fique alinhado com o header */
-.btn-adicionar {
-  background-color: #0B783F;
+.btn-add-contact {
+  background-color: #107C41; /* Verde Excel/Whatsapp */
   color: white;
   border: none;
-  border-radius: 8px;
-  padding: 0.7rem 1.5rem;
-  font-weight: 600;
+  border-radius: 6px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 700;
   font-size: 0.9rem;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: 0.2s;
-  margin-top: 0.5rem; /* Alinha visualmente com o header */
-  box-shadow: 0 4px 8px rgba(0, 50, 50, 0.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn-add-contact:hover {
+  background-color: #0c6132;
 }
 
-.btn-adicionar:hover {
-  background-color: #0a6a34;
-}
-
-
-/* ========================================================= */
-/* 2. CONTAINER PRINCIPAL */
-/* ========================================================= */
-
-.telefones-container {
-  margin: 0;
-  background: #fff;
+/* --- CARD PRINCIPAL DA LISTA --- */
+.list-card {
+  background-color: #FFFFFF;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-/* Cabeçalho */
-.telefones-header {
+/* Linha de Título e Busca */
+.list-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.list-title h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+}
+.list-title p {
+  margin: 0;
+  color: #757575;
+  font-size: 0.95rem;
+}
+
+.list-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Caixa de Busca */
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  width: 280px;
+}
+.search-box i {
+  color: #9E9E9E;
+  margin-right: 0.5rem;
+}
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #212121;
+}
+
+/* Dropdowns Beges */
+.dropdown-beige {
+  background-color: #DEDCD1; /* Bege escuro da imagem */
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #E0E0E0;
+  margin: 0 0 1rem 0;
+}
+
+/* Linha Meta (Contagem e Ordenação) */
+.list-meta-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-}
-
-/* Título */
-.titulo h2 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #212121; /* Cor de título similar */
-  font-weight: 700;
-}
-
-.titulo p {
-  margin: 0.3rem 0 0;
-  color: #6B7280;
   font-size: 0.9rem;
+  color: #757575;
 }
 
-/* Linha divisória */
-.linha-divisoria {
-  height: 1.5px;
-  background: #e0e6d6;
-  width: calc(100% + 4rem); /* Compensa o padding de 2rem em cada lado */
-  margin: 0 -2rem 0.5rem; /* Move para as bordas */
-}
-
-/* ========================================================= */
-/* 3. FILTROS E BARRA DE BUSCA */
-/* ========================================================= */
-
-.filtros-barra {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Wrapper para ícone + input */
-.campo-busca-container {
-  position: relative;
-  flex: 1;
+.sort-box {
   display: flex;
   align-items: center;
-}
-
-.campo-busca-container i.fa-solid {
-  position: absolute;
-  left: 12px; /* posição horizontal */
-  top: 50%; /* centra verticalmente */
-  transform: translateY(-50%);
-  color: #6B7280; /* cor cinza suave */
-  font-size: 1rem;
-  pointer-events: none; /* evita que o ícone bloqueie o clique */
-}
-
-.campo-busca {
-  width: 100%;
-  padding: 0.6rem 1rem 0.6rem 2.5rem; /* Espaço à esquerda para o ícone */
-  border: 1px solid #e0e6d6;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.campo-busca:focus {
-  outline: none;
-  border-color: #A6A08D;
-  box-shadow: 0 0 0 2px rgb(166, 160, 141, 0.2);
-}
-
-.contador {
-  color: #6B7280;
-  font-size: 0.85rem;
-}
-
-/* ========================================================= */
-/* DROPDOWNS PERSONALIZADOS - STATUS E ORDENAÇÃO */
-/* ========================================================= */
-.dropdown-wrapper {
-  position: relative;    /* 🔥 agora o dropdown fica preso ao botão */
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.filtro-status,
-.ordenar-dropdown {
-  position: relative; /* ESSENCIAL para o absolute das opções */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 0.5rem;
-  padding: 0.6rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #D9D4C7;
-  cursor: pointer;
-  font-size: 0.9rem;
-  min-width: 160px;
-  transition: all 0.2s;
-  user-select: none;
-  color: #212121;
+}
+.dropdown-beige.small {
+  padding: 0.3rem 0.8rem;
 }
 
-
-.filtro-status:hover,
-.ordenar-dropdown:hover {
-  border-color: #A6A08D;
-  box-shadow: 0 0 0 2px rgb(166, 160, 141, 0.2);
-}
-
-.filtro-status i,
-.ordenar-dropdown i {
-  transition: transform 0.2s;
-  font-size: 0.8rem;
-  color: #666;
-}
-
-.dropdown-open i,
-.ordenar-open i {
-  transform: rotate(180deg);
-}
-
-/* LISTAS DE OPÇÕES */
-.filtro-status-opcoes,
-.ordenar-opcoes {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  list-style: none;
-  padding: 0.4rem 0;
-  margin: 0;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.2s ease;
-}
-
-.filtro-status-opcoes.show,
-.ordenar-opcoes.show {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.filtro-status-opcoes li,
-.ordenar-opcoes li {
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  font-size: 0.9rem;
-}
-
-.filtro-status-opcoes li:hover,
-.ordenar-opcoes li:hover {
-  background-color: #D9D4C7;
-  color: white;
-}
-
-/* ========================================================= */
-/* ORDENAÇÃO - LAYOUT */
-/* ========================================================= */
-
-.lista-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-  position: relative;
-}
-
-.label-ordenar {
-  color: #6B7280;
-  font-weight: lighter;
-  margin-right: 0.5rem;
-  font-size: 0.85rem;
-}
-
-/* ========================================================= */
-/* 4. LISTA DE FUNCIONÁRIOS (CARDS) */
-/* ========================================================= */
-
-.lista-funcionarios {
+/* --- LISTA DE ITENS --- */
+.contacts-list {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.card-funcionario {
+.contact-item {
+  border: 1px solid #F0F0F0;
+  border-radius: 8px;
+  padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 12px;
-  padding: 1rem;
-  border: 1px solid #e1e6e1;
-  transition: background-color 0.2s;
+  background-color: #FFFFFF; /* Garante fundo branco */
+}
+.contact-item:hover {
+  border-color: #E0E0E0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
-.card-funcionario:hover {
-  background-color: #f5f5f5; /* Hover similar ao action-item */
+/* Lado Esquerdo do Card */
+.contact-left {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
-.info {
+/* --- Ícone do Telegram --- */
+.telgram-icon {
+  width: 48px;        /* Largura da caixa */
+  height: 48px;       /* Altura da caixa */
+  background-color: #229ED9; /* Azul oficial do Telegram */
+  border-radius: 10px;       /* Cantos arredondados */
+  display: flex;
+  justify-content: center;   /* Centraliza horizontalmente */
+  align-items: center;       /* Centraliza verticalmente */
+  color: white;              /* Cor do ícone */
+  font-size: 2rem;           /* Tamanho do ícone (Aumentei para ficar visível) */
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+}
+.contact-details h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #212121;
+}
+.phone-number {
+  color: #757575;
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}
+.role-badge-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex: 1;
+  gap: 0.8rem;
+}
+.role-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #616161;
 }
 
-.icon {
-  font-size: 2rem;
-  color: #2FADE1; /* Azul do Telegram */
-  background-color: #2face14d; /* Fundo de ícones do dashboard */
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-}
-
-.dados h4 {
-  margin: 0;
-  font-size: 1.1rem;
-  color: #1e3a2a; /* Cor de texto principal */
+/* Badges de Status */
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
   font-weight: 700;
 }
-
-.dados p {
-  margin: 0.3rem 0 0;
-  font-size: 0.95rem;
-  color: #444;
+.badge-active {
+  background-color: #D1FAE5; /* Fundo verde claro */
+  color: #047857; /* Texto verde escuro */
+}
+.badge-inactive {
+  background-color: #FFE4E6; /* Fundo vermelho claro */
+  color: #BE123C; /* Texto vermelho escuro */
 }
 
-.cargo {
-  color: #666;
-  font-size: 0.85rem;
-  display: block;
+/* Lado Direito do Card */
+.contact-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
-.status-badge {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
+.date-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
   font-size: 0.75rem;
-  font-weight: 600;
+  color: #9E9E9E;
+  gap: 0.2rem;
 }
 
-.status-badge.ativo {
-  background-color: #d8f6e3;
-  color: #205c48; /* Verde do dashboard */
-}
-
-.status-badge.inativo {
-  background-color: #fce0e0;
-  color: #b52d2d;
-}
-
-/* ========================================================= */
-/* 5. AÇÕES (BOTÕES) */
-/* ========================================================= */
-
-.acoes {
+.action-buttons-group {
   display: flex;
   gap: 0.5rem;
-  align-items: center;
 }
 
-.btn-toggle {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #aaa;
-  transition: 0.2s;
-}
-
-.btn-toggle.ativo {
-  color: #0B783F; /* Verde do dashboard */
-}
-
-.btn-acao {
-  background: none;
-  border: none;
-  font-size: 1.1rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.4rem;
+.btn-icon-action {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #E0E0E0;
+  background-color: white;
   border-radius: 6px;
-  transition: 0.2s;
+  color: #757575;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s;
 }
-
-.btn-acao:hover {
-  background-color: #d8d8d8;
-}
-
-.btn-acao.excluir {
-  color: #b52d2d;
-}
-
-.btn-acao.excluir:hover {
-  background-color: #fce0e0;
-}
-
-/* ========================================================= */
-/* 6. MENSAGEM VAZIO */
-/* ========================================================= */
-
-.vazio {
-  text-align: center;
-  color: #777;
-  padding: 2rem;
-  font-style: italic;
-  background-color: #f8faf8;
-  border-radius: 12px;
-  border: 1px solid #e1e6e1;
-}
-
-/* ========================================================= */
-/* 7. RESPONSIVIDADE (SIMILAR AO DASHBOARD) */
-/* ========================================================= */
-
-@media (max-width: 600px) {
-  .telefones-header {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .filtros-barra {
-    flex-direction: column;
-  }
-
-  .card-funcionario {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .acoes {
-    justify-content: flex-end;
-    width: 100%;
-  }
+.btn-icon-action:hover {
+  background-color: #F5F5F5;
+  color: #212121;
+  border-color: #BDBDBD;
 }

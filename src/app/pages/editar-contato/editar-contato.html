@@ -1,0 +1,65 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>EDITAR CONTATO</h2>
+      <button type="button" class="btn-close" (click)="fecharModal()" aria-label="Fechar modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <form class="modal-form">
+      <div class="form-group">
+        <label for="edit-nome">Nome</label>
+        <input type="text" id="edit-nome" [value]="contactData?.name" placeholder="Nome completo" />
+      </div>
+
+      <div class="form-group">
+        <label for="edit-cargo">Cargo</label>
+        <input
+          type="text"
+          id="edit-cargo"
+          [value]="contactData?.role"
+          placeholder="Cargo do funcionário"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="edit-telefone">Número de telefone</label>
+        <input
+          type="text"
+          id="edit-telefone"
+          [value]="contactData?.phone"
+          placeholder="(00) 00000-0000"
+        />
+      </div>
+
+      <div class="form-group status-group">
+        <label for="status-switch">Alterar status</label>
+
+        <div class="toggle-wrapper">
+          <label class="switch">
+            <input
+              type="checkbox"
+              id="status-switch"
+              [checked]="isActive"
+              (change)="toggleStatus()"
+              aria-label="Alternar status do contato"
+            />
+            <span class="slider round"></span>
+          </label>
+
+          <span class="status-label" [class.active-text]="isActive">
+            {{ isActive ? 'Ativo' : 'Inativo' }}
+          </span>
+        </div>
+      </div>
+      <button type="button" class="btn-save" (click)="salvarEdicao()">Salvar</button>
+
+      <div class="delete-wrapper">
+        <button type="button" class="btn-delete-outline" (click)="excluirContato()">
+          <i class="fa-regular fa-trash-can"></i> Excluir contato
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

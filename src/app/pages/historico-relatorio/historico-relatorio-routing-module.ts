@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HistoricoRelatorio } from './historico-relatorio';
 
 const routes: Routes = [{
-  path: '', // Rota padrão para o módulo Sobre
-  component: HistoricoRelatorio // Define o componente Sobre para esta rota
+  path: '', // Rota padrão para o módulo histórico
+  component: HistoricoRelatorio // Define o componente Historico Relatorio para esta rota
 }];
 
 @NgModule({

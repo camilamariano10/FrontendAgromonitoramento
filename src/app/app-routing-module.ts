@@ -41,7 +41,11 @@ const routes: Routes = [
   {
     path: 'historico-relatorio',
     loadChildren: () => import('./pages/historico-relatorio/historico-relatorio-module').then(m => m.HistoricoRelatorioModule) //Rota da página histórico relatório
-  }
+  },
+  {
+    path: 'detalhe-relatorio',
+    loadChildren: () => import('./pages/detalhe-relatorio/detalhe-relatorio-module').then(m => m.DetalheRelatorioModule) //Rota da página histórico relatório
+  },
 
 ];
 
