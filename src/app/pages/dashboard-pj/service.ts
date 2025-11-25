@@ -6,11 +6,11 @@ import { Observable, of, delay} from 'rxjs';
 const DADOS_DE_SIMULACAO = {
   nomeFazenda: 'Fazenda Santa Maria',
   ultimaAtualizacao: '10:45',
-  totalAnalises: 42,
+  totalAnalises: 1,
   analisesRestantes: { restantes: 8, total: 10 },
   planoAtual: { nome: 'Pro', validade: '01/01/2026', status: 'Inativo' },
   ultimaAnalise: {
-    data: '01/11/2025',
+    data: '02/12/2025',
     talhao: 'Talhão B',
     corFundo: '#f2f2f2',
     corTexto: '#333333',
@@ -20,9 +20,9 @@ const DADOS_DE_SIMULACAO = {
   distribuicao: {
     total: 30,
     doencas: [
-      { nome: 'Saudável', valor: 15, percentual: '50.0%', cor: '#205c48' },
-      { nome: 'Ferrugem', valor: 10, percentual: '33.3%', cor: '#ff9800' },
-      { nome: 'Oídio', valor: 5, percentual: '16.7%', cor: '#3f51b5' },
+      { nome: 'Saudável', valor: 0, percentual: '0%', cor: '#205c48' },
+      { nome: 'Ferrugem', valor: 100, percentual: '100%', cor: '#ff9800' },
+      { nome: 'Oídio', valor: 0, percentual: '0%', cor: '#3f51b5' },
     ]
   }
 };
