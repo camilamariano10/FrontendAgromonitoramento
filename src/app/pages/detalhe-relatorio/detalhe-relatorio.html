@@ -17,11 +17,23 @@
         <section class="image-info-card">
           <div class="image-wrapper">
             <img [src]="details.mainImage.src" alt="Foto da folha de soja" />
-            <button class="btn-amplify">Ampliar</button>
+
+            <!-- ADICIONE o (click)="openImage()" -->
+            <button class="btn-amplify" (click)="openImage()">Ampliar</button>
+
             <div class="confidence-badge">
               <i class="fa-solid fa-shield-halved"></i> Confiança:
               {{ details.mainImage.confidence }}%
             </div>
+          </div>
+
+          <!-- Modal de Ampliação da Imagem -->
+          <div class="image-modal" *ngIf="isImageOpen" (click)="closeImage()">
+            <img
+              [src]="details.mainImage.src"
+              class="modal-image"
+              alt="Imagem ampliada da folha de soja"
+            />
           </div>
 
           <div class="info-content">
@@ -74,7 +86,9 @@
 
       <aside class="details-col-right">
         <div class="action-buttons">
-          <button class="btn btn-primary">Baixar Relatório em PDF</button>
+          <button class="btn btn-primary" (click)="baixarRelatorio()">
+            Baixar Relatório em PDF
+          </button>
           <button class="btn btn-outline">Enviar Relatório por e-mail</button>
         </div>
 

@@ -48,7 +48,7 @@ export class HistoricoRelatorio implements OnInit {
           iconClass: 'initials-fa',
           date: '2024-01-15 às 14:30',
           plot: 'Talhão A',
-          confidence: 94,
+          confidence: 98,
           diagnosis: 'Ferrugem Asiática',
           severity: 'Moderada',
           severityLevel: 'moderate',
@@ -67,5 +67,10 @@ export class HistoricoRelatorio implements OnInit {
         console.error('Erro ao carregar PDFs:', err);
       },
     });
+  }
+
+  /**download do único PDF existente */
+  baixarRelatorio(): void {
+    this.historicoService.downloadPdf();
   }
 }

@@ -91,10 +91,9 @@
 /* O wrapper da imagem */
 .image-wrapper {
   position: relative;
-  /* AQUI: Define a altura máxima da imagem */
-  max-height: 300px; /* <- Ajuste este valor se quiser mais alto ou mais baixo */
+  max-height: 300px;
   overflow: hidden;
-  background-color: #f0f0f0; /* Cor de fundo caso a imagem demore a carregar */
+  background-color: #f0f0f0;
 }
 
 /* A imagem em si */
@@ -102,55 +101,90 @@
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+  object-fit: cover;
 }
 
-/* --- ▼▼▼ CÓDIGO ADICIONADO PARA OS BOTÕES QUE SUMIRAM ▼▼▼ --- */
-
-/* O botão 'Ampliar' */
+/* Botão Ampliar */
 .btn-amplify {
-  position: absolute; /* Flutua sobre o container pai */
+  position: absolute;
   top: 1rem;
   right: 1rem;
-  
-  /* === ALTERAÇÕES AQUI === */
-  background-color: rgba(255, 255, 255, 0.2); /* Fundo branco semitransparente */
-  color: #212121E5; /* Cor do texto */
-  border: 1px solid rgba(255, 255, 255, 0.4); /* Borda branca sutil */
-  border-radius: 20px; /* Mais arredondado (formato de pílula) */
-  padding: 0.5rem 1.2rem; /* Mais espaçamento para um botão maior */
-  font-size: 1rem; /* Fonte um pouco maior */
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #212121E5;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .btn-amplify:hover {
-  background-color: rgba(255, 255, 255, 0.35); /* Fundo um pouco mais opaco no hover */
-  border-color: rgba(255, 255, 255, 0.7); /* Borda mais visível no hover */
+  background-color: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
-/* O selo de 'Confiança' */
+/* Badge de confiança */
 .confidence-badge {
-  position: absolute; /* Flutua sobre o container pai */
+  position: absolute;
   bottom: 1rem;
   left: 1rem;
-  background-color: rgba(255, 255, 255, 0.95); /* Fundo branco quase opaco */
-  color: var(--dark-text, #212121); /* Texto escuro */
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Borda cinza sutil */
-  border-radius: 50px; /* Borda bem arredondada (pílula) */
+  background-color: rgba(255, 255, 255, 0.95);
+  color: var(--dark-text, #212121);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
   padding: 0.4rem 0.9rem;
   font-size: 0.9rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Sombra leve */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-/* Cor do ícone de escudo */
 .confidence-badge i {
   color: var(--primary-green, #388E3C);
+}
+
+
+/* ------------------------------------------------------ */
+/* ▼▼▼ ADICIONAR A PARTIR DAQUI → CSS DO MODAL ▼▼▼ */
+/* ------------------------------------------------------ */
+
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: zoom-out;
+
+  /* Suporte para Safari */
+  -webkit-backdrop-filter: blur(2px);
+
+  /* Navegadores modernos */
+  backdrop-filter: blur(2px);
+}
+
+.modal-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  object-fit: contain; /* garante que não distorce */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  animation: fadeIn 0.25s ease;
+}
+
+/* Animação suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* --- ▲▲▲ FIM DO CÓDIGO ADICIONADO ▲▲▲ --- */
