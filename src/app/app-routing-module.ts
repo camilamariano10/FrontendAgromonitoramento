@@ -13,7 +13,40 @@ const routes: Routes = [
   {
     path: 'contato',
     loadChildren: () => import('./pages/contato/contato-module').then(m => m.ContatoModule) //Rota da página contato
-  }
+  },
+  {
+    path: 'planos',
+    loadChildren: () => import('./pages/planos/planos-module').then(m => m.PlanosModule) //Rota da página planos
+  },
+  {
+    path: 'cadastro-pf',
+    loadChildren: () => import('./pages/cadastro-pf/cadastro-pf-module').then(m => m.CadastroPFModule) //Rota da página cadastro pessoa física
+  },
+  {
+    path: 'cadastro-pj',
+    loadChildren: () => import('./pages/cadastro-pj/cadastro-pj-module').then(m => m.CadastroPjModule) //Rota da página cadastro pessoa jurídica
+  },
+  {
+    path: 'dashboard-pj',
+    loadChildren: () => import('./pages/dashboard-pj/dashboard-pj-module').then(m => m.DashboardPjModule) //Rota da página dashboard pessoa jurídica
+  },
+  {
+    path: 'gerenciar-telefones',
+    loadChildren: () => import('./pages/gerenciar-telefones/gerenciar-telefones-module').then(m => m.GerenciarTelefonesModule) //Rota da página gerenciar telefones
+  },
+  {
+    path: 'dashboard-individual',
+    loadComponent: () => import('./pages/dashboard-individual/dashboard-individual').then(m => m.DashboardIndividual) //Rota da página dashboard pessoa física
+  },
+  {
+    path: 'historico-relatorio',
+    loadChildren: () => import('./pages/historico-relatorio/historico-relatorio-module').then(m => m.HistoricoRelatorioModule) //Rota da página histórico relatório
+  },
+  {
+    path: 'detalhe-relatorio',
+    loadChildren: () => import('./pages/detalhe-relatorio/detalhe-relatorio-module').then(m => m.DetalheRelatorioModule) //Rota da página histórico relatório
+  },
+
 ];
 
 @NgModule({

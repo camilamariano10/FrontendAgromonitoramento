@@ -1,0 +1,280 @@
+/* ========================================================= */
+/* 1. ESTRUTURA GERAL E CABEÇALHO */
+/* ========================================================= */
+
+.dashboard-page {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #e0e6d6; /* Cor de fundo */
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: #2A2F23;
+}
+
+/* Container principal que segura Header + Corpo */
+.dashboard-container {
+  max-width: 1400px; /* Limita a largura em telas grandes */
+  margin: 0 auto;    /* Centraliza na tela */
+  display: flex;
+  flex-direction: column; /* Empilha Header em cima, Corpo embaixo */
+  gap: 2rem; /* Espaço entre o Header e os Cards */
+}
+
+/* Alinhamento principal do corpo do Dashboard (Substitui o row) */
+.main-layout {
+  display: flex;
+  gap: 20px; /* Espaço entre as duas colunas principais */
+  grid-template-columns: 2fr 1fr; /* Define proporção das colunas */
+  /*align-items: stretch; /* Faz as colunas terem a mesma altura */
+}
+
+/* ========================================================= */
+/* 2. LAYOUT RESPONSIVO (USO DE GRID E FLEXBOX) */
+/* ========================================================= */
+
+.dashboard-left-panel {
+    flex-basis: 66.66%; /* Equivalente a col-lg-8 (8/12) */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dashboard-right-panel {
+    flex-basis: 33.33%; /* Equivalente a col-lg-4 (4/12) */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Faz os 4 Cards de Resumo ficarem em grid (2x2 ou 4x1) */
+.info-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais para desktop */
+    gap: 20px;
+}
+
+/* Media Query para responsividade em Tablets/Celulares */
+@media (max-width: 992px) {
+    .main-layout {
+        /*flex-direction: column; /* Empilha as colunas */
+        grid-template-columns: 1fr; /* Apenas uma coluna */
+    }
+    .info-cards-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas para tablets */
+    }
+    .dashboard-left-panel,
+    .dashboard-right-panel {
+      width: 100%; /* Ocupa largura total no mobile */
+    }
+}
+@media (max-width: 600px) {
+    .info-cards-grid {
+        grid-template-columns: 1fr; /* 1 coluna para celulares */
+    }
+}
+
+
+/* ========================================================= */
+/* 3. ESTILOS DOS CARDS (APARÊNCIA) */
+/* ========================================================= */
+
+/* Cards de Informação */
+.info-card, .chart-container, .action-card, .tip-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+    height: 100%; /* Para que os cards na mesma linha tenham a mesma altura (dentro do grid) */
+}
+
+/* Tipografia dos Cards */
+.info-card .card-title {
+    font-size: 1rem;
+    font-weight: 550;
+    color: #104137;
+}
+.info-card .card-value {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.info-card .card-value-total {
+    margin: 1.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #343a40;
+}
+
+.card-icon {
+    background-color: #0B783F; /* Cor dos ícones nos valores */
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: #212121;
+}
+
+/* ========================================================= */
+/* Estilo base da tag de status */
+/* ========================================================= */
+.status-tag {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+/* Cores para cada nível */
+.status-baixo {
+  background-color: #e8f5e9; /* verde claro */
+  color: #2e7d32;
+}
+
+.status-moderado {
+  background-color: #fff3e0; /* laranja claro */
+  color: #f57c00;
+}
+
+.status-alto {
+  background-color: #ffebee; /* vermelho claro */
+  color: #c62828;
+}
+
+.status-ativo {
+  background-color: #e8f5e9; /* azul claro */
+  color: #2e7d32;
+}
+
+.status-inativo {
+  background-color: #f5f5f5; /* cinza claro */
+  color: #616161;
+  font-style: italic;
+}
+
+/* ========================================================= */
+/* Estilo para a Distribuição de Doenças (Gráfico/Lista) */
+/* ========================================================= */
+
+.chart-container {
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  min-height: 450px;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-title {
+  color: #1e3a2a;
+  font-weight: 700;
+}
+
+.view-history-link {
+  color: #205c48;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.view-history-link:hover {
+  text-decoration: underline;
+}
+
+.chart-container canvas {
+  width: 100% !important; /* Força a largura para ocupar o contêiner */
+  max-width: 400px; /* Limita a largura máxima para legibilidade */
+  height: 400px !important; /* Força uma altura fixa */
+  margin: 1rem auto 0; /* Centraliza e adiciona margem superior */
+}
+
+
+/* ========================================================= */
+/* Estilo para Ações Rápidas e Card Dica do Dia */
+/* ========================================================= */
+
+.dashboard-right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaço entre Ações e Dica */
+    height: 100%; /* Ocupa toda a altura disponível do pai */
+}
+
+.dashboard-left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaço entre os cards */
+}
+
+.action-card {
+  flex: 0 0 auto; /* Impede que o card cresça para ocupar espaço extra */
+  height: auto; /* Altura automática conforme o conteúdo */
+}
+
+.action-list {
+    list-style: none;
+    padding: 0;
+}
+
+.action-item {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+    color: #343a40;
+    cursor: pointer;
+    font-weight: 400;
+}
+
+.action-item:hover {
+    background-color: #f5f5f5;
+}
+
+.action-item i {
+    color: #212121; /* Cor dos ícones de ação */
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    background-color: #0B783F; /* Cor dos ícones nos valores */
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+
+.action-info {
+    font-size: 0.85rem;
+    font-weight: 100;
+    color: #8C856D;
+    margin-left: 3rem;
+}
+
+.action-title {
+    font-size: 1rem;
+    font-weight: 550;
+    color: #104137;
+}
+
+.tip-card {
+    background: #0B783F;
+    background: linear-gradient(90deg,rgba(11, 120, 63, 1) 0%, rgba(16, 65, 55, 1) 100%);
+    color: white;
+    flex: 1; /* Faz o card ocupar o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza verticalmente */
+}
+
+.tip-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+

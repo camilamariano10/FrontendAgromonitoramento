@@ -1,0 +1,91 @@
+<body class="body-cadastro">
+  <section class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class="form-box mx-auto"> <!-- Caixa do formulário -->
+        <h5 class="title mb-1 text-center">Crie a sua conta</h5>
+        <p class="subtitle mb-5 text-center">Pessoa Física</p>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()"> <!-- Formulário reativo -->
+            <div class="row">
+              <div class="mb-3 text-start"> <!-- Campo de nome completo -->
+              <label for="nome" class="form-label">Nome completo*</label>
+              <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Digite seu nome completo">
+            </div>
+            <div class="mb-3 text-start"> <!-- Campo de CPF -->
+              <label for="cpf" class="form-label">CPF*</label>
+              <input type="text" class="form-control" id="cpf" formControlName="cpf" placeholder="000.000.000-00">
+            </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3 text-start"> <!-- Campo de telefone -->
+                <label for="telefone" class="form-label">Número de telefone principal*</label>
+                <input type="text" class="form-control" id="telefone" formControlName="telefone" placeholder="(00) 00000-0000" mask="(00) 00000-0000">
+              </div>
+              <div class="col mb-3 text-start"> <!-- Campo de WhatsApp -->
+                <label for="whatsapp" class="form-label">Telegram*</label>
+                <input type="text" class="form-control" id="whatsapp" formControlName="whatsapp" placeholder="(00) 00000-0000" mask="(00) 00000-0000">
+              </div>
+            </div>
+            <div class="row">
+              <div class="mb-3 text-start"> <!-- Campo de endereço -->
+              <label for="uf" class="form-label">UF*</label>
+              <input type="uf" class="form-control" id="uf" formControlName="uf" placeholder="Digite o nome do seu estado">
+            </div>
+            <div class="mb-3 text-start"> <!-- Campo de cidade -->
+              <label for="cidade" class="form-label">Cidade*</label>
+              <input type="cidade" class="form-control" id="cidade" formControlName="cidade" placeholder="Digite o nome da sua cidade">
+            </div>
+            <div class="mb-3 text-start"> <!-- Campo de e-mail -->
+              <label for="email" class="form-label">E-mail*</label>
+              <div class="input-group"> <!-- Grupo de entrada com ícone -->
+                <span class="input-group-text">
+                  <i class="fa-solid fa-at"></i>
+                </span>
+                <input type="email" class="form-control" id="email" formControlName="email" placeholder="Digite seu e-mail" aria-describedby="basic-addon1">
+            </div>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3 text-start"> <!-- Campo de senha -->
+                <label for="senha" class="form-label">Senha*</label>
+                <div class="input-group"> <!-- Grupo de entrada com ícone -->
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-lock"></i>
+                  </span> <!-- Ícone de cadeado -->
+                  <input [type]="showPassword ? 'text' : 'password'"
+                  class="form-control"
+                  id="senha"
+                  formControlName="senha"
+                  placeholder="Digite sua senha" aria-describedby="basic-addon1">
+                  <span class="input-group-text2" (click)="togglePasswordVisibility()" style="cursor: pointer;"> <!-- Ícone para mostrar/ocultar senha -->
+                    <i class="fa-solid" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                  </span>
+              </div>
+              </div>
+              <div class="col mb-3 text-start"> <!-- Campo de confirmar senha -->
+                <label for="confirmarSenha" class="form-label">Confirmar senha*</label>
+                <div class="input-group"> <!-- Grupo de entrada com ícone -->
+                  <span class="input-group-text">
+                    <i class="fa-solid fa-lock"></i>
+                  </span>
+                  <input [type]="showConfirmPassword ? 'text' : 'password'"
+                  class="form-control"
+                  id="confirmarSenha"
+                  formControlName="confirmarSenha"
+                  placeholder="Confirme sua senha" aria-describedby="basic-addon1">
+                  <span class="input-group-text2" (click)="toggleConfirmPasswordVisibility()" style="cursor: pointer;"> <!-- Ícone para mostrar/ocultar senha -->
+                    <i class="fa-solid" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i> <!-- Ícone dinâmico -->
+                  </span>
+              </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Assinar</button> <!-- Botão de envio desabilitado se o formulário for inválido -->
+            </div>
+
+          </form>
+        </div>
+        </div>
+    </div>
+  </section>
+</body>

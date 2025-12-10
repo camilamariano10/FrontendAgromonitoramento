@@ -1,0 +1,88 @@
+.body-cadastro { /* Estilização do corpo da página cadastro */
+  background-color: #B7C2A8;
+  padding: 5rem;
+  justify-content: center;
+}
+.form-box { /* Estilização da caixa do formulário */
+  background-color: #ffffff;
+  border: 1.2px solid #dee2e6;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 5.4px #104137;
+  margin: 1rem auto;
+}
+
+.title { /* Estilização do título */
+  color: #104137;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+}
+.subtitle { /* Estilização do subtítulo */
+  color: #104137;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.form-label { /* Estilização dos rótulos dos campos do formulário */
+  color: #104137;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.form-control { /* Estilização dos campos do formulário */
+  background-color: #F9FAFB;
+  border: 1.2px solid #D1D5DB;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.form-control:focus { /* Estilização dos campos do formulário quando estão em foco */
+  border-color: #104137;
+  box-shadow: 0 0 0 0.2rem rgba(16, 65, 55, 0.25);
+}
+
+/* Estilo do texto dentro do input-group (o @ e o cadeado) */
+.input-group-text {
+  border: 1.2px solid #D1D5DB; /* Borda da mesma cor do input */
+  border-right: none; /* Remove a borda direita para que se una ao input */
+  padding: 0.75rem 1rem;
+}
+
+/* Estilo dos ícones de senha e visibilidade */
+.input-group-text i {
+  color: #2A2F23;
+}
+.input-group-text2 {
+  border: 1.2px solid #D1D5DB; /* Borda da mesma cor do input */
+  border-left: none; /* Remove a borda esquerda para que se una ao input */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #F9FAFB;
+}
+
+.btn-primary { /* Estilização do botão primário */
+  background-color: #0B783F;
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+  width: 40%;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.btn-primary:hover { /* Estilização do botão primário ao passar o mouse */
+  background-color: rgb(11, 120, 63, 0.5);
+  color: #ffffff;
+  text-decoration: none;
+}

@@ -1,0 +1,127 @@
+<body class="body-telefones">
+  <div class="main-container">
+    
+    <header class="farm-header">
+      <div class="farm-info">
+        <h1>FAZENDA SANTA ROSA <i class="fa-solid fa-gear icon-gear"></i></h1>
+        <p>Bem-vindo de volta ao seu painel de controle</p>
+        <span>Última atualização: hoje às 14:30</span>
+      </div>
+
+      <button (click)="adicionarTelefone()" class="btn-add-contact">
+        <i class="fa-solid fa-plus"></i> ADICIONAR CONTATO
+      </button>
+    </header>
+
+    <main class="list-card">
+      <div class="list-header-row">
+        <div class="list-title">
+          <h2>Telefones Autorizados</h2>
+          <p>Gerencie os números do autorizados a enviar análises</p>
+        </div>
+
+        <div class="list-actions">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="text"
+              placeholder="Buscar por nome ou telefone..."
+              aria-label="Buscar contato"
+            />
+          </div>
+
+          <select class="dropdown-beige" aria-label="Filtrar status">
+            <option>Todos os status</option>
+            <option>Ativo</option>
+            <option>Inativo</option>
+          </select>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="list-meta-row">
+        <span class="count-text">{{ contacts.length }} telefone(s) encontrado(s)</span>
+        <div class="sort-box">
+          <label for="sortOrder">Ordenar por:</label>
+
+          <select id="sortOrder" class="dropdown-beige small">
+            <option>Nome</option>
+            <option>Data</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="contacts-list">
+        <div class="contact-item" *ngFor="let contact of contacts">
+          <div class="contact-left">
+            <div class="telgram-icon">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+
+            <div class="contact-details">
+              <h3>{{ contact.name }}</h3>
+              <span class="phone-number">{{ contact.phone }}</span>
+
+              <div class="role-badge-row">
+                <span class="role-text">{{ contact.role }}</span>
+                <span
+                  class="status-badge"
+                  [ngClass]="contact.status === 'Ativo' ? 'badge-active' : 'badge-inactive'"
+                >
+                  {{ contact.status }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <div class="date-info">
+              <span>Adicionado: {{ contact.addedDate }}</span>
+              <span>Última uso: {{ contact.lastUseDate }}</span>
+            </div>
+
+            <div class="action-buttons-group">
+              <button type="button" class="btn-icon-action" aria-label="Alterar status">
+                <i
+                  class="fa-solid"
+                  [ngClass]="contact.status === 'Ativo' ? 'fa-circle-check' : 'fa-ban'"
+                ></i>
+              </button>
+
+              <button
+                type="button"
+                class="btn-icon-action"
+                aria-label="Editar contato"
+                (click)="abrirModalEditar(contact)"
+              >
+                <i class="fa-regular fa-pen-to-square"></i>
+              </button>
+
+              <button type="button" class="btn-icon-action" aria-label="Excluir contato">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <app-adicionar-contato
+      *ngIf="showAdicionarContato"
+      (close)="fecharModalAdicionar()"
+      (save)="salvarNovoContato($event)"
+    >
+    </app-adicionar-contato>
+
+    <app-editar-contato
+      *ngIf="editarAberto"
+      [contactData]="contatoSelecionado"
+      (close)="fecharModalEditar()"
+      (save)="salvarEdicao($event)"
+      (delete)="excluirContato($event)"
+    >
+    </app-editar-contato>
+
+  </div>
+</body>

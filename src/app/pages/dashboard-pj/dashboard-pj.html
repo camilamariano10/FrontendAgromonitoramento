@@ -1,0 +1,79 @@
+<section class="dashboard-page">
+  @if (dashboardData) {
+    <div class="dashboard-container">
+      <!-- Header com componente -->
+      <app-farm-header
+        [nomeFazenda]="dashboardData?.nomeFazenda"
+        [ultimaAtualizacao]="dashboardData?.ultimaAtualizacao"
+        (fazendaMudou)="aoMudarFazenda($event)"
+      >
+      </app-farm-header>
+
+      <div class="main-layout">
+
+        <section class="dashboard-left-panel">
+
+          <div class="info-cards-grid">
+
+            <article class="info-card">
+              <h5 class="card-title"> <i class="card-icon fa-solid fa-chart-simple"></i> Total de Análises</h5>
+              <h2 class="card-value-total">{{ dashboardData.totalAnalises }}</h2>
+              <!--<p class="card-detail">+12 este mês</p> -->
+            </article>
+
+            <article class="info-card">
+              <h5 class="card-title"> <i class="card-icon fa-regular fa-clock"></i> Última Análise</h5>
+              <p class="card-value">{{ dashboardData.ultimaAnalise.resultado }}</p>
+              <p class="card-value-small">{{ dashboardData.ultimaAnalise.data }} - {{ dashboardData.ultimaAnalise.talhao }}</p>
+              <span class="status-tag" [ngClass]="getStatusClass(dashboardData.ultimaAnalise.status)" > {{ dashboardData.ultimaAnalise.status }}</span>
+            </article>
+
+            <article class="info-card">
+              <h5 class="card-title"> <i class="card-icon fa-regular fa-star"></i> Plano Atual</h5>
+              <p class="card-value">{{ dashboardData.planoAtual.nome }}</p>
+              <p class="card-detail">Válido até {{ dashboardData.planoAtual.validade }}</p>
+              <span class="status-tag" [ngClass]="getStatusPlan(dashboardData.planoAtual.status)" >Ativo</span>
+            </article>
+
+          </div>
+
+          <article class="chart-container">
+            <div class="chart-header">
+              <h4 class="chart-title">Distribuição de Doenças Detectadas</h4>
+              <a class="view-history-link" (click)="goToHistorico()">Ver histórico completo</a>
+            </div>
+            <canvas #diseaseChart *ngIf="dashboardData?.distribuicao?.doencas?.length"></canvas>
+            <div *ngIf="loading" class="loading-msg">
+              Carregando gráfico...
+            </div>
+
+            <div *ngIf="!loading && (!dashboardData?.distribuicao?.doencas || dashboardData?.distribuicao?.doencas.length === 0)">
+              Nenhum dado disponível.
+            </div>
+
+          </article>
+        </section>
+
+        <section class="dashboard-right-panel">
+
+          <article class="action-card">
+            <h4 class="action-title">Ações Rápidas</h4>
+            <ul class="action-list">
+              <li class="action-item" (click)="goToGerenciarTelefones()"><i class="fas fa-mobile-alt"></i> Números autorizados <br>
+              <span class="action-info">Gerenciar números de telefones</span></li>
+              <li class="action-item" (click)="goToHistorico()"><i class="fas fa-history"></i> Histórico <br>
+              <span class="action-info">Ver análises anteriores</span></li>
+              <li class="action-item" routerLink="/gerenciar-plano"><i class="fas fa-star-half-alt"></i> Gerenciar Plano <br>
+              <span class="action-info">Alterar ou renovar assinatura</span></li>
+            </ul>
+          </article>
+
+          <article class="tip-card">
+            <h4 class="tip-title">Dica do Dia <i class="fas fa-lightbulb"></i></h4>
+            <p class="tip-text">Para melhores resultados, fotografe as folhas com boa iluminação natural e foque nas áreas com sintomas visíveis.</p>
+          </article>
+        </section>
+      </div>
+      </div>
+  }
+</section>

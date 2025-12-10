@@ -1,0 +1,186 @@
+/* ------------------ HEADER (Título + Subtítulo) ------------------ */
+
+.farm-header {
+  display: inline-block;
+  flex-direction: column;
+  align-items: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  gap: 0.5rem;
+  margin-bottom: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  position: relative;
+  overflow: visible !important; /* Garante que o dropdown não seja cortado */
+
+
+}
+
+.farm-header-top {
+  justify-content: space-between;
+  flex-wrap: wrap; /* ajuda na responsividade */
+}
+
+/* Textos abaixo do dropdown */
+.farm-header-texts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* textos alinhados à esquerda */
+}
+
+.subtitle {
+  margin: 0;
+  color: #6B7280;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.last-update {
+  color: #6B7280;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+/* ------------------ DROPDOWN DE FAZENDAS ------------------ */
+
+.farm-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botão principal (Nome da Fazenda) */
+.main-title {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #212121;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  position: relative; /* Garante z-index se necessário */
+  z-index: 1001; /* Fica acima do menu se eles se tocarem */
+  background: transparent; /* Garante que não cubra nada */
+}
+
+/* Botão principal (Nome da Fazenda) */
+.farm-title-button {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #212121;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  position: relative; /* Garante z-index se necessário */
+  z-index: 1001; /* Fica acima do menu se eles se tocarem */
+  background: transparent; /* Garante que não cubra nada */
+}
+
+.farm-title-button span {
+    color: #212121; /* Garante a cor do texto */
+}
+
+.farm-title-button:hover {
+  color: #2121218e;
+}
+
+.farm-icon {
+  color: #205c48;
+  transition: transform 0.3s ease;
+  font-size: 1rem;
+}
+
+.farm-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Menu suspenso */
+.farm-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  min-width: 280px;
+  display: none;
+  margin-top: 0.5rem;
+  white-space: nowrap; /* Impede que o texto quebre linha e deforme o menu */
+
+}
+
+.farm-menu[style*="block"] {
+  opacity: 1;
+  transform: translateY(0);
+  display: block !important;
+}
+
+/* Itens de fazenda */
+.farm-menu-item {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.farm-menu-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Ícones dentro dos itens */
+.icon-button {
+  background: none;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  color: #205c48;
+}
+
+.icon-button:hover {
+  background-color: #d1e2d6;
+}
+
+/* Linha divisória */
+.menu-divider {
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 6px 0;
+}
+
+/* Botão de adicionar fazenda */
+.add-farm-btn {
+  font-weight: 700;
+  color: #205c48;
+}
+
+.add-farm-btn .icon-button.add {
+  color: #205c48;
+}
+
+.add-farm-btn .icon-button.add:hover {
+  background-color: #184b3b;
+}
+
+/* Estilização para abertura deve ser feita via JavaScript/Angular */

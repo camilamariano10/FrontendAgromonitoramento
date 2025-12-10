@@ -1,0 +1,279 @@
+/* --- CONFIGURAÇÕES GERAIS (Encapsulamento) --- */
+.body-telefones {
+  background-color: #BCC8B3; /* Verde do fundo da página */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #212121;
+  padding: 2rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- HEADER SUPERIOR --- */
+.farm-header {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.farm-info h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1B1B1B;
+}
+.icon-gear {
+  font-size: 1rem;
+  color: #1B5E20; /* Verde escuro */
+}
+.farm-info p {
+  margin: 0;
+  color: #757575;
+  font-size: 1rem;
+}
+.farm-info span {
+  font-size: 0.85rem;
+  color: #9E9E9E;
+}
+
+.btn-add-contact {
+  background-color: #107C41; /* Verde Excel/Whatsapp */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.8rem 1.5rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn-add-contact:hover {
+  background-color: #0c6132;
+}
+
+/* --- CARD PRINCIPAL DA LISTA --- */
+.list-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Linha de Título e Busca */
+.list-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.list-title h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+}
+.list-title p {
+  margin: 0;
+  color: #757575;
+  font-size: 0.95rem;
+}
+
+.list-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Caixa de Busca */
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #E0E0E0;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  width: 280px;
+}
+.search-box i {
+  color: #9E9E9E;
+  margin-right: 0.5rem;
+}
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+  color: #212121;
+}
+
+/* Dropdowns Beges */
+.dropdown-beige {
+  background-color: #DEDCD1; /* Bege escuro da imagem */
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: #E0E0E0;
+  margin: 0 0 1rem 0;
+}
+
+/* Linha Meta (Contagem e Ordenação) */
+.list-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #757575;
+}
+
+.sort-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.dropdown-beige.small {
+  padding: 0.3rem 0.8rem;
+}
+
+/* --- LISTA DE ITENS --- */
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-item {
+  border: 1px solid #F0F0F0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFFFFF; /* Garante fundo branco */
+}
+.contact-item:hover {
+  border-color: #E0E0E0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+
+/* Lado Esquerdo do Card */
+.contact-left {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* --- Ícone do Telegram --- */
+.telgram-icon {
+  width: 48px;        /* Largura da caixa */
+  height: 48px;       /* Altura da caixa */
+  background-color: #229ED9; /* Azul oficial do Telegram */
+  border-radius: 10px;       /* Cantos arredondados */
+  display: flex;
+  justify-content: center;   /* Centraliza horizontalmente */
+  align-items: center;       /* Centraliza verticalmente */
+  color: white;              /* Cor do ícone */
+  font-size: 2rem;           /* Tamanho do ícone (Aumentei para ficar visível) */
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+}
+.contact-details h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #212121;
+}
+.phone-number {
+  color: #757575;
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}
+.role-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.role-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #616161;
+}
+
+/* Badges de Status */
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.badge-active {
+  background-color: #D1FAE5; /* Fundo verde claro */
+  color: #047857; /* Texto verde escuro */
+}
+.badge-inactive {
+  background-color: #FFE4E6; /* Fundo vermelho claro */
+  color: #BE123C; /* Texto vermelho escuro */
+}
+
+/* Lado Direito do Card */
+.contact-right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.date-info {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  font-size: 0.75rem;
+  color: #9E9E9E;
+  gap: 0.2rem;
+}
+
+.action-buttons-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-icon-action {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #E0E0E0;
+  background-color: white;
+  border-radius: 6px;
+  color: #757575;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+.btn-icon-action:hover {
+  background-color: #F5F5F5;
+  color: #212121;
+  border-color: #BDBDBD;
+}

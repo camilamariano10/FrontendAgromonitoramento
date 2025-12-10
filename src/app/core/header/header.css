@@ -83,3 +83,43 @@
   background-color: #3e6f6a; /* Fundo mais escuro ao clicar */
   color: white;
 }
+
+/* Estilo para o botão de perfil no estado logado */
+.user-profile-dropdown .user-button {
+  border-radius: 50px;
+  border: 1px solid #205c48;
+  color: #205c48;
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+}
+
+/* Garante que o ícone de usuário seja visível (substitua fas por fab/fa-solid se necessário) */
+.user-button i {
+  color: #205c48;
+}
+
+/* Estilo para o menu suspenso */
+.dropdown-menu {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0;
+}
+
+/* Estilo para o botão SAIR, que no Figma é um botão no rodapé do dropdown */
+.dropdown-divider {
+  margin: 0.5rem 0;
+  border-top: 1px solid #eee;
+}
+
+/* Estilo para os itens do menu */
+.dropdown-item {
+  color: #205c48 !important;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* Sobrescreve o estilo do botão de SAIR para que ele se pareça com um link de logout */
+.dropdown-item:last-child {
+  color: #dc3545 !important;
+}
+
