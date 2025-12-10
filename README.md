@@ -6,6 +6,11 @@
 
 O **AgroMonitoramento** é uma aplicação web desenvolvida para auxiliar produtores rurais no monitoramento de saúde de suas plantações (foco em soja) utilizando Inteligência Artificial. O sistema permite o gerenciamento de fazendas, visualização de diagnósticos de doenças e relatórios detalhados.
 ---
+### 👩🏽‍💻👨🏽‍💻Autores:
+[![Camila](https://img.shields.io/badge/👩‍💻_Camila%20Mariano-Frontend%20Developer-104137?style=for-the-badge&logo=github&logoColor=white)](https://github.com/camilamariano10)  
+[![Leonardo](https://img.shields.io/badge/👨‍💻_Leonardo%20Rodrigues-Backend%20Developer-2A2F23?style=for-the-badge&logo=github&logoColor=white)](https://github.com/odranoel-dev)
+
+---
 ## 📂 File View
 ```
 ├── 📁 .angular
